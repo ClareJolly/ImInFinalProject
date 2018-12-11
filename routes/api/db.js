@@ -6,11 +6,11 @@ const Participant = require('../../models/Participants');
 router.post('/', (req, res) => {
   const newParticipant = new Participant({
     participants: req.body.participants,
-    teamName: "Test Team",
-    eventTime: "10:00",
-    eventPlace: "St Pauls Academy",
-    eventDate: "25/12/18",
-    message: "Hi"
+    teamName: req.body.teamName,
+    eventTime: req.body.eventTime,
+    eventPlace: req.body.eventPlace,
+    eventDate: req.body.eventDate,
+    message: req.body.message
   });
 
   newParticipant.save().then(post => res.json(post));
