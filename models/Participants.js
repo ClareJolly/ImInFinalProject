@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 // Creat Schema
 const ParticipantSchema = new Schema({
-  participants: {
+  invitees: {
     type: Array,
     required: true
   },
