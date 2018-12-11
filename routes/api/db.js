@@ -5,7 +5,7 @@ const Participant = require('../../models/Participants');
 
 router.post('/', (req, res) => {
   const newParticipant = new Participant({
-    participants: req.body.participants,
+    invitees: req.body.invitees,
     teamName: req.body.teamName,
     eventTime: req.body.eventTime,
     eventPlace: req.body.eventPlace,
@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   Participant.findById(req.params.id).then(participant =>
-    participants.remove().then(() => res.json({ success: true }))
+    invitees.remove().then(() => res.json({ success: true }))
   )
   .catch(err => res.status(404).json({ success: false }));
 });

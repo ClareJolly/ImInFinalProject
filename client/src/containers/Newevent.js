@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+// import axios from 'axios'
 import './App.css';
 import Invitees from './Invitees'
 
@@ -8,10 +8,10 @@ class Newevent extends Component {
   constructor(props){
     super(props);
     this.state = {
-      team_name : '',
-      event_place : '',
-      event_date : '',
-      event_time : '',
+      teamName : '',
+      eventPlace : '',
+      eventDate : '',
+      eventTime : '',
       message : '',
       invitees : []
     }
@@ -33,22 +33,37 @@ class Newevent extends Component {
     console.log(this.state)
   }
 
+  updateDb = () => {
+    var url = 'http://localhost:5000/api/db'
+    var event = {teamName: this.state.teamName, eventTime: this.state.eventTime, eventDate: this.state.eventDate, eventPlace: this.state.eventPlace, message: this.state.message, invitees: this.state.invitees}
+    console.log(event)
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify( event ),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .then(response => console.log('Success:', JSON.stringify(response)))
+    // .then(window.location.reload())
+    .catch(error => console.error("Error:", error));
+
+  }
   render() {
     return (
       <div className="Newevent">
         <h2>Event booking form</h2>
         <div>Team name
-        <input type='text' name='team_name' id='team_name' onChange={this.handleChange}/></div>
+        <input type='text' name='teamName' id='teamName' onChange={this.handleChange}/></div>
         <Invitees updateInvitees={this.updateInvitees}/>
 
-        <div>Place<input type='text' name='event_place' id='event_place' onChange={this.handleChange}/></div>
+        <div>Place<input type='text' name='eventPlace' id='eventPlace' onChange={this.handleChange}/></div>
 
-        <div>Date<input type="date" name='event_date' id='event_date' onChange={this.handleChange}/></div>
-        <div>Time<input type="time" name='event_time' id='event_time' onChange={this.handleChange}/></div>
+        <div>Date<input type="date" name='eventDate' id='eventDate' onChange={this.handleChange}/></div>
+        <div>Time<input type="time" name='eventTime' id='eventTime' onChange={this.handleChange}/></div>
         <div>Message<textarea rows="4" cols="30" name="message" id="message" onChange={this.handleChange}>
         </textarea></div>
-        <div><button type="button" onClick={this.checkState}>Submit</button></div>
-
+        <div><button type="button" onClick={this.updateDb}>Submit</button></div>
 
       </div>
     );
