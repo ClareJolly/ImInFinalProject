@@ -12,7 +12,6 @@ router.post('/', (req, res) => {
     eventDate: req.body.eventDate,
     message: req.body.message
   });
-
   newParticipant.save().then(post => res.json(post));
 });
 
