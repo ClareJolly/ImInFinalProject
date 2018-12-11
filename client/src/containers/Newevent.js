@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
 import './Newevent.css';
+
+// import axios from 'axios'
+import './App.css';
 import Invitees from './Invitees'
 import TeamForm from './TeamForm'
 import EventForm from './EventForm'
@@ -62,6 +65,22 @@ class Newevent extends Component {
     console.log(this.state)
   }
 
+  updateDb = () => {
+    var url = 'http://localhost:5000/api/db'
+    var event = {teamName: this.state.teamName, eventTime: this.state.eventTime, eventDate: this.state.eventDate, eventPlace: this.state.eventPlace, message: this.state.message, invitees: this.state.invitees}
+    console.log(event)
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify( event ),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .then(response => console.log('Success:', JSON.stringify(response)))
+    // .then(window.location.reload())
+    .catch(error => console.error("Error:", error));
+
+  }
   render() {
     return (
       <div className="Newevent">
@@ -82,7 +101,7 @@ class Newevent extends Component {
       }
         { this.state.stage===2 && <EventForm Stage3Submit={this.Stage3Submit}/>}
       <button type="button" onClick={this.checkState}>Check State</button>
-
+      <div><button type="button" onClick={this.updateDb}>Submit</button></div>
 
       </div>
     );

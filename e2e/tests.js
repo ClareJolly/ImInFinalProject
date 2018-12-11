@@ -23,8 +23,8 @@ describe('Participants', () => {
 
   describe('/POST participants', () => {
     it('it should add a participants to the db', (done) => {
-      let post = {
-        participants: ["Test name", "07876543213", "YES"],
+      let event = {
+        invitees: ["Test name", "07876543213", "YES"],
         teamName: "Test Team",
         eventTime: "10:00",
         eventPlace: "St Pauls Academy",
@@ -33,12 +33,12 @@ describe('Participants', () => {
       }
       chai.request(server)
       .post('/api/db')
-      .send(post)
+      .send(event)
       .end((err, res) => {
         expect(res.statusCode).to.equal(200);
-        expect(res.body.participants[0]).to.equal("Test name");
-        expect(res.body.participants[1]).to.equal("07876543213");
-        expect(res.body.participants[2]).to.equal("YES");
+        expect(res.body.invitees[0]).to.equal("Test name");
+        expect(res.body.invitees[1]).to.equal("07876543213");
+        expect(res.body.invitees[2]).to.equal("YES");
         this.id = res.body._id
         console.log(this.id);
         done();
@@ -71,4 +71,4 @@ describe('Participants', () => {
 //       });
 //     });
 //   });
-// });
+});
