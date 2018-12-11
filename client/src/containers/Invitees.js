@@ -25,6 +25,7 @@ class Invitees extends Component {
     this.setState({
       invitees
     })
+
   }
 
   SaveToParent = () => {
@@ -34,6 +35,15 @@ class Invitees extends Component {
   render() {
     return (
       <div className="Participants">
+      {this.state.invitees.map(invitelist => {
+        return ( <div key={invitelist.part_name}>
+                 {invitelist.part_name} |
+                {invitelist.part_number}
+
+                 </div>
+                 )
+      })
+    }
       <Participant updateParticipants={this.updateParticipants}/>
         <div><button type="button" onClick={this.SaveToParent}>Submit</button></div>
 
