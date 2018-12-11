@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import './App.css';
 import Newevent from './Newevent'
+import Events from './Events'
 
 class App extends Component {
   render() {
@@ -9,7 +10,7 @@ class App extends Component {
       <div className="App">
         <h1>I'm In</h1>
         <Newevent />
-
+        <Events />
       </div>
     );
   }
