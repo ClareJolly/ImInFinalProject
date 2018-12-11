@@ -29,7 +29,7 @@ class Invitees extends Component {
   }
 
   SaveToParent = () => {
-    this.props.updateInvitees(this.state.invitees)
+    this.props.Stage2Submit(this.state.invitees)
   }
 
   render() {

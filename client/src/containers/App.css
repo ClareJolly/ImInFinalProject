@@ -1,3 +1,24 @@
+/* @import url('https://fonts.googleapis.com/css?family=Lora:400,700|Montserrat:300') */
+
+@import url('https://fonts.googleapis.com/css?family=Aldrich|Cabin+Sketch|Julius+Sans+One|Special+Elite|Ubuntu+Mono|Black+Han+Sans|Montserrat|Lora');
+
+/* @import url('https://fonts.googleapis.com/css?family=Lora:400,700|Montserrat:300'); */
+
+
+h1, h2 {
+  font-family: 'Montserrat', sans-serif;
+ font-weight: 300;
+ text-transform: uppercase;
+}
+
+.App {
+  text-align: center;
+}
+
+div {
+  font-family: 'Aldrich', sans-serif
+}
+
 .App {
   text-align: center;
 }
