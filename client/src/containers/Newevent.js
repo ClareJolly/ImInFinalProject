@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 
-import './App.css';
+import './Newevent.css';
 import Invitees from './Invitees'
+import TeamForm from './TeamForm'
+import EventForm from './EventForm'
 
 class Newevent extends Component {
 
   constructor(props){
     super(props);
     this.state = {
-      team_name : '',
-      event_place : '',
-      event_date : '',
-      event_time : '',
+      teamName : '',
+      eventPlace : '',
+      eventDate : '',
+      eventTime : '',
       message : '',
-      invitees : []
+      invitees : [],
+      stage:0
     }
   }
 
@@ -21,6 +24,32 @@ class Newevent extends Component {
     this.setState({
       [event.target.name] : event.target.value
     })
+  }
+
+  setTeamName = (name) => {
+    this.setState({
+      teamName:name
+    })
+  }
+
+  incrementStage = () => {
+    var stage = this.state.stage
+    var nextStage = stage + 1
+    this.setState({
+      stage: nextStage
+    })
+  }
+
+  Stage1Submit = (teamName) => {
+    this.incrementStage()
+    this.setTeamName(teamName)
+    // console.log(this.state.stage)
+  }
+
+  Stage2Submit = (invitees) => {
+    this.incrementStage()
+    this.updateInvitees(invitees)
+    // console.log(this.state.stage)
   }
 
   updateInvitees = (invitees) => {
@@ -37,17 +66,22 @@ class Newevent extends Component {
     return (
       <div className="Newevent">
         <h2>Event booking form</h2>
-        <div>Team name
-        <input type='text' name='team_name' id='team_name' onChange={this.handleChange}/></div>
-        <Invitees updateInvitees={this.updateInvitees}/>
+        { this.state.stage===0 && <TeamForm Stage1Submit={this.Stage1Submit}/>}
+        { this.state.stage > 0 && <p>Team Name: {this.state.teamName}</p>}
 
-        <div>Place<input type='text' name='event_place' id='event_place' onChange={this.handleChange}/></div>
+        { this.state.stage===1 && <Invitees Stage2Submit={this.Stage2Submit}/>}
+        { this.state.stage > 1 && <p>Invitees:</p>}
+        {this.state.invitees.map(invitelist => {
+          return ( <p key={invitelist.part_name}>
+                   {invitelist.part_name} |
+                  {invitelist.part_number}
 
-        <div>Date<input type="date" name='event_date' id='event_date' onChange={this.handleChange}/></div>
-        <div>Time<input type="time" name='event_time' id='event_time' onChange={this.handleChange}/></div>
-        <div>Message<textarea rows="4" cols="30" name="message" id="message" onChange={this.handleChange}>
-        </textarea></div>
-        <div><button type="button" onClick={this.checkState}>Submit</button></div>
+                   </p>
+                   )
+        })
+      }
+        { this.state.stage===2 && <EventForm Stage3Submit={this.Stage3Submit}/>}
+      <button type="button" onClick={this.checkState}>Check State</button>
 
 
       </div>
