@@ -32,7 +32,7 @@ console.log(this.props.invitees)
   }
 
   afterOpenModal() {
-    this.subtitle.style.color = '#f00';
+    this.subtitle.style.color = 'black';
   }
 
   closeModal() {
@@ -66,7 +66,6 @@ console.log(this.props.invitees)
 
           <form>
               <button onClick={this.closeModal}>close</button>
-            <input />
          </form>
         </Modal>
       </div>
