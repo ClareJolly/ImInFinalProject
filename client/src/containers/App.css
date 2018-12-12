@@ -13,6 +13,7 @@ h1, h2, h3 {
 
 .logo-img {
   margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 button {
@@ -57,6 +58,11 @@ button:hover {
   text-align: center;
 }
 
+.WelcomeText {
+  font-family: 'Lora', sans-serif;
+  margin-top: 20px;
+
+}
 div {
   font-family: 'montserrat', sans-serif
 }

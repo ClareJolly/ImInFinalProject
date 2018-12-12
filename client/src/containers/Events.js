@@ -16,9 +16,9 @@ class Events extends Component {
 
     }).then(data => {
       console.log(data)
-    let events = data.map((event) => {
+    let events = data.map((event, index) => {
         return (
-          <li>{event.invitees[0].part_name}</li>
+          <li key={index}>{event.invitees[0].part_name}</li>
         )
       })
       this.setState({events})
