@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import './Events.css';
+import EventModal from './EventModal'
 class Events extends Component {
   constructor() {
     super();
@@ -18,7 +19,13 @@ class Events extends Component {
       // console.log(data)
     let events = data.map((event, index) => {
         return (
-          <li key={index}>{event.invitees[0].part_name}</li>
+
+          <div key={index} className="event-buttons"  >
+
+            <EventModal index={index} event={event.teamName} invitees={event.invitees} />
+
+          </div>
+
         )
       })
       this.setState({events})
@@ -28,9 +35,11 @@ class Events extends Component {
   render() {
     return (
       <div className="Events">
-        <h2>Hello world</h2>
-        <div>
+        <h2>Select a team</h2>
+        <div >
+
         {this.state.events}
+
         </div>
       </div>
     );
