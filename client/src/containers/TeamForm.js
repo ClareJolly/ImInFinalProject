@@ -19,7 +19,7 @@ class TeamForm extends Component {
   }
 
   saveTeam = () => {
-    console.log(this.state.teamName)
+    // console.log(this.state.teamName)
     if (!this.canBeSubmitted()) {
     // evt.preventDefault();
     return;
@@ -29,7 +29,7 @@ class TeamForm extends Component {
 
   canBeSubmitted() {
   // const { teamName } = this.state;
-  console.log(this.state.teamName)
+  // console.log(this.state.teamName)
   return (
     this.state.teamName.length > 0
   );
@@ -40,15 +40,12 @@ class TeamForm extends Component {
   const isEnabled = this.canBeSubmitted();
 
 
-console.log(isEnabled)
+// console.log(isEnabled)
     return (
       <div className="TeamForm">
-
         <div>Team name</div>
         <div><input type='text' name='teamName' id='teamName' value={this.state.teamName} required onChange={this.handleChange}/></div>
-<div>        <button type="button" disabled={!isEnabled} onClick={this.saveTeam}>Next</button></div>
-
-
+        <div><button type="button" disabled={!isEnabled} onClick={this.saveTeam}>Next</button></div>
       </div>
     );
   }

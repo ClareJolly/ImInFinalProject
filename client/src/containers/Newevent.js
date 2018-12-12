@@ -92,8 +92,8 @@ class Newevent extends Component {
 
   goBack = () => {
     this.decrementStage()
-    console.log("back")
-    console.log(this.state)
+    // console.log("back")
+    // console.log(this.state)
 
   }
 
@@ -118,29 +118,26 @@ class Newevent extends Component {
       <div className="Newevent">
         <h2>Event booking form</h2>
         {this.state.stage === 3 && <h3>Your event has been saved</h3>}
-        { this.state.stage===0 && <TeamForm Stage1Submit={this.Stage1Submit} defaultVal={this.state.teamName}/>}
-        { this.state.stage > 0 && <p>Team Name: {this.state.teamName}</p>}
-
-        { this.state.stage===1 && <Invitees Stage2Submit={this.Stage2Submit} goBack={this.goBack} defaultVal={this.state.invitees}/>}
-        { this.state.stage > 1 && <p>Invitees:</p>}
-        { this.state.stage > 1 && <div>{this.state.invitees.map(invitelist => {
+        {this.state.stage === 0 && <TeamForm Stage1Submit={this.Stage1Submit} defaultVal={this.state.teamName}/>}
+        {this.state.stage > 0 && <p>Team Name: {this.state.teamName}</p>}
+        {this.state.stage === 1 && <Invitees Stage2Submit={this.Stage2Submit} goBack={this.goBack} defaultVal={this.state.invitees}/>}
+        {this.state.stage > 1 && <p>Invitees:</p>}
+        {this.state.stage > 1 && <div>
+          {this.state.invitees.map(invitelist => {
           return ( <p key={invitelist.part_name}>
-                   {invitelist.part_name} |
+                  {invitelist.part_name} |
                   {invitelist.part_number}
-
-                   </p>
-                   )
-        })
-      }</div>}
-        { this.state.stage===2 && <EventForm Stage3Submit={this.Stage3Submit} goBack={this.goBack}/>}
-
-      { this.state.stage===20 && <div><button type="button" onClick={this.updateDb}>Submit</button></div>}
+                   </p> )
+              })
+            }
+        </div>}
+      {this.state.stage === 2 && <EventForm Stage3Submit={this.Stage3Submit} goBack={this.goBack}/>}
+      {this.state.stage === -1 && <div><button type="button" onClick={this.updateDb}>Submit</button></div>}
       {this.state.stage === 3 && <div>Location: {this.state.eventPlace}</div>}
       {this.state.stage === 3 && <div>Date: {this.state.eventDate}</div>}
       {this.state.stage === 3 && <div>Time: {this.state.eventTime}</div>}
       {this.state.stage === 3 && <div>Message: {this.state.message}</div>}
-
-      { this.state.stage===20 &&<button type="button" onClick={this.checkState}>Check State</button>}
+      {this.state.stage === -1 && <button type="button" onClick={this.checkState}>Check State</button>}
       </div>
     );
   }
