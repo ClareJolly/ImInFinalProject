@@ -16,12 +16,12 @@ class Events extends Component {
       return results.json();
 
     }).then(data => {
-      console.log(data)
-    let events = data.map((event) => {
+      // console.log(data)
+    let events = data.map((event, index) => {
         return (
-          <div className="event-buttons"  >
+          <div key={index} className="event-buttons"  >
 
-            <EventModal event={event.teamName} />
+            <EventModal index={index} event={event.teamName} invitees={event.invitees} />
 
           </div>
         )

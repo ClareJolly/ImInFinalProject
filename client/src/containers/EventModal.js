@@ -14,9 +14,10 @@ const customStyles = {
 };
 
 class EventModal extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
+console.log(this.props.invitees)
     this.state = {
       modalIsOpen: false
     };
@@ -31,7 +32,6 @@ class EventModal extends Component {
   }
 
   afterOpenModal() {
-    // references are now sync'd and can be accessed.
     this.subtitle.style.color = '#f00';
   }
 
@@ -51,16 +51,23 @@ class EventModal extends Component {
           contentLabel="Example Modal"
         >
 
-          <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-          <button onClick={this.closeModal}>close</button>
-          <div>I am a modal</div>
+          <h2 ref={subtitle => this.subtitle = subtitle}>{this.props.event}</h2>
+          <div>
+
+
+            {this.props.invitees.map((invitelist, index) => {
+              return ( <div key={index}>
+                  {invitelist.part_name}                   </div>
+                   )
+              })
+            }
+
+          </div>
+
           <form>
+              <button onClick={this.closeModal}>close</button>
             <input />
-            <button>tab navigation</button>
-            <button>stays</button>
-            <button>inside</button>
-            <button>the modal</button>
-          </form>
+         </form>
         </Modal>
       </div>
     );
