@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
 import './Events.css';
-import Modal from 'react-modal';
+// import Modal from 'react-modal';
 import EventModal from './EventModal'
-import ViewEvent from '../components/ViewEvent'
+// import ViewEvent from '../components/ViewEvent'
 
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
+// const customStyles = {
+//   content : {
+//     top                   : '50%',
+//     left                  : '50%',
+//     right                 : 'auto',
+//     bottom                : 'auto',
+//     marginRight           : '-50%',
+//     transform             : 'translate(-50%, -50%)'
+//   }
+// };
 
 
 class Events extends Component {
