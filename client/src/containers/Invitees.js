@@ -8,7 +8,8 @@ class Invitees extends Component {
   constructor(props){
     super(props);
     this.state = {
-      invitees : []
+      invitees : this.props.defaultVal
+      // invitees : []
     }
     this.updateParticipants = this.updateParticipants.bind(this);
   }
@@ -35,17 +36,18 @@ class Invitees extends Component {
   render() {
     return (
       <div className="Participants">
-      {this.state.invitees.map(invitelist => {
-        return ( <div key={invitelist.part_name}>
-                 {invitelist.part_name} |
-                {invitelist.part_number}
-
-                 </div>
-                 )
-      })
-    }
+      {this.state.invitees.length > 0 && <div>{this.state.invitees.map((invitelist, index) => {
+        return ( <div key={index}>
+            {invitelist.part_name} |
+            {invitelist.part_number}
+             </div>
+             )
+        })
+      }</div>}
       <Participant updateParticipants={this.updateParticipants}/>
-        <div><button type="button" onClick={this.SaveToParent}>Submit</button></div>
+      <div><button name="back" id="back" onClick={this.props.goBack}>Back</button>
+        {this.state.invitees.length > 0 && <button type="button" onClick={this.SaveToParent}>Next</button>}
+        </div>
 
 
       </div>

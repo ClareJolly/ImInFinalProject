@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 
-class Newevent extends Component {
+class TeamForm extends Component {
 
   constructor(props){
     super(props);
     this.state = {
-      team_name : ''
+      teamName : this.props.defaultVal
+      // teamName:''
     }
   }
+
+
 
   handleChange = (event) => {
     this.setState({
@@ -16,22 +19,36 @@ class Newevent extends Component {
   }
 
   saveTeam = () => {
-    console.log(this.state.team_name)
-    this.props.Stage1Submit(this.state.team_name)
+    // console.log(this.state.teamName)
+    if (!this.canBeSubmitted()) {
+    // evt.preventDefault();
+    return;
+  }
+    this.props.Stage1Submit(this.state.teamName)
   }
 
+  canBeSubmitted() {
+  // const { teamName } = this.state;
+  // console.log(this.state.teamName)
+  return (
+    this.state.teamName.length > 0
+  );
+}
+
   render() {
+
+  const isEnabled = this.canBeSubmitted();
+
+
+// console.log(isEnabled)
     return (
       <div className="TeamForm">
-
-        Team name
-        <input type='text' name='team_name' id='team_name' onChange={this.handleChange}/>
-        <button type="button" onClick={this.saveTeam}>Submit</button>
-
-
+        <div>Team name</div>
+        <div><input type='text' name='teamName' id='teamName' value={this.state.teamName} required onChange={this.handleChange}/></div>
+        <div><button type="button" disabled={!isEnabled} onClick={this.saveTeam}>Next</button></div>
       </div>
     );
   }
 }
 
-export default Newevent;
+export default TeamForm;

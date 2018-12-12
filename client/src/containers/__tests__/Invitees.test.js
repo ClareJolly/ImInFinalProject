@@ -9,15 +9,20 @@ describe("Invitees", function() {
 
   let mountedInvitees
   beforeEach(()=>{
-mountedInvitees = shallow(<Invitees/>)
+mountedInvitees = shallow(<Invitees defaultVal={[]}/>)
+// mountedInvitees.setState({invitees : ['test']}
+// );
+// console.log(mountedInvitees.state)
 })
 
   it('renders without crashing', () => {
-    let mountedInvitees = shallow(<Invitees/>)
+
+    let mountedInvitees = shallow(<Invitees defaultVal={[]}/>)
   });
 
 
   it('contains at least 1 participant', () => {
+    // console.log(mountedInvitees.state())
     const participant = mountedInvitees.find('Participant');
     expect(participant.length).toBe(1)
 
