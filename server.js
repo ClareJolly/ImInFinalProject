@@ -29,6 +29,11 @@ app.use(function (req, res, next) {
    next();
  });
 
+ app.get('/',function(req,res){
+
+ res.send('<div id="message">hello world</div>');
+
+});
 
 const db = require('./config/keys').mongoURI;
 mongoose
