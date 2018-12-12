@@ -60,15 +60,16 @@ describe('Participants', () => {
       });
   });
 
-//   describe('/DELETE/:id event', () => {
-//     it('it should delete a event in the db', (done) => {
-//       chai.request(server)
-//       .delete('/api/db/' + this.id)
-//       .end((err, res) => {
-//         expect(res.statusCode).to.equal(200);
-//         expect(res.body.success).to.equal(true);
-//         done()
-//       });
-//     });
-//   });
+  describe('/DELETE/:id event', () => {
+    it('it should delete a event in the db', (done) => {
+      chai.request(server)
+      .delete('/api/db/' + this.id)
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body.success).to.equal(true);
+        done()
+      });
+    });
+  });
+
 });
