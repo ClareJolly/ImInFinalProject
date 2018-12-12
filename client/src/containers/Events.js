@@ -15,7 +15,7 @@ class Events extends Component {
       return results.json();
 
     }).then(data => {
-      console.log(data)
+      // console.log(data)
     let events = data.map((event, index) => {
         return (
           <li key={index}>{event.invitees[0].part_name}</li>
