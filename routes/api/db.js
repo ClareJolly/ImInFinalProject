@@ -22,8 +22,9 @@ router.get('/', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  Participant.findById(req.params.id).then(participant =>
-    invitees.remove().then(() => res.json({ success: true }))
+  Participant.findById(req.params.id)
+  .then(participant =>
+    participant.remove().then(() => res.json({ success: true }))
   )
   .catch(err => res.status(404).json({ success: false }));
 });
