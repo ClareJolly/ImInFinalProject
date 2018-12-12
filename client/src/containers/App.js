@@ -4,6 +4,7 @@ import './App.css';
 import Newevent from './Newevent'
 import Events from './Events'
 import Header from '../components/Header'
+import ViewEvent from '../components/ViewEvent'
 import WelcomeText from '../components/WelcomeText'
 
 class App extends Component {
@@ -12,20 +13,31 @@ class App extends Component {
     super(props);
     this.state = {
       currentView: "home",
-      pageTitle: ""
+      pageTitle: "",
+      eventId:''
     }
      this.pages = {
       'home': '',
       'new' : 'Create a new event',
       'events' : 'Your events',
       'login' : 'Login',
-      'register' : 'Register'
+      'register' : 'Register',
+      'viewevent' : 'View Event'
     }
     this.showSection = this.showSection.bind(this);
+    this.setEventID = this.setEventID.bind(this);
   }
 
 
-
+setEventID(event) {
+  console.log(event)
+  // console.log(this.state.event)
+  this.setState({
+    eventId : event,
+    currentView : 'viewEvent',
+    pageTitle : this.pages['viewEvent']
+  })
+}
 
   showSection(section) {
     // console.log(this.state.currentView)
@@ -44,7 +56,8 @@ class App extends Component {
 
       {this.state.currentView === "home" && <WelcomeText/>}
       {this.state.currentView === "new" && <Newevent />}
-      {this.state.currentView === "events" && <Events />}
+      {this.state.currentView === "events" && <Events setEventID={this.setEventID}/>}
+      {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.eventId}/>}
       </div>
     );
   }

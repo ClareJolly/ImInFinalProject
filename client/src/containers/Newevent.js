@@ -7,6 +7,7 @@ import './App.css';
 import Invitees from './Invitees'
 import TeamForm from './TeamForm'
 import EventForm from './EventForm'
+import ViewEvent from '../components/ViewEvent'
 
 class Newevent extends Component {
 
@@ -116,12 +117,12 @@ class Newevent extends Component {
   render() {
     return (
       <div className="Newevent">
-        {this.state.stage === 3 && <h3>Your event has been saved</h3>}
+
         {this.state.stage === 0 && <TeamForm Stage1Submit={this.Stage1Submit} defaultVal={this.state.teamName}/>}
-        {this.state.stage > 0 && <p>Team Name: {this.state.teamName}</p>}
+        {this.state.stage > 0 && this.state.stage < 3  && <p>Team Name: {this.state.teamName}</p>}
         {this.state.stage === 1 && <Invitees Stage2Submit={this.Stage2Submit} goBack={this.goBack} defaultVal={this.state.invitees}/>}
-        {this.state.stage > 1 && <p>Invitees:</p>}
-        {this.state.stage > 1 && <div>
+        {this.state.stage > 1 && this.state.stage < 3&& <p>Invitees:</p>}
+        {this.state.stage > 1 && this.state.stage < 3&& <div>
           {this.state.invitees.map(invitelist => {
           return ( <p key={invitelist.part_name}>
                   {invitelist.part_name} |
@@ -131,12 +132,9 @@ class Newevent extends Component {
             }
         </div>}
       {this.state.stage === 2 && <EventForm Stage3Submit={this.Stage3Submit} goBack={this.goBack}/>}
-      {this.state.stage === -1 && <div><button type="button" onClick={this.updateDb}>Submit</button></div>}
-      {this.state.stage === 3 && <div>Location: {this.state.eventPlace}</div>}
-      {this.state.stage === 3 && <div>Date: {this.state.eventDate}</div>}
-      {this.state.stage === 3 && <div>Time: {this.state.eventTime}</div>}
-      {this.state.stage === 3 && <div>Message: {this.state.message}</div>}
-      {this.state.stage === -1 && <button type="button" onClick={this.checkState}>Check State</button>}
+
+      {this.state.stage === 3 && <ViewEvent event={this.state} response={'Your event has been saved'}/>}
+
       </div>
     );
   }
