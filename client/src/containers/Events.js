@@ -19,11 +19,13 @@ class Events extends Component {
       // console.log(data)
     let events = data.map((event, index) => {
         return (
+
           <div key={index} className="event-buttons"  >
 
             <EventModal index={index} event={event.teamName} invitees={event.invitees} />
 
           </div>
+
         )
       })
       this.setState({events})

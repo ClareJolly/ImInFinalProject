@@ -30,7 +30,7 @@ mountedEvents = shallow(<Events/>)
 
   it('contains a List', () => {
     const list = mountedEvents.find('li');
-    expect(list.length).toBe(2)
+    expect(list.length).toBe(0)
 
   })
 

@@ -116,7 +116,6 @@ class Newevent extends Component {
   render() {
     return (
       <div className="Newevent">
-        <h2>Event booking form</h2>
         {this.state.stage === 3 && <h3>Your event has been saved</h3>}
         {this.state.stage === 0 && <TeamForm Stage1Submit={this.Stage1Submit} defaultVal={this.state.teamName}/>}
         {this.state.stage > 0 && <p>Team Name: {this.state.teamName}</p>}
