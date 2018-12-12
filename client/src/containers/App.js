@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>I'm In</h1>
+        <img src="images/logo.png" alt="I'm in Logo" className="logo-img" width="100px"/>
         <Newevent />
 
       </div>

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 
-class Newevent extends Component {
+class EventForm extends Component {
 
   constructor(props){
     super(props);
     this.state = {
-      team_name : ''
+      eventPlace : '',
+      eventDate : '',
+      eventTime : '',
+      message : ''
     }
   }
 
@@ -13,28 +16,46 @@ class Newevent extends Component {
     this.setState({
       [event.target.name] : event.target.value
     })
+    console.log(this.state)
   }
 
-  saveTeam = () => {
-    console.log(this.state.team_name)
-    this.props.Stage1Submit(this.state.team_name)
+finalSave = () => {
+  if (!this.canBeSubmitted()) {
+  // evt.preventDefault();
+  return;
+}
+    // console.log(this.state.team_name)
+    this.props.Stage3Submit(this.state.eventTime, this.state.eventDate, this.state.message, this.state.eventPlace)
   }
+
+  canBeSubmitted() {
+  const { eventPlace, eventDate, eventTime } = this.state;
+  return (
+    eventPlace.length > 0 &&
+    eventDate.length > 0 &&
+    eventTime.length > 0
+  );
+}
 
   render() {
+
+    const isEnabled = this.canBeSubmitted();
+
+
     return (
       <div className="EventForm">
 
-      <div>Place<input type='text' name='event_place' id='event_place' onChange={this.handleChange}/></div>
+      <div>Place<input type='text' name='eventPlace' id='eventPlace' required onChange={this.handleChange}/></div>
 
-      <div>Date<input type="date" name='event_date' id='event_date' onChange={this.handleChange}/></div>
-      <div>Time<input type="time" name='event_time' id='event_time' onChange={this.handleChange}/></div>
-      <div>Message<textarea rows="4" cols="30" name="message" id="message" onChange={this.handleChange}>
+      <div>Date<input type="date" name='eventDate' id='eventDate' required onChange={this.handleChange}/></div>
+      <div>Time<input type="time" name='eventTime' id='eventTime' required onChange={this.handleChange}/></div>
+      <div>Message<textarea rows="4" cols="30" name="message" id="message" required onChange={this.handleChange}>
       </textarea></div>
-      <div><button type="button" onClick={this.checkState}>Submit</button></div>
+      <div><button name="back" id="back" onClick={this.props.goBack}>Back</button><button type="button" disabled={!isEnabled} onClick={this.finalSave}>Save event</button></div>
 
       </div>
     );
   }
 }
 
-export default Newevent;
+export default EventForm;

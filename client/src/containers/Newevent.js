@@ -43,6 +43,14 @@ class Newevent extends Component {
     })
   }
 
+  decrementStage = () => {
+    var stage = this.state.stage
+    var previousStage = stage - 1
+    this.setState({
+      stage: previousStage
+    })
+  }
+
   Stage1Submit = (teamName) => {
     this.incrementStage()
     this.setTeamName(teamName)
@@ -55,14 +63,38 @@ class Newevent extends Component {
     // console.log(this.state.stage)
   }
 
+  Stage3Submit = (eventTime, eventDate, message, eventPlace) => {
+    this.incrementStage()
+    this.updateFinal(eventTime, eventDate, message, eventPlace)
+    // console.log(this.state.stage)
+    // this.updateDb()
+    console.log("db")
+  }
+
   updateInvitees = (invitees) => {
     this.setState({
       invitees : invitees
     })
   }
 
+  updateFinal = (eventTime, eventDate, message, eventPlace) => {
+    this.setState({
+      eventTime: eventTime,
+      eventDate: eventDate,
+      message: message,
+      eventPlace: eventPlace
+    }, this.updateDb)
+  }
+
   checkState = () => {
     console.log(this.state)
+  }
+
+  goBack = () => {
+    this.decrementStage()
+    console.log("back")
+    console.log(this.state)
+
   }
 
   updateDb = () => {
@@ -85,12 +117,13 @@ class Newevent extends Component {
     return (
       <div className="Newevent">
         <h2>Event booking form</h2>
-        { this.state.stage===0 && <TeamForm Stage1Submit={this.Stage1Submit}/>}
+        {this.state.stage === 3 && <h3>Your event has been saved</h3>}
+        { this.state.stage===0 && <TeamForm Stage1Submit={this.Stage1Submit} defaultVal={this.state.teamName}/>}
         { this.state.stage > 0 && <p>Team Name: {this.state.teamName}</p>}
 
-        { this.state.stage===1 && <Invitees Stage2Submit={this.Stage2Submit}/>}
+        { this.state.stage===1 && <Invitees Stage2Submit={this.Stage2Submit} goBack={this.goBack} defaultVal={this.state.invitees}/>}
         { this.state.stage > 1 && <p>Invitees:</p>}
-        {this.state.invitees.map(invitelist => {
+        { this.state.stage > 1 && <div>{this.state.invitees.map(invitelist => {
           return ( <p key={invitelist.part_name}>
                    {invitelist.part_name} |
                   {invitelist.part_number}
@@ -98,11 +131,16 @@ class Newevent extends Component {
                    </p>
                    )
         })
-      }
-        { this.state.stage===2 && <EventForm Stage3Submit={this.Stage3Submit}/>}
-      <button type="button" onClick={this.checkState}>Check State</button>
-      <div><button type="button" onClick={this.updateDb}>Submit</button></div>
+      }</div>}
+        { this.state.stage===2 && <EventForm Stage3Submit={this.Stage3Submit} goBack={this.goBack}/>}
 
+      { this.state.stage===20 && <div><button type="button" onClick={this.updateDb}>Submit</button></div>}
+      {this.state.stage === 3 && <div>Location: {this.state.eventPlace}</div>}
+      {this.state.stage === 3 && <div>Date: {this.state.eventDate}</div>}
+      {this.state.stage === 3 && <div>Time: {this.state.eventTime}</div>}
+      {this.state.stage === 3 && <div>Message: {this.state.message}</div>}
+
+      { this.state.stage===20 &&<button type="button" onClick={this.checkState}>Check State</button>}
       </div>
     );
   }
