@@ -3,6 +3,11 @@ const router = express.Router();
 const accountSid = require('../../config/keys').accountSid;
 const mobileNumber = require('../../config/keys').mobileNumber;
 const authToken = require('../../config/keys').authToken;
+const receiveTestsAccountSid = require('../../config/keys').receiveTestsAccountSid;
+const receiveTestAuthToken = require('../../config/keys').receiveTestAuthToken;
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
+const bodyParser = require('body-parser')
+// const http = require('http');
 var twilio = require('twilio');
 
 var client = new twilio(accountSid, authToken);
@@ -20,4 +25,33 @@ router.post('/', (req, res) => {
       });
     }
 })
+
+router.use(bodyParser.urlencoded({ extended: false }))
+
+router.post('/sms', (req, res) => {
+  const twiml = new MessagingResponse();
+  const body = req.body.Body
+  console.log(body)
+  if (body === "IN"){
+    twiml.message('Great see you there!');
+  }
+  else if (body === "OUT") {
+    twiml.message('Sorry to hear you can not make it!');
+  }
+  else {
+    twiml.message('Please Reply IN or OUT!');
+  }
+ console.log(res.Parameters.From)
+  res.writeHead(200, {'Content-Type': 'text/xml'});
+  res.end(twiml.toString());
+});
+
+
 module.exports = router;
+
+
+
+
+// router.get('/', (req, res) => {
+//
+// })

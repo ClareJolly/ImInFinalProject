@@ -50,8 +50,9 @@ mongoose
 
 // sms ----------
 app.use('/api/send', messaging);
+app.use('/api/send/sms', messaging);
 // sms -------------
-//
+
 
 
 
