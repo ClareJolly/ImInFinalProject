@@ -4,11 +4,9 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
-    "body-parser": "^1.18.3",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-15": "^1.2.0",
     "enzyme-adapter-react-16": "^1.7.1",
-    "express": "^4.16.4",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-modal": "^3.7.1",
