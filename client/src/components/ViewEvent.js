@@ -8,6 +8,7 @@ class ViewEvent extends Component {
     this.state = {
 
     }
+    console.log(this.props)
   }
 
   handleChange = (event) => {
@@ -30,8 +31,8 @@ Team Name: {this.props.event.teamName}
       <div>
 <p>Invitees:</p>
 
-{this.props.event.invitees.map(invitelist => {
-return ( <p key={invitelist.part_name}>
+{this.props.event.invitees.map((invitelist, index) => {
+return ( <p key={index}>
         {invitelist.part_name} |
         {invitelist.part_number}
          </p> )
@@ -45,7 +46,7 @@ return ( <p key={invitelist.part_name}>
 <div>Message: {this.props.event.message}</div>
 <div>
 <button name="sent_invite" id="sent_invite">Send Invites</button>
-<button name="delete" id="delete">Delete</button></div>
+<button name="delete" id="delete" onClick={() => this.props.deleteEvent()}>Delete</button></div>
       </div>
 
   )
