@@ -46,6 +46,17 @@ class Events extends Component {
   }
 
 
+
+  componentWillReceiveProps(props) {
+    console.log(props)
+    const { refresh } = this.props;
+    console.log(props.refresh)
+    if (props.refresh !== refresh) {
+        this.setState({ state: this.state })
+        .then(this.refreshEventList)
+    }
+  }
+
   componentDidMount() {
     fetch('http://localhost:5000/api/db')
     .then(results => {
