@@ -27,6 +27,7 @@ class App extends Component {
     this.showSection = this.showSection.bind(this);
     this.setEventID = this.setEventID.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
+    this.editEvent = this.editEvent.bind(this);
     this.refreshEventList = this.refreshEventList.bind(this);
   }
 
@@ -49,6 +50,28 @@ setEventID(event) {
       currentView : section,
       pageTitle : this.pages[section]
     })
+  }
+
+  editEvent = (editedEvent) => {
+    var eventID = editedEvent.eventID
+    var event = { eventTime: editedEvent.eventTime, eventDate: editedEvent.eventDate, eventPlace: editedEvent.eventPlace, message: editedEvent.message}
+    var url = 'http://localhost:5000/api/db/' + eventID
+    fetch(url, {
+      method: 'PATCH',
+      body: JSON.stringify( event ),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .then(response => console.log('Success:', JSON.stringify(response)))
+    .then(this.setState({
+      currentView : 'home',
+      pageTitle : this.pages['home']
+    }))
+    .then(console.log("refreshing"))
+    .then(this.refreshEventList())
+    .catch(error => console.error("Error:", error));
+
   }
 
   deleteEvent = () => {
@@ -90,7 +113,7 @@ setEventID(event) {
       {this.state.currentView === "home" && <WelcomeText/>}
       {this.state.currentView === "new" && <Newevent />}
       {this.state.currentView === "events" && <Events setEventID={this.setEventID} refresh={this.refreshEventList}/>}
-      {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.eventId} deleteEvent={this.deleteEvent} />}
+      {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.eventId} deleteEvent={this.deleteEvent} editEvent={this.editEvent} />}
       </div>
     );
   }
