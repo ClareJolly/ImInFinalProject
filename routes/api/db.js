@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Events = require('../../models/Events');
-
+const Users = require('../../models/Users');
+// Event Database
 router.post('/', (req, res) => {
   const newEvents = new Events({
     invitees: req.body.invitees,
@@ -42,6 +43,23 @@ router.patch('/:id', (req, res) => {
      res.send(updatedEvent);
    });
  });
+});
+
+// User Database
+router.post('/user', (req, res) => {
+  const newUsers = new Users({
+    name: req.body.name,
+    username: req.body.username,
+    phoneNumber: req.body.phoneNumber,
+    password: req.body.password
+  });
+  newUsers.save().then(user => res.json(user));
+});
+
+router.get('/user', (req, res) => {
+  Users.find()
+    .sort({ date: -1})
+    .then(user => res.json(user));
 });
 
 module.exports = router;
