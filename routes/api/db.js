@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Events = require('../../models/Events');
 const Users = require('../../models/Users');
+const bcrypt = require('bcrypt');
 // Event Database
 router.post('/', (req, res) => {
   const newEvents = new Events({
@@ -47,11 +48,12 @@ router.patch('/:id', (req, res) => {
 
 // User Database
 router.post('/user', (req, res) => {
+  let hash = bcrypt.hashSync(req.body.password, 10);
   const newUsers = new Users({
     name: req.body.name,
     username: req.body.username,
     phoneNumber: req.body.phoneNumber,
-    password: req.body.password
+    password: hash
   });
   newUsers.save().then(user => res.json(user));
 });
