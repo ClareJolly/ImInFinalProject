@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Newevent from './Newevent'
 import Events from './Events'
+import RegisterUser from './RegisterUser'
 import Header from '../components/Header'
 import ViewEvent from '../components/ViewEvent'
 import WelcomeText from '../components/WelcomeText'
@@ -16,6 +17,7 @@ class App extends Component {
       pageTitle: "",
       eventId:''
     }
+    console.log("are you working?")
      this.pages = {
       'home': '',
       'new' : 'Create a new event',
@@ -28,7 +30,7 @@ class App extends Component {
     this.setEventID = this.setEventID.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
     this.refreshEventList = this.refreshEventList.bind(this);
-    this.sendInvite = this.sendInvite.bind(this)
+    this.sendInvite = this.sendInvite.bind(this);
   }
 
 
@@ -109,11 +111,13 @@ setEventID(event) {
   render() {
     return (
       <div className="App">
+
       <Header pageTitle={this.state.pageTitle} showSection={this.showSection}/>
 
 
       {this.state.currentView === "home" && <WelcomeText/>}
       {this.state.currentView === "new" && <Newevent />}
+      {this.state.currentView === "login" && <RegisterUser />}
       {this.state.currentView === "events" && <Events setEventID={this.setEventID} refresh={this.refreshEventList}/>}
       {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.eventId} deleteEvent={this.deleteEvent} sendInvite={this.sendInvite}/>}
       </div>
