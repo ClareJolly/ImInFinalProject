@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
-
-const Participant = require('../../models/Participants');
+const Events = require('../../models/Events');
 
 router.post('/', (req, res) => {
-  const newParticipant = new Participant({
+  const newEvents = new Events({
     invitees: req.body.invitees,
     teamName: req.body.teamName,
     eventTime: req.body.eventTime,
@@ -12,21 +11,37 @@ router.post('/', (req, res) => {
     eventDate: req.body.eventDate,
     message: req.body.message
   });
-  newParticipant.save().then(post => res.json(post));
+  newEvents.save().then(event => res.json(event));
 });
 
 router.get('/', (req, res) => {
-  Participant.find()
+  Events.find()
     .sort({ date: -1})
-    .then(items => res.json(items));
+    .then(event => res.json(event));
 });
 
 router.delete('/:id', (req, res) => {
-  Participant.findById(req.params.id)
-  .then(participant =>
-    participant.remove().then(() => res.json({ success: true }))
+  Events.findById(req.params.id)
+  .then(event =>
+    event.remove().then(() => res.json({ success: true }))
   )
   .catch(err => res.status(404).json({ success: false }));
+});
+
+router.patch('/:id', (req, res) => {
+ Events.findById(req.params.id, function (err, event) {
+   if (err) return handleError(err);
+    event.invitees = req.body.invitees;
+    event.eventDate = req.body.eventDate;
+    event.eventTime = req.body.eventTime;
+    event.eventPlace = req.body.eventPlace;
+    event.teamName = req.body.teamName;
+    event.message = req.body.message;
+    event.save(function (err, updatedEvent) {
+  if (err) return handleError(err);
+     res.send(updatedEvent);
+   });
+ });
 });
 
 module.exports = router;
