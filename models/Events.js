@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 // var date = new Date();
 
 // Creat Schema
-const ParticipantSchema = new Schema({
+const EventSchema = new Schema({
   invitees: {
     type: Array,
     required: true
@@ -31,4 +31,4 @@ const ParticipantSchema = new Schema({
   }
 });
 
-module.exports = Participant = mongoose.model('participants', ParticipantSchema);
+module.exports = Event = mongoose.model('Events', EventSchema);
