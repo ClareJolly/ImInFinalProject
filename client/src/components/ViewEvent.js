@@ -45,7 +45,7 @@ return ( <p key={index}>
 <div>Time: {this.props.event.eventTime}</div>
 <div>Message: {this.props.event.message}</div>
 <div>
-<button name="sent_invite" id="sent_invite">Send Invites</button>
+<button name="sent_invite" id="sent_invite" onClick={() => this.props.sendInvite()}>Send Invites</button>
 <button name="delete" id="delete" onClick={() => this.props.deleteEvent()}>Delete</button></div>
       </div>
 

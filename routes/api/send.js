@@ -14,11 +14,13 @@ var client = new twilio(accountSid, authToken);
 
 
 router.post('/', (req, res) => {
-  var messageBody = " you have been invited from "+req.body.teamName+" event at "+req.body.eventPlace+" on "+req.body.eventDate+" at "+req.body.eventTime+"."
-
-  for (var i = 0; i<req.body.invitees; i++){
+  var messageBody = " You have been invited from "+req.body.teamName+" event at "+req.body.eventPlace+" on "+req.body.eventDate+" at "+req.body.eventTime+"."
+  console.log(req.body.invitees)
+  for (var i = 0; i<req.body.invitees.length; i++){
+    console.log("test2")
+    // console.log(mobileNumber)
     client.messages.create({
-      to: mobileNumber,
+      // to: mobileNumber,
       from: "+441604422099",
       body: "Hi "+ req.body.invitees[i].part_name+messageBody,}, function(err,message) {
         console.log(message.sid);
