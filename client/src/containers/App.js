@@ -28,6 +28,7 @@ class App extends Component {
     this.setEventID = this.setEventID.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
     this.refreshEventList = this.refreshEventList.bind(this);
+    this.sendInvite = this.sendInvite.bind(this)
   }
 
 
@@ -76,6 +77,30 @@ setEventID(event) {
 
   }
 
+  sendInvite = () => {
+    console.log('sms test')
+    var url = 'http://localhost:5000/api/send/'
+    var event = this.state.eventId
+    console.log(event)
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify( event ),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .then(response => console.log('Success:', JSON.stringify(response)))
+    // .then(window.location.reload())
+    .then(this.setState({
+      currentView : 'home',
+      pageTitle : this.pages['home']
+    }))
+    .then(console.log("refreshing"))
+    .then(this.refreshEventList())
+    .catch(error => console.error("Error:", error));
+
+  }
+
   refreshEventList () {
     console.log(this.state)
     this.setState({refreshEventList: !this.state.refreshEventList})
@@ -90,7 +115,7 @@ setEventID(event) {
       {this.state.currentView === "home" && <WelcomeText/>}
       {this.state.currentView === "new" && <Newevent />}
       {this.state.currentView === "events" && <Events setEventID={this.setEventID} refresh={this.refreshEventList}/>}
-      {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.eventId} deleteEvent={this.deleteEvent} />}
+      {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.eventId} deleteEvent={this.deleteEvent} sendInvite={this.sendInvite}/>}
       </div>
     );
   }
