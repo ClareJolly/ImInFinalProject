@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const participants = require('./routes/api/db');
+const events = require('./routes/api/db');
 const messaging = require('./routes/api/send');
 // requires dependencies
 const app = express();
@@ -43,7 +43,7 @@ mongoose
 
 
   // Use routes
-  app.use('/api/db', participants);
+  app.use('/api/db', events);
 //Body Parser middleware
 // now to run server we want to connect to a port. The process.env.PORT allow me to connect to an external server. I have it to go to port 5000 if not.
 

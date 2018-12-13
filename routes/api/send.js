@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
     client.messages.create({
       to: mobileNumber,
       from: "+441604422099",
-      body: "Hi "+ req.body.invitees[i].part_name+messageBody,}, function(err,message) {
+      body: "Hi "+ req.body.invitees[i].part_name+messageBody+". Please reply IN or OUT.",}, function(err,message) {
         console.log(message.sid);
       });
     }
