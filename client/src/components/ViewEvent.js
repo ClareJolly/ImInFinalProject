@@ -6,9 +6,9 @@ class ViewEvent extends Component {
   constructor(props){
     super(props);
     this.state = {
-
     }
     console.log(this.props)
+
   }
 
   handleChange = (event) => {
@@ -18,10 +18,7 @@ class ViewEvent extends Component {
   }
 
 
-
   render() {
-
-
     return (
       <div className="ViewEvent">
       <h3>{this.props.response}</h3>
@@ -31,11 +28,13 @@ Team Name: {this.props.event.teamName}
       <div>
 <p>Invitees:</p>
 
+
+
 {this.props.event.invitees_new.map((invitelist, index) => {
 return ( <p key={index}>
         {invitelist.part_name} |
         {invitelist.part_number} |
-        {invitelist.response} 
+        {invitelist.response}
          </p> )
     })
   }

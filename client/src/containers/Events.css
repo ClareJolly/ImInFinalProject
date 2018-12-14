@@ -33,3 +33,7 @@
   cursor: pointer;
   width: 200px;
 }
+
+.inOrOut {
+    text-transform: lowercase;
+}
