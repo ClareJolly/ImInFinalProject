@@ -3,9 +3,12 @@ import React, { Component } from 'react';
 import './App.css';
 import Newevent from './Newevent'
 import Events from './Events'
+import RegisterUser from './RegisterUser'
 import Header from '../components/Header'
 import ViewEvent from '../components/ViewEvent'
 import WelcomeText from '../components/WelcomeText'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class App extends Component {
 
@@ -16,6 +19,7 @@ class App extends Component {
       pageTitle: "",
       eventId:''
     }
+    console.log("are you working?")
      this.pages = {
       'home': '',
       'new' : 'Create a new event',
@@ -28,10 +32,25 @@ class App extends Component {
     this.setEventID = this.setEventID.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
     this.refreshEventList = this.refreshEventList.bind(this);
-    this.sendInvite = this.sendInvite.bind(this)
+    this.sendInvite = this.sendInvite.bind(this);
   }
 
+  notify = () => {
+    // toast("Wow so easy !")
 
+  toast("We have cookies.  Do you want them?", {
+     autoClose: false,
+          position: toast.POSITION.BOTTOM_CENTER,
+
+          className: 'black-background',
+ bodyClassName: "grow-font-size",
+ progressClassName: 'fancy-progress-bar'
+        });
+      }
+
+  componentDidMount() {
+    this.notify()
+  }
 setEventID(event) {
   console.log(event)
   // console.log(this.state.event)
@@ -109,11 +128,14 @@ setEventID(event) {
   render() {
     return (
       <div className="App">
+
       <Header pageTitle={this.state.pageTitle} showSection={this.showSection}/>
 
-
+      {/*// <button onClick={this.notify}>Notify !</button>*/}
+               <ToastContainer />
       {this.state.currentView === "home" && <WelcomeText/>}
       {this.state.currentView === "new" && <Newevent />}
+      {this.state.currentView === "login" && <RegisterUser />}
       {this.state.currentView === "events" && <Events setEventID={this.setEventID} refresh={this.refreshEventList}/>}
       {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.eventId} deleteEvent={this.deleteEvent} sendInvite={this.sendInvite}/>}
       </div>
