@@ -35,20 +35,6 @@ router.use(bodyParser.urlencoded({ extended: false }))
 
 router.post('/sms', (req, res) => {
 
-  function setResponse (short_id,response) {
-    var query = {short_id: short_id}
-    // console.log(req.params.short_id)
-  // Invitees.findOne({short_id: req.params.short_id}, function(err,obj) { return console.log("TEST",obj.short_id,obj._id); });
-   Invitees.findOneAndUpdate(query, {response:response}, function (err, invitee) {
-     if (err) return handleError(err);
-
-      invitee.save(function (err, updatedInvitee) {
-    if (err) return handleError(err);
-       res.send(updatedInvitee);
-     });
-   });
-
-  }
   const twiml = new MessagingResponse();
   const body = req.body.Body
   const from = req.body.From
