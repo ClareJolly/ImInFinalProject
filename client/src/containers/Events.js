@@ -81,6 +81,9 @@ class Events extends Component {
   }
 
   render() {
+
+
+
     return (
       <div className="Events">
         <h2 onClick={this.openModal}>Select a team </h2>
@@ -91,14 +94,12 @@ class Events extends Component {
 
         </div>*/}
         {this.state.event_list.map ((event, index) => {
-          return <div onClick={() => this.props.setEventID(event)} key={index} className="event-buttons">{event.teamName}
-          {/*<Modal
-            isOpen={this.state.modalIsOpen}
-            onAfterOpen={this.afterOpenModal}
-            onRequestClose={this.closeModal}
-            style={customStyles}
-            contentLabel="Example Modal"
-          ><ViewEvent event={event} response={'testtesttest'}/></Modal>*/}
+          var inviteesArray = event.invitees_new
+          var inResponses = inviteesArray.filter(word => word.response === "IN").length
+          var outResponses = inviteesArray.filter(word => word.response === "OUT").length
+          var noneResponses = inviteesArray.filter(word => word.response === "NONE").length
+          return <div onClick={() => this.props.setEventID(event)} key={index} className="event-buttons">{event.teamName}<br/>
+          {inResponses}/{inviteesArray.length} are IN
           </div>
 
         })}
