@@ -99,7 +99,7 @@ class Events extends Component {
           var outResponses = inviteesArray.filter(word => word.response === "OUT").length
           var noneResponses = inviteesArray.filter(word => word.response === "NONE").length
           return <div onClick={() => this.props.setEventID(event)} key={index} className="event-buttons">{event.teamName}<br/>
-          {inResponses}/{inviteesArray.length} are IN
+          <span className="inOrOut">{inResponses}/{inviteesArray.length} are</span> <strong>IN</strong>
           </div>
 
         })}
