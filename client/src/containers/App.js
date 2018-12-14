@@ -6,6 +6,8 @@ import Events from './Events'
 import Header from '../components/Header'
 import ViewEvent from '../components/ViewEvent'
 import WelcomeText from '../components/WelcomeText'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class App extends Component {
 
@@ -31,7 +33,22 @@ class App extends Component {
     this.sendInvite = this.sendInvite.bind(this)
   }
 
+  notify = () => {
+    // toast("Wow so easy !")
 
+  toast("We have cookies.  Do you want them?", {
+     autoClose: false,
+          position: toast.POSITION.BOTTOM_CENTER,
+
+          className: 'black-background',
+ bodyClassName: "grow-font-size",
+ progressClassName: 'fancy-progress-bar'
+        });
+      }
+
+  componentDidMount() {
+    this.notify()
+  }
 setEventID(event) {
   console.log(event)
   // console.log(this.state.event)
@@ -111,7 +128,8 @@ setEventID(event) {
       <div className="App">
       <Header pageTitle={this.state.pageTitle} showSection={this.showSection}/>
 
-
+      {/*// <button onClick={this.notify}>Notify !</button>*/}
+               <ToastContainer />
       {this.state.currentView === "home" && <WelcomeText/>}
       {this.state.currentView === "new" && <Newevent />}
       {this.state.currentView === "events" && <Events setEventID={this.setEventID} refresh={this.refreshEventList}/>}
