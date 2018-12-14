@@ -14,15 +14,16 @@ var client = new twilio(accountSid, authToken);
 
 
 router.post('/', (req, res) => {
-  var messageBody = " You have been invited from "+req.body.teamName+" event at "+req.body.eventPlace+" on "+req.body.eventDate+" at "+req.body.eventTime+"."
-  console.log(req.body.invitees)
-  for (var i = 0; i<req.body.invitees.length; i++){
+  console.log(req.body)
+  var messageBody = "You have been invited from "+req.body.teamName+" event at "+req.body.eventPlace+" on "+req.body.eventDate+" at "+req.body.eventTime+""
+
+  for (var i = 0; i<req.body.invitees_new.length; i++){
     console.log("test2")
     // console.log(mobileNumber)
     client.messages.create({
       to: mobileNumber,
       from: "+441604422099",
-      body: "Hi "+ req.body.invitees[i].part_name+messageBody+". Please reply IN or OUT.",}, function(err,message) {
+      body: "Hi "+ req.body.invitees_new[i].part_name+messageBody+". Please reply IN or OUT, with your short code attached. Your shortcode:"+req.body.invitees_new[i].short_id+"",}, function(err,message) {
         console.log(message.sid);
       });
     }
