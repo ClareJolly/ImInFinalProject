@@ -8,6 +8,11 @@ const EventSchema = new Schema({
     type: Array,
     required: true
   },
+  // invitees_new: {
+  //   type: Array,
+  //   required: true
+  // },
+  invitees_new: [{ type: Schema.Types.ObjectId, ref: 'Invitees' }],
 
   teamName: {
     type: String,
