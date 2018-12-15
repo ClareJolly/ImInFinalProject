@@ -45,11 +45,11 @@ finalSave = () => {
     return (
       <div className="EventForm">
 
-      <div>Place<input type='text' name='eventPlace' id='eventPlace' required onChange={this.handleChange}/></div>
+      <div><label htmlFor="eventPlace">Place</label><input type='text' name='eventPlace' id='eventPlace' required onChange={this.handleChange}/></div>
 
-      <div>Date<input type="date" name='eventDate' id='eventDate' required onChange={this.handleChange}/></div>
-      <div>Time<input type="time" name='eventTime' id='eventTime' required onChange={this.handleChange}/></div>
-      <div>Message<textarea rows="4" cols="30" name="message" id="message" required onChange={this.handleChange}>
+      <div><label htmlFor="eventDate">Date</label><input type="date" name='eventDate' id='eventDate' required onChange={this.handleChange}/></div>
+      <div><label htmlFor="eventTime">Time</label><input type="time" name='eventTime' id='eventTime' required onChange={this.handleChange}/></div>
+      <div><label htmlFor="message">Message</label><textarea rows="4" cols="30" name="message" id="message" required onChange={this.handleChange}>
       </textarea></div>
       <div><button name="back" id="back" onClick={this.props.goBack}>Back</button><button type="button" disabled={!isEnabled} onClick={this.finalSave}>Save event</button></div>
 

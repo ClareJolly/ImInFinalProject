@@ -40,9 +40,9 @@ class Participant extends Component {
     return (
       <div className="Participant">
 
-        Participant name<input type='text' name='part_name' id='part_name' value={this.state.part_name} onChange={this.handleChange}/>
-        Number<input type='text' name='part_number' id='part_number' value={this.state.part_number} onChange={this.handleChange}/>
-     <button name="add" id="add" disabled={!isEnabled} onClick={this.commitParticipant}>add</button>
+        <div><label htmlFor="part_name">Name</label><input type='text' name='part_name' id='part_name' value={this.state.part_name} onChange={this.handleChange}/></div>
+        <div><label htmlFor="part_number">Phone number</label><input type='text' name='part_number' id='part_number' value={this.state.part_number} onChange={this.handleChange}/></div>
+     <div><button name="add" id="add" disabled={!isEnabled} onClick={this.commitParticipant}>add</button></div>
       </div>
     );
   }
