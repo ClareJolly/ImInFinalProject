@@ -28,7 +28,8 @@ class App extends Component {
       toasterShow: true,
       user: sessionStorage.getItem('username'),
       userID: sessionStorage.getItem('userID'),
-      loggedIn: loggedIn
+      loggedIn: loggedIn,
+      cookieaccept:sessionStorage.getItem('cookieaccept')
     }
     // console.log("are you working?")
      this.pages = {
@@ -52,6 +53,7 @@ class App extends Component {
     // toast("Wow so easy !")
 
   toast("We have cookies.  Do you want them?", {
+    onClose: () => this.cookieSet(),
      autoClose: false,
           position: toast.POSITION.BOTTOM_CENTER,
 
@@ -88,8 +90,9 @@ class App extends Component {
               }
 
   componentDidMount() {
-    // this.notify()
+    this.notify()
   }
+
 setEventID(event) {
   console.log(event)
   // console.log(this.state.event)
@@ -107,6 +110,15 @@ setEventID(event) {
     this.setState({
       currentView : section,
       pageTitle : this.pages[section]
+    })
+  }
+
+  cookieSet() {
+    // console.log(this.state.currentView)
+    // console.log(this.pages[section])
+    sessionStorage.setItem('cookieaccept', true);
+    this.setState({
+      cookieaccept : true
     })
   }
 
@@ -190,7 +202,7 @@ setEventID(event) {
       <Header pageTitle={this.state.pageTitle} showSection={this.showSection} user={this.state.user} loggedIn={this.state.loggedIn} setLogout={this.setLogout}/>
 
       {/*// <button onClick={this.notify}>Notify !</button>*/}
-      {this.state.toasterShow && <ToastContainer />}
+      {this.state.toasterShow && !this.state.cookieaccept && <ToastContainer />}
       {this.state.currentView === "home" && <WelcomeText user={this.state.user} loggedIn={this.state.loggedIn}/>}
       {this.state.currentView === "new" && <Newevent />}
       {this.state.currentView === "login" && <RegisterLogin showSection={this.showSection} setUser={this.setUser}/>}
