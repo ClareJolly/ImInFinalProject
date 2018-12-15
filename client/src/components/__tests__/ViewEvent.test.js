@@ -13,7 +13,8 @@ mocked_props = {
   eventDate : '01/01/2019',
   eventTime : '00:00',
   message : 'message',
-  invitees : [{part_name:"abc", part_number:"123"}]
+  invitees : [{part_name:"abc", part_number:"123"}],
+  invitees_new : [{part_name:"abc", part_number:"123"}]
 }
 mountedViewEvent = shallow(<ViewEvent event={mocked_props} response={'this is a test message'}/>)
 // const component = wrapper.Header();

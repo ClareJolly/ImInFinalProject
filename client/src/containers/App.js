@@ -14,11 +14,20 @@ class App extends Component {
 
   constructor(props){
     super(props);
+    var loggedIn
+    if (sessionStorage.getItem('username')=== null) {
+      loggedIn = false
+    } else {
+      loggedIn = true
+    }
+
     this.state = {
       currentView: "home",
       pageTitle: "",
       eventId:'',
-      toasterShow: false
+      toasterShow: false,
+      user: sessionStorage.getItem('username'),
+      loggedIn: loggedIn
     }
     // console.log("are you working?")
      this.pages = {
@@ -34,6 +43,7 @@ class App extends Component {
     this.deleteEvent = this.deleteEvent.bind(this);
     this.refreshEventList = this.refreshEventList.bind(this);
     this.sendInvite = this.sendInvite.bind(this);
+    this.setUser = this.setUser.bind(this);
   }
 
   notify = () => {
@@ -126,17 +136,24 @@ setEventID(event) {
     this.setState({refreshEventList: !this.state.refreshEventList})
   }
 
+  setUser(user) {
+    console.log(user)
+    sessionStorage.setItem('username', user);
+    this.setState({user: sessionStorage.getItem('username'), loggedIn:true})
+    this.showSection('home')
+  }
+
   render() {
     return (
       <div className="App">
 
-      <Header pageTitle={this.state.pageTitle} showSection={this.showSection}/>
+      <Header pageTitle={this.state.pageTitle} showSection={this.showSection} user={this.state.user} loggedIn={this.state.loggedIn}/>
 
       {/*// <button onClick={this.notify}>Notify !</button>*/}
       {this.state.toasterShow && <ToastContainer />}
-      {this.state.currentView === "home" && <WelcomeText/>}
+      {this.state.currentView === "home" && <WelcomeText user={this.state.user} loggedIn={this.state.loggedIn}/>}
       {this.state.currentView === "new" && <Newevent />}
-      {this.state.currentView === "login" && <RegisterLogin showSection={this.showSection}/>}
+      {this.state.currentView === "login" && <RegisterLogin showSection={this.showSection} setUser={this.setUser}/>}
       {this.state.currentView === "events" && <Events setEventID={this.setEventID} refresh={this.refreshEventList}/>}
       {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.eventId} deleteEvent={this.deleteEvent} sendInvite={this.sendInvite}/>}
       </div>
