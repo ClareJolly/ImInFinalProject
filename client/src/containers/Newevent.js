@@ -20,6 +20,7 @@ class Newevent extends Component {
       eventTime : '',
       message : '',
       invitees : [],
+      invitees_new : [],
       stage:0,
       savedEvent:''
     }
@@ -80,11 +81,13 @@ class Newevent extends Component {
   }
 
   updateFinal = (eventTime, eventDate, message, eventPlace) => {
+    console.log("updateFINAL")
     this.setState({
       eventTime: eventTime,
       eventDate: eventDate,
       message: message,
-      eventPlace: eventPlace
+      eventPlace: eventPlace,
+      invitees_new: this.state.invitees
     }, this.updateDb)
   }
 
@@ -112,6 +115,7 @@ class Newevent extends Component {
     }).then(res => res.json())
     .then(response => this.setState({savedEvent:JSON.stringify(response)}))
     // .then(window.location.reload())
+    // .then(this.props.showSection('events'))
     .catch(error => console.error("Error:", error));
 
   }

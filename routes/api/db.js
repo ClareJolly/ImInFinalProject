@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 // Event Database
 router.post('/', (req, res) => {
 
+console.log("test")
 function addAllInvitees () {
 
   arr = []

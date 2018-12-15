@@ -56,10 +56,10 @@ show(section) {
         } else {
           this.setState({loginStatus: false,
           loginAttempted:true,
-        loginMessage:"Your password doesn't match what we have saved for "+username+""})
+        loginMessage:"Your username and/or password don't match"})
           if (res.data.response === "Username NOPE") {
-            this.setState({usernameValid: false,
-            loginMessage:"No accounts matching "+username+""})
+            this.setState({usernameValid: false
+            })
           }
         }
       })

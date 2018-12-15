@@ -24,7 +24,7 @@ class App extends Component {
     this.state = {
       currentView: "home",
       pageTitle: "",
-      eventId:'',
+      event:'',
       toasterShow: true,
       user: sessionStorage.getItem('username'),
       userID: sessionStorage.getItem('userID'),
@@ -97,7 +97,7 @@ setEventID(event) {
   console.log(event)
   // console.log(this.state.event)
   this.setState({
-    eventId : event,
+    event : event,
     currentView : 'viewEvent',
     pageTitle : this.pages['viewEvent'],
     refreshEventList:false
@@ -123,7 +123,7 @@ setEventID(event) {
   }
 
   deleteEvent = () => {
-    var eventID = this.state.eventId._id
+    var eventID = this.state.event._id
     console.log(eventID)
     var url = 'http://localhost:5000/api/db/' + eventID
     // var event = {teamName: this.state.teamName, eventTime: this.state.eventTime, eventDate: this.state.eventDate, eventPlace: this.state.eventPlace, message: this.state.message, invitees: this.state.invitees}
@@ -150,7 +150,7 @@ setEventID(event) {
   sendInvite = () => {
     console.log('sms test')
     var url = 'http://localhost:5000/api/send/'
-    var event = this.state.eventId
+    var event = this.state.event
     console.log(event)
     fetch(url, {
       method: 'POST',
@@ -204,10 +204,10 @@ setEventID(event) {
       {/*// <button onClick={this.notify}>Notify !</button>*/}
       {this.state.toasterShow && !this.state.cookieaccept && <ToastContainer />}
       {this.state.currentView === "home" && <WelcomeText user={this.state.user} loggedIn={this.state.loggedIn}/>}
-      {this.state.currentView === "new" && <Newevent />}
+      {this.state.currentView === "new" && <Newevent showSection={this.showSection}/>}
       {this.state.currentView === "login" && <RegisterLogin showSection={this.showSection} setUser={this.setUser}/>}
       {this.state.currentView === "events" && <Events setEventID={this.setEventID} refresh={this.refreshEventList}/>}
-      {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.eventId} deleteEvent={this.deleteEvent} sendInvite={this.sendInvite}/>}
+      {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.event} deleteEvent={this.deleteEvent} sendInvite={this.sendInvite}/>}
       </div>
     );
   }
