@@ -44,7 +44,7 @@ class TeamForm extends Component {
     return (
       <div className="TeamForm">
         <div><label htmlFor="teamName">Team name</label></div>
-        <div><input type='text' name='teamName' id='teamName' value={this.state.teamName} required onChange={this.handleChange}/></div>
+        <div><input type='text' autoFocus name='teamName' id='teamName' value={this.state.teamName} required onChange={this.handleChange}/></div>
         <div><button type="button" disabled={!isEnabled} onClick={this.saveTeam}>Next</button></div>
       </div>
     );
