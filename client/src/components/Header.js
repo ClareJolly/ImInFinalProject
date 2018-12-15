@@ -29,7 +29,7 @@ class Header extends Component {
 {this.props.loggedIn && <button name="new" id="new" onClick={() => this.props.showSection('new')}>New Event</button>}
 {this.props.loggedIn && <button name="events" id="events" onClick={() => this.props.showSection('events')}>View your events</button>}
 {!this.props.loggedIn && <button name="login" id="login" onClick={() => this.props.showSection('login')}>Login/Register</button>}
-{this.props.loggedIn && <button name="logout" id="logout" onClick={() => this.props.log('home')}>Log Out</button>}
+{this.props.loggedIn && <button name="logout" id="logout" onClick={() => this.props.setLogout()}>Log Out</button>}
 
       </div>
       <h1>{this.props.pageTitle}</h1>
