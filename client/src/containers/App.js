@@ -25,7 +25,7 @@ class App extends Component {
       currentView: "home",
       pageTitle: "",
       eventId:'',
-      toasterShow: false,
+      toasterShow: true,
       user: sessionStorage.getItem('username'),
       loggedIn: loggedIn
     }
@@ -59,8 +59,21 @@ class App extends Component {
         });
       }
 
+      toast_login = () => {
+        // toast("Wow so easy !")
+
+      toast("You are logged in", {
+         autoClose: true,
+              position: toast.POSITION.TOP_RIGHT,
+
+              className: 'black-background',
+     bodyClassName: "grow-font-size",
+     progressClassName: 'fancy-progress-bar'
+            });
+          }
+
   componentDidMount() {
-    this.notify()
+    // this.notify()
   }
 setEventID(event) {
   console.log(event)
@@ -141,6 +154,7 @@ setEventID(event) {
     sessionStorage.setItem('username', user);
     this.setState({user: sessionStorage.getItem('username'), loggedIn:true})
     this.showSection('home')
+    this.toast_login()
   }
 
   render() {
