@@ -20,7 +20,8 @@ class Newevent extends Component {
       eventTime : '',
       message : '',
       invitees : [],
-      stage:0
+      stage:0,
+      savedEvent:''
     }
   }
 
@@ -109,7 +110,7 @@ class Newevent extends Component {
         'Content-Type': 'application/json'
       }
     }).then(res => res.json())
-    .then(response => console.log('Success:', JSON.stringify(response)))
+    .then(response => this.setState({savedEvent:JSON.stringify(response)}))
     // .then(window.location.reload())
     .catch(error => console.error("Error:", error));
 
