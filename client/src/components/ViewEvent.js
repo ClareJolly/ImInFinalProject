@@ -6,7 +6,10 @@ class ViewEvent extends Component {
   constructor(props){
     super(props);
     this.state = {
+      event:this.props.event
     }
+
+    console.log(this.props.event)
     // console.log(this.props)
 
   }
@@ -20,6 +23,7 @@ class ViewEvent extends Component {
 
   render() {
     return (
+
       <div className="ViewEvent">
       <h3>{this.props.response}</h3>
       <div>

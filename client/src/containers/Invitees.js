@@ -36,6 +36,7 @@ class Invitees extends Component {
   render() {
     return (
       <div className="Participants">
+      <h4>Who do you want to invite?</h4>
       {this.state.invitees.length > 0 && <div>{this.state.invitees.map((invitelist, index) => {
         return ( <div key={index}>
             {invitelist.part_name} |

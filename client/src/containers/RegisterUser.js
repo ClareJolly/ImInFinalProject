@@ -34,7 +34,7 @@ class RegisterUser extends Component {
   render() {
     return (
       <div className="RegisterUser">
-        <div>Register User</div>
+        <div>Register</div>
         <div>Name<input type="text" name='name' id='name' value={this.state.name} required onChange={this.handleChange}/></div>
         <div>Username<input type="text" name='username' id='username' value={this.state.username} required onChange={this.handleChange}/></div>
         <div>Number<input type="text" name='phoneNumber' id='phoneNumber' value={this.state.phoneNumber} required onChange={this.handleChange}/></div>

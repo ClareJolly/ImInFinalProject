@@ -45,20 +45,21 @@ show(section) {
     axios.post(loginurl,userCredentials)
       .then(res => {
         console.log(res.data)
-        if(res.data === "YAY"){
+        if(res.data.response === "YAY"){
+          var userID = res.data.userID
           this.setState({
             loginStatus: true,
             usernameValid: true,
           loginAttempted:true,
         loginMessage:"Welcome, "+username+". You have successfully logged in"})
-        this.props.setUser(username)
+        this.props.setUser(username,userID)
         } else {
           this.setState({loginStatus: false,
           loginAttempted:true,
-        loginMessage:"Your password doesn't match what we have saved for "+username+""})
-          if (res.data === "Username NOPE") {
-            this.setState({usernameValid: false,
-            loginMessage:"No accounts matching "+username+""})
+        loginMessage:"Your username and/or password don't match"})
+          if (res.data.response === "Username NOPE") {
+            this.setState({usernameValid: false
+            })
           }
         }
       })
@@ -92,7 +93,7 @@ show(section) {
   render() {
     return (
       <div className="RegisterLogin">
-
+      {this.state.showSection === "" && <div>Register or login to create events and view any that you have already saved.</div>}
       {this.state.showSection === "" && <div>
       Already registered? <button onClick={() => this.show("login")}>Login</button>
       </div>}

@@ -43,7 +43,7 @@ class TeamForm extends Component {
 // console.log(isEnabled)
     return (
       <div className="TeamForm">
-        <div>Team name</div>
+        <div><label htmlFor="teamName">Team name</label></div>
         <div><input type='text' name='teamName' id='teamName' value={this.state.teamName} required onChange={this.handleChange}/></div>
         <div><button type="button" disabled={!isEnabled} onClick={this.saveTeam}>Next</button></div>
       </div>

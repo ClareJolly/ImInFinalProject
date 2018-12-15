@@ -24,10 +24,12 @@ class App extends Component {
     this.state = {
       currentView: "home",
       pageTitle: "",
-      eventId:'',
+      event:'',
       toasterShow: true,
       user: sessionStorage.getItem('username'),
-      loggedIn: loggedIn
+      userID: sessionStorage.getItem('userID'),
+      loggedIn: loggedIn,
+      cookieaccept:sessionStorage.getItem('cookieaccept')
     }
     // console.log("are you working?")
      this.pages = {
@@ -51,6 +53,7 @@ class App extends Component {
     // toast("Wow so easy !")
 
   toast("We have cookies.  Do you want them?", {
+    onClose: () => this.cookieSet(),
      autoClose: false,
           position: toast.POSITION.BOTTOM_CENTER,
 
@@ -63,7 +66,7 @@ class App extends Component {
       toast_login = () => {
         // toast("Wow so easy !")
 
-      toast("You are logged in", {
+      toast("You are logged in, "+this.state.user+"", {
          autoClose: true,
               position: toast.POSITION.TOP_RIGHT,
 
@@ -87,13 +90,14 @@ class App extends Component {
               }
 
   componentDidMount() {
-    // this.notify()
+    this.notify()
   }
+
 setEventID(event) {
   console.log(event)
   // console.log(this.state.event)
   this.setState({
-    eventId : event,
+    event : event,
     currentView : 'viewEvent',
     pageTitle : this.pages['viewEvent'],
     refreshEventList:false
@@ -109,8 +113,17 @@ setEventID(event) {
     })
   }
 
+  cookieSet() {
+    // console.log(this.state.currentView)
+    // console.log(this.pages[section])
+    sessionStorage.setItem('cookieaccept', true);
+    this.setState({
+      cookieaccept : true
+    })
+  }
+
   deleteEvent = () => {
-    var eventID = this.state.eventId._id
+    var eventID = this.state.event._id
     console.log(eventID)
     var url = 'http://localhost:5000/api/db/' + eventID
     // var event = {teamName: this.state.teamName, eventTime: this.state.eventTime, eventDate: this.state.eventDate, eventPlace: this.state.eventPlace, message: this.state.message, invitees: this.state.invitees}
@@ -137,7 +150,7 @@ setEventID(event) {
   sendInvite = () => {
     console.log('sms test')
     var url = 'http://localhost:5000/api/send/'
-    var event = this.state.eventId
+    var event = this.state.event
     console.log(event)
     fetch(url, {
       method: 'POST',
@@ -163,18 +176,20 @@ setEventID(event) {
     this.setState({refreshEventList: !this.state.refreshEventList})
   }
 
-  setUser(user) {
+  setUser(user,userID) {
     console.log(user)
     sessionStorage.setItem('username', user);
-    this.setState({user: sessionStorage.getItem('username'), loggedIn:true})
+    sessionStorage.setItem('userID', userID)
+    this.setState({user: user, userID:userID, loggedIn:true})
     this.showSection('home')
     this.toast_login()
+    console.log(userID)
   }
 
   setLogout() {
     // console.log("toggle?")
     sessionStorage.clear()
-    this.setState({user: '', loggedIn:false})
+    this.setState({user: '',userID:'', loggedIn:false})
     this.showSection('home')
     this.toast_logout()
 
@@ -187,12 +202,12 @@ setEventID(event) {
       <Header pageTitle={this.state.pageTitle} showSection={this.showSection} user={this.state.user} loggedIn={this.state.loggedIn} setLogout={this.setLogout}/>
 
       {/*// <button onClick={this.notify}>Notify !</button>*/}
-      {this.state.toasterShow && <ToastContainer />}
+      {this.state.toasterShow && !this.state.cookieaccept && <ToastContainer />}
       {this.state.currentView === "home" && <WelcomeText user={this.state.user} loggedIn={this.state.loggedIn}/>}
-      {this.state.currentView === "new" && <Newevent />}
+      {this.state.currentView === "new" && <Newevent showSection={this.showSection}/>}
       {this.state.currentView === "login" && <RegisterLogin showSection={this.showSection} setUser={this.setUser}/>}
       {this.state.currentView === "events" && <Events setEventID={this.setEventID} refresh={this.refreshEventList}/>}
-      {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.eventId} deleteEvent={this.deleteEvent} sendInvite={this.sendInvite}/>}
+      {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.event} deleteEvent={this.deleteEvent} sendInvite={this.sendInvite}/>}
       </div>
     );
   }

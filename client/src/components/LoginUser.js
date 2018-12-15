@@ -30,9 +30,9 @@ class LoginUser extends Component {
   render() {
     return (
       <div className="LoginUser">
-        <div>Login User</div>
+        <div>Login</div>
         <div>Username<input type="text" name='log_username' id='log_username' value={this.state.username} required onChange={this.handleChange}/></div>
-        <div>Password<input type="text" name='log_password' id='log_password' value={this.state.password} required onChange={this.handleChange}/></div>
+        <div>Password<input type="password" name='log_password' id='log_password' value={this.state.password} required onChange={this.handleChange}/></div>
         <div><button onClick={this.Login} >Submit</button></div>
         </div>
     )
