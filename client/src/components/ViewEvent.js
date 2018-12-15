@@ -30,11 +30,11 @@ Team Name: {this.props.event.teamName}
 
 
 
-{this.props.event.invitees_new.map((invitelist, index) => {
+{this.props.event.invitees.map((invitelist, index) => {
 return ( <p key={index}>
         {invitelist.part_name} |
         {invitelist.part_number} |
-        {invitelist.response}
+      
          </p> )
     })
   }

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Newevent from './Newevent'
 import Events from './Events'
-import RegisterUser from './RegisterUser'
+import RegisterLogin from './RegisterLogin'
 import Header from '../components/Header'
 import ViewEvent from '../components/ViewEvent'
 import WelcomeText from '../components/WelcomeText'
@@ -17,14 +17,15 @@ class App extends Component {
     this.state = {
       currentView: "home",
       pageTitle: "",
-      eventId:''
+      eventId:'',
+      toasterShow: false
     }
-    console.log("are you working?")
+    // console.log("are you working?")
      this.pages = {
       'home': '',
       'new' : 'Create a new event',
       'events' : 'Your events',
-      'login' : 'Login',
+      'login' : 'Login or Register',
       'register' : 'Register',
       'viewevent' : 'View Event'
     }
@@ -132,10 +133,10 @@ setEventID(event) {
       <Header pageTitle={this.state.pageTitle} showSection={this.showSection}/>
 
       {/*// <button onClick={this.notify}>Notify !</button>*/}
-               <ToastContainer />
+      {this.state.toasterShow && <ToastContainer />}
       {this.state.currentView === "home" && <WelcomeText/>}
       {this.state.currentView === "new" && <Newevent />}
-      {this.state.currentView === "login" && <RegisterUser />}
+      {this.state.currentView === "login" && <RegisterLogin showSection={this.showSection}/>}
       {this.state.currentView === "events" && <Events setEventID={this.setEventID} refresh={this.refreshEventList}/>}
       {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.eventId} deleteEvent={this.deleteEvent} sendInvite={this.sendInvite}/>}
       </div>
