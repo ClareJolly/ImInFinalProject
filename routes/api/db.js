@@ -142,16 +142,16 @@ router.get('/user', (req, res) => {
 
 router.post('/user/login', (req, res) => {
 
-function checkPassword(formpw, dbpw){
+function checkPassword(formpw, dbpw, userID){
   bcrypt.compare(formpw, dbpw, function(err, bcrypt_res) {
     if (bcrypt_res) {
       // console.log("YAY")
-      res.send("YAY");
+      res.send({response:"YAY",userID:userID});
 
       // return  "successful login"
     } else {
       // console.log("NOPE")
-      res.send("NOPE");
+      res.send({response:"NOPE",userID:userID});
       // return  "unsuccessful login"
     }
   });
@@ -160,7 +160,7 @@ function checkPassword(formpw, dbpw){
   query = { username: req.body.username }
   Users.findOne(query, function (err, checkuser) {
     if (checkuser != null) {
-      checkPassword(req.body.password, checkuser.password)
+      checkPassword(req.body.password, checkuser.password, checkuser._id)
     } else {
       // console.log("username NOPE")
       res.send("Username NOPE");

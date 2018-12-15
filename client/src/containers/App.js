@@ -27,6 +27,7 @@ class App extends Component {
       eventId:'',
       toasterShow: true,
       user: sessionStorage.getItem('username'),
+      userID: sessionStorage.getItem('userID'),
       loggedIn: loggedIn
     }
     // console.log("are you working?")
@@ -63,7 +64,7 @@ class App extends Component {
       toast_login = () => {
         // toast("Wow so easy !")
 
-      toast("You are logged in", {
+      toast("You are logged in, "+this.state.user+"", {
          autoClose: true,
               position: toast.POSITION.TOP_RIGHT,
 
@@ -163,18 +164,20 @@ setEventID(event) {
     this.setState({refreshEventList: !this.state.refreshEventList})
   }
 
-  setUser(user) {
+  setUser(user,userID) {
     console.log(user)
     sessionStorage.setItem('username', user);
-    this.setState({user: sessionStorage.getItem('username'), loggedIn:true})
+    sessionStorage.setItem('userID', userID)
+    this.setState({user: user, userID:userID, loggedIn:true})
     this.showSection('home')
     this.toast_login()
+    console.log(userID)
   }
 
   setLogout() {
     // console.log("toggle?")
     sessionStorage.clear()
-    this.setState({user: '', loggedIn:false})
+    this.setState({user: '',userID:'', loggedIn:false})
     this.showSection('home')
     this.toast_logout()
 
