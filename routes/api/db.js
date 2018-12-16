@@ -169,6 +169,17 @@ router.get('/user', (req, res) => {
     .then(user => res.json(user));
 });
 
+router.post('/user/check-username', (req, res) => {
+  query = { username: req.body.username }
+  console.log(query)
+  Users.findOne(query, function (err, checkuser) {
+    var response
+    checkuser === null ? response = "Y" : response = "N"
+    res.send(response)
+  })
+
+})
+
 router.post('/user/login', (req, res) => {
 
 function checkPassword(formpw, dbpw, userID){

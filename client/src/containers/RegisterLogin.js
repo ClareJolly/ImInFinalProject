@@ -15,7 +15,8 @@ class RegisterLogin extends Component {
       usernameValid: '',
       loginStatus: '',
       loginAttempted: false,
-      loginMessage: ''
+      loginMessage: '',
+      userID:''
     }
   }
 
@@ -31,7 +32,7 @@ show(section) {
       username: username,
       phoneNumber: phoneNumber,
       password: password
-    }, this.updateDb)
+    }, this.RegisterUserDb)
   }
 
   UserLogin = (username, password) => {
@@ -73,7 +74,7 @@ show(section) {
     })
   }
 
-  updateDb = () => {
+  RegisterUserDb = () => {
     var url = 'http://localhost:5000/api/db/user'
     var event = {name: this.state.name, username: this.state.username, phoneNumber: this.state.phoneNumber, password: this.state.password}
     console.log(event)
@@ -84,8 +85,9 @@ show(section) {
         'Content-Type': 'application/json'
       }
     }).then(res => res.json())
-    .then(response => console.log('Success:', JSON.stringify(response)))
-    .then(this.props.setUser(this.state.username))
+    // .then(resp => this.setState({userID:resp._id}))
+    // .then(response => console.log('Success:', JSON.stringify(response)))
+    .then(resp => this.props.setUser(resp.username,resp._id))
     // .then(this.props.showSection('home'))
     .catch(error => console.error("Error:", error));
   }
