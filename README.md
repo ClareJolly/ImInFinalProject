@@ -63,4 +63,48 @@ Front end tests  ```npm run test``` in client folder
 11. After retrospective we would gather Feedback from potential users to understand what we should bring into our following sprint.
 ![Sprint 1 retro](Sprint1-retro.jpg)
 
+
+## Velocity
+Visit our [Tello Board](Shttps://trello.com/b/S6DTHlO4/final-project-plan)  to see full details of backlog
+Sprint 1 - 33 Committed | 23 Delivered
+
+Sprint 2 - 23 Committed | 29 Delivered
+
 ## Learning Process
+
+
+## Tools used
+#### Dependencies
+Mongo DB
+Express
+React -
+NodeJS -  
+HTML -
+CSS -
+Twilio - User to send SMS's
+Paypal API -
+Axios -
+bcrypt -
+Nodemon
+shortid
+concurrently
+body-parser
+
+#### Testing
+Enzime
+Mocha
+Chai
+selenium-webdriver
+chromedriver
+npm -
+
+#### Management Tools
+[Tello Board](Shttps://trello.com/b/S6DTHlO4/final-project-plan)
+
+## Authors
+
+- Clare Jolly - [ClareJolly](https://github.com/ClareJolly)
+
+- Prashant Raniga - [Prashantraniga](https://github.com/Prashantraniga)
+
+- Moishe Barnes - [bmoishe](https://github.com/bmoishe)
