@@ -45,7 +45,7 @@ finalSave = () => {
     return (
       <div className="EventForm">
 
-      <div><label htmlFor="eventPlace">Place</label><input type='text' name='eventPlace' id='eventPlace' required onChange={this.handleChange}/></div>
+      <div><label htmlFor="eventPlace">Place</label><input type='text' autoFocus name='eventPlace' id='eventPlace' required onChange={this.handleChange}/></div>
 
       <div><label htmlFor="eventDate">Date</label><input type="date" name='eventDate' id='eventDate' required onChange={this.handleChange}/></div>
       <div><label htmlFor="eventTime">Time</label><input type="time" name='eventTime' id='eventTime' required onChange={this.handleChange}/></div>

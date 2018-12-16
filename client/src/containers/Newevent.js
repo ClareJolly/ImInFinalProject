@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './Newevent.css';
 
-// import axios from 'axios'
+import axios from 'axios'
 import './App.css';
 import Invitees from './Invitees'
 import TeamForm from './TeamForm'
@@ -22,8 +22,11 @@ class Newevent extends Component {
       invitees : [],
       invitees_new : [],
       stage:0,
-      savedEvent:''
+      savedEvent:'',
+      event:''
+
     }
+    console.log(this.state)
   }
 
   handleChange = (event) => {
@@ -67,8 +70,9 @@ class Newevent extends Component {
   }
 
   Stage3Submit = (eventTime, eventDate, message, eventPlace) => {
-    this.incrementStage()
+    // this.incrementStage()
     this.updateFinal(eventTime, eventDate, message, eventPlace)
+    // this.incrementStage()
     // console.log(this.state.stage)
     // this.updateDb()
     console.log("db")
@@ -106,17 +110,30 @@ class Newevent extends Component {
     var url = 'http://localhost:5000/api/db'
     var event = {teamName: this.state.teamName, eventTime: this.state.eventTime, eventDate: this.state.eventDate, eventPlace: this.state.eventPlace, message: this.state.message, invitees: this.state.invitees}
     console.log(event)
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify( event ),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(res => res.json())
-    .then(response => this.setState({savedEvent:JSON.stringify(response)}))
-    // .then(window.location.reload())
-    // .then(this.props.showSection('events'))
-    .catch(error => console.error("Error:", error));
+    axios.post(url,event)
+      .then(res => {
+        // console.log(res.data)
+        this.props.setEventID(res.data)
+        this.setState({savedEvent:res.data,event:res.data})
+
+      })
+      // .then(this.incrementStage())
+      // .then(this.props.setEventID)
+      .then(console.log("STATE:",this.state))
+    // fetch(url, {
+    //   method: 'POST',
+    //   body: JSON.stringify( event ),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
+    // // .then(aaa => console.log(aaa))
+    // .then(res => res.json())
+    // // .then(res =>     this.setState({savedEvent:JSON.stringify(res),event:JSON.stringify(res)}))
+    // .then(this.incrementStage())
+    // // .then(window.location.reload())
+    // // .then(this.props.showSection('events'))
+    // .catch(error => console.error("Error:", error));
 
   }
   render() {

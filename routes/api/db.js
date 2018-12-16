@@ -4,6 +4,7 @@ const Events = require('../../models/Events');
 const Invitees = require('../../models/Invitees');
 const Users = require('../../models/Users');
 const bcrypt = require('bcrypt');
+const axios = require('axios');
 // Event Database
 router.post('/', (req, res) => {
 
@@ -20,7 +21,7 @@ function addAllInvitees () {
      unique_code: '1234',
      event_ID: '1'
    });
-   newInvitee.save().then(invitee => res.json(invitee))
+   newInvitee.save()//.then(invitee => res.json(invitee))
    .then(arr.push(newInvitee._id))
   }
   return arr
@@ -38,10 +39,22 @@ var promise1 = new Promise(
 
 promise1.then(function(value) {
   // console.log(value);
-  addEvent(req.body.invitees,value,req.body.teamName,req.body.eventTime,req.body.eventPlace,req.body.eventDate,req.body.message)
+  var event_add = addEvent(req.body.invitees,value,req.body.teamName,req.body.eventTime,req.body.eventPlace,req.body.eventDate,req.body.message)
+// console.log("event_add:",event_add)
   // expected output: "foo"
 });
-// promise1.then()
+
+
+// promise1.then(function(val){
+//   console.log("val:",val)
+//   axios.get('http://localhost:5000/api/db/'+val._id)
+// .then(function (response) {
+//   // console.log(response);
+// })
+// .catch(function (error) {
+//   // console.log(error);
+// });
+// })
 
 function addEvent(invitees,invitees_new,teamName,eventTime,eventPlace,eventDate,message) {
   console.log('and now the main event')
@@ -55,6 +68,7 @@ function addEvent(invitees,invitees_new,teamName,eventTime,eventPlace,eventDate,
     message: message
   });
   newEvents.save().then(event => res.json(event));
+  // .then( event2 => res.json(event2);
 }
 
 });
@@ -84,6 +98,20 @@ router.get('/', (req, res) => {
 
   Events.find()
   // return Events.findOne({ teamName: "NEW ASYNC NEWNEWNEWNEW TEST" })
+  .sort({ date: -1})
+  .populate('invitees_new').exec((err, invitees_new) => {
+    // console.log("Populated invitees " + invitees_new)
+    return res.json(invitees_new);
+  })
+    // .sort({ date: -1})
+    // .then(invitee => res.json(invitee));
+});
+
+router.get('/:id', (req, res) => {
+
+
+  // Events.find()
+  return Events.findOne({ _id: req.params.id })
   .sort({ date: -1})
   .populate('invitees_new').exec((err, invitees_new) => {
     // console.log("Populated invitees " + invitees_new)
