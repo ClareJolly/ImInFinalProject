@@ -103,7 +103,7 @@ class Events extends Component {
           // var outResponses = inviteesArray.filter(word => word.response === "OUT").length
           // var noneResponses = inviteesArray.filter(word => word.response === "NONE").length
 
-          return <div>
+          return <div key={index}>
 
             <button name="delete" className="deleteButtons" id="delete" onClick={() => this.setAndDeleteEvent(event)}></button>
 
