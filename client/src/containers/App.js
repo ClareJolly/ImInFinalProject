@@ -90,7 +90,8 @@ class App extends Component {
               }
 
   componentDidMount() {
-    this.notify()
+    if (this.state.toasterShow && !this.state.cookieaccept){
+      this.notify()}
   }
 
 setEventID(event) {
@@ -202,7 +203,7 @@ setEventID(event) {
       <Header pageTitle={this.state.pageTitle} showSection={this.showSection} user={this.state.user} loggedIn={this.state.loggedIn} setLogout={this.setLogout}/>
 
       {/*// <button onClick={this.notify}>Notify !</button>*/}
-      {this.state.toasterShow && !this.state.cookieaccept && <ToastContainer />}
+      <ToastContainer />
       {this.state.currentView === "home" && <WelcomeText user={this.state.user} loggedIn={this.state.loggedIn}/>}
       {this.state.currentView === "new" && <Newevent showSection={this.showSection} setEventID={this.setEventID}/>}
       {this.state.currentView === "login" && <RegisterLogin showSection={this.showSection} setUser={this.setUser}/>}
