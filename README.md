@@ -38,8 +38,10 @@ Front end tests  ```npm run test``` in client folder
 
 ## Process
 1. We started by brainstorming problems that friends and family had and then looked for solutions to those problems.
+![Problems](List-of-Problems.jpg)
 
 2. We narrowed down the solutions to ensure we would be able to use the MERN stack to solve them.
+![Features](FEATURE_LIST.jpg)
 
 3. We prepared a backlog of work broken down into EPIC's.
 
@@ -50,6 +52,7 @@ Front end tests  ```npm run test``` in client folder
 6. We effort scored these user stores
 
 7. We then selected what would suffice for a Minimum Viable Product and put this into our Sprint Backlog
+![MVP](MVP.jpg)
 
 8. We decided to have 2 day sprints and worked through the user stories.
 
@@ -58,5 +61,6 @@ Front end tests  ```npm run test``` in client folder
 10. At the end of sprint we would have a retrospective that would allow us to state what we did well, what we could improve and what we should continue doing.
 
 11. After retrospective we would gather Feedback from potential users to understand what we should bring into our following sprint.
+![Sprint 1 retro](Sprint1-retro.jpg)
 
 ## Learning Process
