@@ -206,7 +206,7 @@ setEventID(event) {
       {this.state.currentView === "home" && <WelcomeText user={this.state.user} loggedIn={this.state.loggedIn}/>}
       {this.state.currentView === "new" && <Newevent showSection={this.showSection} setEventID={this.setEventID}/>}
       {this.state.currentView === "login" && <RegisterLogin showSection={this.showSection} setUser={this.setUser}/>}
-      {this.state.currentView === "events" && <Events setEventID={this.setEventID} refresh={this.refreshEventList}/>}
+      {this.state.currentView === "events" && <Events deleteEvent={this.deleteEvent}  setEventID={this.setEventID} refresh={this.refreshEventList}/>}
       {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.event} deleteEvent={this.deleteEvent} sendInvite={this.sendInvite}/>}
       </div>
     );

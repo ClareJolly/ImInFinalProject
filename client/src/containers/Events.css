@@ -19,9 +19,9 @@
 .event-buttons {
   font-family: 'Montserrat', sans-serif;
   text-transform: capitalize;
-  background-color: #000000;
+  background-color: white;
   border: 2px solid black;
-  color: white;
+  color: black;
   padding: 10px 10px;
   text-align: center;
   text-decoration: none;
@@ -34,6 +34,32 @@
   width: 200px;
 }
 
+.event-buttons:hover {
+  background-color: black;
+  color: white;
+}
+
 .inOrOut {
     text-transform: lowercase;
+}
+
+.deleteButtons {
+  background: white;
+  background-image: url("bin.svg");
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+  border: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 5px;
+  border-radius: 900px;
+  height: 5px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.deleteButtons:hover {
+width: 30px;
+height: 30px;
 }

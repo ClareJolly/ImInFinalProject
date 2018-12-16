@@ -18,7 +18,7 @@ import EventModal from './EventModal'
 
 
 class Events extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {modalIsOpen: false,
       events: [],
@@ -80,6 +80,10 @@ class Events extends Component {
     })
   }
 
+  setAndDeleteEvent(event){
+    this.props.setEventID(event)
+    this.props.deleteEvent()
+  }
   render() {
 
 
@@ -96,10 +100,21 @@ class Events extends Component {
         {this.state.event_list.map ((event, index) => {
           var inviteesArray = event.invitees_new
           var inResponses = inviteesArray.filter(word => word.response === "IN").length
-          var outResponses = inviteesArray.filter(word => word.response === "OUT").length
-          var noneResponses = inviteesArray.filter(word => word.response === "NONE").length
-          return <div onClick={() => this.props.setEventID(event)} key={index} className="event-buttons">{event.teamName}<br/>
+          // var outResponses = inviteesArray.filter(word => word.response === "OUT").length
+          // var noneResponses = inviteesArray.filter(word => word.response === "NONE").length
+
+          return <div>
+
+            <button name="delete" className="deleteButtons" id="delete" onClick={() => this.setAndDeleteEvent(event)}></button>
+
+
+            <div onClick={() => this.props.setEventID(event)} key={index} className="event-buttons">
+
+            {event.teamName}<br/>
           <span className="inOrOut">{inResponses}/{inviteesArray.length} are</span> <strong>IN</strong>
+          </div>
+          <button  name="edit" className="editButtons" ></button>
+
           </div>
 
         })}

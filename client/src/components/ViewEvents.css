@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Aldrich|Cabin+Sketch|Julius+Sans+One|Special+Elite|Ubuntu+Mono|Black+Han+Sans|Montserrat|Lora');
+.editButtons {
+  background: white;
+  background-image: url("edit-pen.png");
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+  border: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 5px;
+  border-radius: 900px;
+  height: 5px;
+  transition: all 0.5s;
+  cursor: pointer;
+
+}
+
+.editButtons:hover {
+width: 30px;
+height: 30px;
+}
+
+.edits {
+  padding-right: 20%
+}
+
+.deleteButtons {
+  background: white;
+  background-image: url("bin.svg");
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+  border: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 5px;
+  border-radius: 900px;
+  height: 5px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.deleteButtons:hover {
+width: 30px;
+height: 30px;
+}
+
+.sendInvite {
+  background: white;
+  background-image: url("send.png");
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+  border: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 5px;
+  border-radius: 900px;
+  height: 5px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.sendInvite:hover {
+width: 30px;
+height: 30px;
+}
+
+.event-feilds {
+  padding-top: 7px;
+  padding-bottom: 7px
+}
+
+.invitee-feilds {
+
+}
