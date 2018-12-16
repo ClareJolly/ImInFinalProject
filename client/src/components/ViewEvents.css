@@ -6,7 +6,6 @@
   background-position: center;
   display: inline-block;
   border: none;
-  /* padding: 20px; */
   margin-left: 10px;
   margin-right: 10px;
   width: 5px;
@@ -28,15 +27,13 @@ height: 30px;
 
 .deleteButtons {
   background: white;
-  background-image: url("delete-button.png");
+  background-image: url("bin.svg");
   background-size: cover;
   background-position: center;
   display: inline-block;
   border: none;
-  /* margin-right: 10px; */
   margin-left: 10px;
   margin-right: 10px;
-  /* padding: 20px; */
   width: 5px;
   border-radius: 900px;
   height: 5px;
@@ -56,10 +53,8 @@ height: 30px;
   background-position: center;
   display: inline-block;
   border: none;
-  /* margin-right: 10px; */
   margin-left: 10px;
   margin-right: 10px;
-  /* padding: 20px; */
   width: 5px;
   border-radius: 900px;
   height: 5px;
