@@ -50,7 +50,9 @@ return ( <p key={index}>
       </div>
 <div className="event-feilds">Location: {this.props.event.eventPlace}</div>
 <div className="event-feilds">Date: {this.props.event.eventDate}</div>
+<div className="event-feilds">Pay By Date: {this.props.event.payByDate}</div>
 <div className="event-feilds">Time: {this.props.event.eventTime}</div>
+<div className="event-feilds">Cost per person: {this.props.event.eventPricePP}</div>
 <div className="event-feilds">Message: {this.props.event.message}</div>
 <div>
 
