@@ -3,9 +3,20 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const events = require('./routes/api/db');
 const messaging = require('./routes/api/send');
-// requires dependencies
+const paypal = require('./routes/api/paypal');
 const app = express();
-// connect to express
+var path = require('path')
+const ejs = require('ejs');
+// Set the default views directory to html folder
+app.set('views', path.join(__dirname, 'views'))
+
+// Set the folder for css & java scripts
+app.use(express.static(path.join(__dirname,'css')))
+app.use(express.static(path.join(__dirname, 'node_modules')))
+
+// Set the view engine to ejs
+app.set('view engine', 'ejs')
+
 
 app.use(bodyParser.json());
 
@@ -53,8 +64,7 @@ app.use('/api/send', messaging);
 app.use('/api/send/sms', messaging);
 // sms -------------
 
-
-
+app.use('/api/paypal/', paypal);
 
 const port = process.env.PORT || 5000;
 
