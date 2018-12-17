@@ -9,9 +9,10 @@ var path = require('path')
 const ejs = require('ejs');
 // Set the default views directory to html folder
 app.set('views', path.join(__dirname, 'views'))
-
+app.use('/favicon.ico', express.static('images/favicon.ico'));
 // Set the folder for css & java scripts
-app.use(express.static(path.join(__dirname,'css')))
+app.use(express.static(path.join(__dirname,'views/css')))
+app.use(express.static(path.join(__dirname,'views/images')))
 app.use(express.static(path.join(__dirname, 'node_modules')))
 
 // Set the view engine to ejs

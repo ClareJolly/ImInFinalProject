@@ -17,7 +17,10 @@ paypal.configure({
 
 pay.set('view engine', 'ejs');
 
-router.get('/', (req, res) => res.render('index'));
+router.get('/confirm/:id', (req, res) => {
+  id = req.params.id
+  res.render('index')
+});
 
 
 router.post('/pay', (req, res) => {
@@ -82,11 +85,14 @@ router.get('/success', (req, res) => {
       throw error;
     } else {
       console.log(JSON.stringify(payment));
-      res.send(JSON.stringify(payment["transactions"][0]))
+      // res.send(JSON.stringify(payment["transactions"][0]))
     }
   });
+
+
+  res.render('success')
 });
 
-router.get('/cancel', (req, res) => res.send('Cancelled'));
+router.get('/cancel', (req, res) => res.render('cancel'));
 
 module.exports = router;
