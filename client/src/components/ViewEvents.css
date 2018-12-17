@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Aldrich|Cabin+Sketch|Julius+Sans+One|Special+Elite|Ubuntu+Mono|Black+Han+Sans|Montserrat|Lora');
 .editButtons {
   background: white;
-  background-image: url("edit-pen.png");
+  background-image: url("/images/edit-pen.png");
   background-size: cover;
   background-position: center;
   display: inline-block;
@@ -27,7 +27,7 @@ height: 30px;
 
 .deleteButtons {
   background: white;
-  background-image: url("bin.svg");
+  background-image: url("/images/bin.svg");
   background-size: cover;
   background-position: center;
   display: inline-block;
@@ -48,7 +48,7 @@ height: 30px;
 
 .sendInvite {
   background: white;
-  background-image: url("send.png");
+  background-image: url("/images/send.png");
   background-size: cover;
   background-position: center;
   display: inline-block;
