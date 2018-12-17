@@ -13,7 +13,11 @@ app.use('/favicon.ico', express.static('images/favicon.ico'));
 // Set the folder for css & java scripts
 app.use(express.static(path.join(__dirname,'views/css')))
 app.use(express.static(path.join(__dirname,'views/images')))
+app.use(express.static(path.join(__dirname,'views/scripts')))
 app.use(express.static(path.join(__dirname, 'node_modules')))
+// app.use(express.static(__dirname + '/views'));
+// //Store all HTML files in view folder.
+// app.use(express.static(__dirname + '/Script'));
 
 // Set the view engine to ejs
 app.set('view engine', 'ejs')
