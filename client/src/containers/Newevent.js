@@ -71,7 +71,16 @@ class Newevent extends Component {
 
   Stage3Submit = (eventTime, eventDate, message, eventPlace) => {
     // this.incrementStage()
-    this.updateFinal(eventTime, eventDate, message, eventPlace)
+    console.log("stage 3")
+    this.setState({
+      eventTime: eventTime,
+      eventDate: eventDate,
+      message: message,
+      eventPlace: eventPlace,
+      invitees_new: this.state.invitees
+    },this.updateFinal(eventTime, eventDate, message, eventPlace))
+
+    // this.updateFinal(eventTime, eventDate, message, eventPlace)
     // this.incrementStage()
     // console.log(this.state.stage)
     // this.updateDb()
@@ -84,16 +93,49 @@ class Newevent extends Component {
     })
   }
 
+  // updateFinal = (eventTime, eventDate, message, eventPlace) => {
+  //   console.log("updateFINAL")
+
+  // }
+
   updateFinal = (eventTime, eventDate, message, eventPlace) => {
-    console.log("updateFINAL")
-    this.setState({
-      eventTime: eventTime,
-      eventDate: eventDate,
-      message: message,
-      eventPlace: eventPlace,
-      invitees_new: this.state.invitees
-    }, this.updateDb)
+    console.log("DO UPDATE")
+    ;
+    // var name = this.state.name
+    // var username = this.state.username
+    // var phoneNumber = this.state.phoneNumber
+    // var password = this.state.password
+    var that=this
+    // this.usernameAvailable()
+    // var p = this.usernameAvailable()
+
+  var updateDb2 = new Promise(function(resolve, reject) {
+  // do a thing, possibly async, then…
+  console.log("aaa")
+  var url = 'http://localhost:5000/api/db'
+  var event = {teamName: that.state.teamName, eventTime: eventTime, eventDate: eventDate, eventPlace: eventPlace, message: message, invitees: that.state.invitees}
+  console.log(event)
+  var checking = axios.post(url,event)
+    .then(res => {
+      console.log("NEW:",res.data)
+      // this.props.setEventID(res.data)
+      // this.setState({savedEvent:res.data,event:res.data})
+      return res.data
+    })
+    // .then(resp => {console.log(resp.data)})
+    resolve(checking);
+
+  });
+
+  updateDb2.then(function(result) {
+  console.log("Promise worked");
+  that.props.setEventID(result)
+  // that.setState({savedEvent:JSON.stringify(result),event:JSON.stringify(result)},that.props.showSection('events'))
+}, function(err) {
+  console.log("Something broke");
+});
   }
+
 
   checkState = () => {
     console.log(this.state)
@@ -106,7 +148,7 @@ class Newevent extends Component {
 
   }
 
-  updateDb = () => {
+  updateDbx = () => {
     var url = 'http://localhost:5000/api/db'
     var event = {teamName: this.state.teamName, eventTime: this.state.eventTime, eventDate: this.state.eventDate, eventPlace: this.state.eventPlace, message: this.state.message, invitees: this.state.invitees}
     console.log(event)

@@ -47,6 +47,8 @@ class App extends Component {
     this.sendInvite = this.sendInvite.bind(this);
     this.setUser = this.setUser.bind(this);
     this.setLogout = this.setLogout.bind(this);
+
+    // console.log(sessionStorage.getItem('viewingEvent'))
   }
 
   notify = () => {
@@ -97,12 +99,14 @@ class App extends Component {
 setEventID(event) {
   console.log(event)
   // console.log(this.state.event)
+  // sessionStorage.setItem('viewingEvent', event._id)
   this.setState({
     event : event,
     currentView : 'viewEvent',
     pageTitle : this.pages['viewEvent'],
-    refreshEventList:false
+    // refreshEventList:false
   })
+  // )
 }
 
   showSection(section) {
@@ -123,10 +127,10 @@ setEventID(event) {
     })
   }
 
-  deleteEvent = () => {
-    var eventID = this.state.event._id
-    console.log(eventID)
-    var url = 'http://localhost:5000/api/db/' + eventID
+  deleteEvent = (id) => {
+    // var eventID = this.state.event._id
+    console.log(id)
+    var url = 'http://localhost:5000/api/db/' + id
     // var event = {teamName: this.state.teamName, eventTime: this.state.eventTime, eventDate: this.state.eventDate, eventPlace: this.state.eventPlace, message: this.state.message, invitees: this.state.invitees}
     // console.log(event)
     fetch(url, {
@@ -139,8 +143,8 @@ setEventID(event) {
     .then(response => console.log('Success:', JSON.stringify(response)))
     // .then(window.location.reload())
     .then(this.setState({
-      currentView : 'home',
-      pageTitle : this.pages['home']
+      currentView : 'events',
+      pageTitle : this.pages['events']
     }))
     .then(console.log("refreshing"))
     .then(this.refreshEventList())

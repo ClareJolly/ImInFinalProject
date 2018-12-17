@@ -50,7 +50,7 @@ class Events extends Component {
   componentWillReceiveProps(props) {
     console.log(props)
     const { refresh } = this.props;
-    console.log(props.refresh)
+    // console.log(props.refresh)
     if (props.refresh !== refresh) {
         this.setState({ state: this.state })
         .then(this.refreshEventList)
@@ -80,9 +80,9 @@ class Events extends Component {
     })
   }
 
-  setAndDeleteEvent(event){
-    this.props.setEventID(event)
-    this.props.deleteEvent()
+  setAndDeleteEvent(id){
+    // this.props.setEventID(event)
+    this.props.deleteEvent(id)
   }
   render() {
 
@@ -105,7 +105,7 @@ class Events extends Component {
 
           return <div key={index}>
 
-            <button name="delete" className="deleteButtons" id="delete" onClick={() => this.setAndDeleteEvent(event)}></button>
+            <button name="delete" className="deleteButtons" id="delete" onClick={() => this.setAndDeleteEvent(event._id)}></button>
 
 
             <div onClick={() => this.props.setEventID(event)} key={index} className="event-buttons">

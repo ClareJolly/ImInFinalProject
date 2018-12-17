@@ -13,7 +13,7 @@ function addAllInvitees () {
 
   arr = []
   for (var i = 0; i<req.body.invitees.length; i++){
-    console.log(req.body.invitees[i])
+    // console.log(req.body.invitees[i])
     const newInvitee = new Invitees({
      part_name: req.body.invitees[i].part_name,
      part_number: req.body.invitees[i].part_number,
@@ -31,18 +31,73 @@ function addAllInvitees () {
 var promise1 = new Promise(
     function (resolve, reject) {
         invitees_new = addAllInvitees()
-            resolve(invitees_new); // fulfilled
+            return resolve(invitees_new); // fulfilled
         }
 
 
 );
 
-promise1.then(function(value) {
-  // console.log(value);
-  var event_add = addEvent(req.body.invitees,value,req.body.teamName,req.body.eventTime,req.body.eventPlace,req.body.eventDate,req.body.message)
-// console.log("event_add:",event_add)
-  // expected output: "foo"
-});
+// var promise2 = new Promise(
+//     function (resolve, reject) {
+//       // console.log(x)
+//         var event_add = addEvent(req.body.invitees,req.body.teamName,req.body.eventTime,req.body.eventPlace,req.body.eventDate,req.body.message)
+//             return resolve(event_add); // fulfilled
+//         }
+//
+//
+// );
+
+// promise1.then(function(value) {
+//   console.log("val:",value);
+//   var event_add = addEvent(req.body.invitees,value,req.body.teamName,req.body.eventTime,req.body.eventPlace,req.body.eventDate,req.body.message)
+//   // promise2.then(function(value) {
+//   //     console.log(value)
+//
+//   })
+
+
+  function promiseA() {
+      return new Promise((resolve, reject) => {
+        invitees_new = addAllInvitees()
+            return resolve(invitees_new);
+      });
+  }
+
+  function promiseB(data) {
+    return new Promise((resolve, reject) => {
+      // console.log("DATA:",data)
+        var event_add = addEvent(req.body.invitees,data,req.body.teamName,req.body.eventTime,req.body.eventPlace,req.body.eventDate,req.body.message)
+        resolve(event_add);
+    });
+  }
+
+  // function promiseC(datax) {
+  //   return new Promise((resolve, reject) => {
+  //     console.log("DATA C:",datax)
+  //     // var getEvent = getEvent(datax._id)
+  //     var query = { _id: datax._id }
+  //     // console.log("query)
+  //     // console.log("query)
+  //     console.log("query:",query)
+  //     return Events.findOne(query)
+  //     // .sort({ date: -1})
+  //     .populate('invitees_new').exec((err, inv_new) => {
+  //       console.log("Populated invitees " + inv_new)
+  //       return inv_new;
+  //     })
+  //     // console.log("dddsds",invitees_new)
+  //     // console.log("TEST")
+  //       // var event_add = addEvent(req.body.invitees,data,req.body.teamName,req.body.eventTime,req.body.eventPlace,req.body.eventDate,req.body.message)
+  //       resolve(x);
+  //   });
+  // }
+
+  promiseA('a','b')
+    .then(promiseB)
+    // .then(promiseC)
+    .catch(function(error) {
+    console.log('Unexepected error has occured');
+  });
 
 
 // promise1.then(function(val){
@@ -57,7 +112,7 @@ promise1.then(function(value) {
 // })
 
 function addEvent(invitees,invitees_new,teamName,eventTime,eventPlace,eventDate,message) {
-  console.log('and now the main event')
+  console.log('and now adding the main event')
   const newEvents = new Events({
     invitees: invitees,
     invitees_new: invitees_new,
@@ -67,8 +122,51 @@ function addEvent(invitees,invitees_new,teamName,eventTime,eventPlace,eventDate,
     eventDate: eventDate,
     message: message
   });
-  newEvents.save().then(event => res.json(event));
+  newEvents.save(function(err){
+        // console.log("checking",newEvents.invitees_new);
+        return Events.findOne({ _id: newEvents._id })
+        .sort({ date: -1})
+        .populate('invitees_new').exec((err, invitees_new) => {
+          // console.log("Populated invitees " + invitees_new)
+          return res.json(invitees_new);
+        })
+         // is just an object id
+      // Events.populate(newEvents, {path:"invitees_new"}, function(err, newEvents) { ... });
+        // I really want book._creator to be a user without having to go back to the db ... any suggestions?
+    });
+  //.then(event => res.json(event));
   // .then( event2 => res.json(event2);
+  return invitees_new
+}
+
+function getEvent(id) {
+  console.log('getting the event data')
+  // const newEvents = new Events({
+  //   invitees: invitees,
+  //   invitees_new: invitees_new,
+  //   teamName: teamName,
+  //   eventTime: eventTime,
+  //   eventPlace: eventPlace,
+  //   eventDate: eventDate,
+  //   message: message
+  // });
+  // newEvents.save().then(event => res.json(event));
+  // .then( event2 => res.json(event2);
+
+  // Events.find()
+  // // return Events.findOne({ teamName: "NEW ASYNC NEWNEWNEWNEW TEST" })
+  // .sort({ date: -1})
+  // .populate('invitees_new').exec((err, invitees_new) => {
+  //   // console.log("Populated invitees " + invitees_new)
+  //   return res.json(invitees_new);
+  // })
+
+  return Events.findOne({ _id: id })
+  .sort({ date: -1})
+  .populate('invitees_new').exec((err, invitees_new) => {
+    // console.log("Populated invitees " + invitees_new)
+    return res.json(invitees_new);
+  })
 }
 
 });
