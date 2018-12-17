@@ -136,14 +136,14 @@ router.post('/pay', (req, res) => {
             "items": [{
                 "name": "The Event Name",
                 "sku": "unique code",
-                "price": "3.00",
+                "price": "0.10",
                 "currency": "GBP",
                 "quantity": 1
             }]
         },
         "amount": {
             "currency": "GBP",
-            "total": "3.00"
+            "total": "0.10"
         },
         "description": "The message that the Manager wants to have"
     }]
@@ -173,7 +173,7 @@ router.get('/success', (req, res) => {
     "transactions": [{
       "amount": {
         "currency": "GBP",
-        "total": "3.00"
+        "total": "0.10"
       }
     }]
   };
