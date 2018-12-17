@@ -17,6 +17,7 @@ function addAllInvitees () {
     const newInvitee = new Invitees({
      part_name: req.body.invitees[i].part_name,
      part_number: req.body.invitees[i].part_number,
+     eventPricePP: req.body.invitees[i].eventPricePP,
      response: 'NONE',
      unique_code: '1234',
      event_ID: '1'
@@ -39,7 +40,7 @@ var promise1 = new Promise(
 
 promise1.then(function(value) {
   // console.log(value);
-  var event_add = addEvent(req.body.invitees,value,req.body.teamName,req.body.eventTime,req.body.eventPlace,req.body.eventDate,req.body.message)
+  var event_add = addEvent(req.body.invitees,value,req.body.teamName,req.body.eventTime,req.body.eventPlace,req.body.eventPricePP,req.body.payByDate,req.body.eventDate,req.body.message)
 // console.log("event_add:",event_add)
   // expected output: "foo"
 });
@@ -56,7 +57,7 @@ promise1.then(function(value) {
 // });
 // })
 
-function addEvent(invitees,invitees_new,teamName,eventTime,eventPlace,eventDate,message) {
+function addEvent(invitees,invitees_new,teamName,eventTime,eventPlace,eventPricePP,eventDate,message,payByDate) {
   console.log('and now the main event')
   const newEvents = new Events({
     invitees: invitees,
@@ -64,7 +65,9 @@ function addEvent(invitees,invitees_new,teamName,eventTime,eventPlace,eventDate,
     teamName: teamName,
     eventTime: eventTime,
     eventPlace: eventPlace,
+    eventPricePP: eventPricePP,
     eventDate: eventDate,
+    payByDate: payByDate,
     message: message
   });
   newEvents.save().then(event => res.json(event));
@@ -142,6 +145,8 @@ router.patch('/:id', (req, res) => {
     event.eventDate = req.body.eventDate;
     event.eventTime = req.body.eventTime;
     event.eventPlace = req.body.eventPlace;
+    event.eventPricePP = req.body.eventPricePP;
+    event.payByDate = req.body.payByDate;
     event.teamName = req.body.teamName;
     event.message = req.body.message;
     event.save(function (err, updatedEvent) {

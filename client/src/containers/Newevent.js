@@ -18,6 +18,8 @@ class Newevent extends Component {
       eventPlace : '',
       eventDate : '',
       eventTime : '',
+      payByDate : '',
+      eventPricePP : '',
       message : '',
       invitees : [],
       invitees_new : [],
@@ -69,9 +71,9 @@ class Newevent extends Component {
     // console.log(this.state.stage)
   }
 
-  Stage3Submit = (eventTime, eventDate, message, eventPlace) => {
+  Stage3Submit = (eventTime, eventDate, message, eventPlace, eventPricePP, payByDate) => {
     // this.incrementStage()
-    this.updateFinal(eventTime, eventDate, message, eventPlace)
+    this.updateFinal(eventTime, eventDate, message, eventPlace, eventPricePP, payByDate)
     // this.incrementStage()
     // console.log(this.state.stage)
     // this.updateDb()
@@ -84,13 +86,15 @@ class Newevent extends Component {
     })
   }
 
-  updateFinal = (eventTime, eventDate, message, eventPlace) => {
+  updateFinal = (eventTime, eventDate, message, eventPlace, eventPricePP,payByDate) => {
     console.log("updateFINAL")
     this.setState({
       eventTime: eventTime,
       eventDate: eventDate,
       message: message,
       eventPlace: eventPlace,
+      eventPricePP: eventPricePP,
+      payByDate: payByDate,
       invitees_new: this.state.invitees
     }, this.updateDb)
   }
@@ -108,7 +112,7 @@ class Newevent extends Component {
 
   updateDb = () => {
     var url = 'http://localhost:5000/api/db'
-    var event = {teamName: this.state.teamName, eventTime: this.state.eventTime, eventDate: this.state.eventDate, eventPlace: this.state.eventPlace, message: this.state.message, invitees: this.state.invitees}
+    var event = {teamName: this.state.teamName, eventTime: this.state.eventTime, eventDate: this.state.eventDate, eventPlace: this.state.eventPlace, message: this.state.message, invitees: this.state.invitees, eventPricePP: this.state.eventPricePP,payByDate: this.state.payByDate}
     console.log(event)
     axios.post(url,event)
       .then(res => {
