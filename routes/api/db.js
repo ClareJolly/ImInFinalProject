@@ -191,6 +191,20 @@ router.patch('/inv/:short_id', (req, res) => {
  });
 });
 
+router.get('/inv/:short_id', (req, res) => {
+  var query = {short_id: req.params.short_id}
+  console.log(req.params.short_id)
+// Invitees.findOne({short_id: req.params.short_id}, function(err,obj) { return console.log("TEST",obj.short_id,obj._id); });
+ Invitees.findOne(query, function (err, invitee) {
+   if (err) return handleError(err);
+console.log(invitee._id)
+    // invitee.save(function (err, updatedInvitee) {
+  // if (err) return handleError(err);
+     res.send(invitee._id);
+   });
+
+});
+
 router.get('/', (req, res) => {
 
 
