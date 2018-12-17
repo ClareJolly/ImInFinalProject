@@ -17,7 +17,7 @@ paypal.configure({
 
 pay.set('view engine', 'ejs');
 
-router.get('/', (req, res) => res.sendFile(path.join(__dirname+'/index.html')));
+router.get('/', (req, res) => res.render('index'));
 
 
 router.post('/pay', (req, res) => {
