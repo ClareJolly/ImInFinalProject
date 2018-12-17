@@ -11,6 +11,7 @@ class ViewEvent extends Component {
 
     console.log(this.props.event)
     // console.log(this.props)
+    // console.log(sessionStorage.getItem('viewingEvent'))
 
   }
 
@@ -54,7 +55,7 @@ return ( <p key={index}>
 <div>
 
 </div>
-<button name="delete" className="deleteButtons" id="delete" onClick={() => this.props.deleteEvent()}></button>
+<button name="delete" className="deleteButtons" id="delete" onClick={() => this.props.deleteEvent(this.props.event._id)}></button>
 <button  name="edit" className="editButtons" ></button>
 <button name="sent_invite" className="sendInvite" id="sent_invite" onClick={() => this.props.sendInvite()}></button>
       </div>
