@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const events = require('./routes/api/db');
 const messaging = require('./routes/api/send');
+const paypal = require('./routes/api/paypal');
 // requires dependencies
 const app = express();
 // connect to express
@@ -53,8 +54,7 @@ app.use('/api/send', messaging);
 app.use('/api/send/sms', messaging);
 // sms -------------
 
-
-
+app.use('/api/paypal/', paypal);
 
 const port = process.env.PORT || 5000;
 

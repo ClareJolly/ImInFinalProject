@@ -1,71 +1,92 @@
-const client_id = require('./config/keys').client_id;
-const receiver = require('./config/keys').receiver;
-const client_secret = require('./config/keys').client_secret;
+const client_id = require('../../config/keys').client_id;
+const receiver = require('../../config/keys').receiver;
+const client_secret = require('../../config/keys').client_secret;
 const express = require('express');
 const router = express.Router();
+const bodyParser = require('body-parser');
+const axios = require('axios');
 const ejs = require('ejs');
 const paypal = require('paypal-rest-sdk');
-
+var pay = express()
+var path = require('path')
 paypal.configure({
   'mode': 'sandbox', //sandbox or live
   'client_id': client_id,
   'client_secret': client_secret
 });
 
-const app = express();
+pay.set('view engine', 'ejs');
 
-app.set('view engine', 'ejs');
+router.get('/', (req, res) => res.sendFile(path.join(__dirname+'/index.html')));
 
-app.get('/', (req, res) => res.render('index'));
 
-var sender_batch_id = Math.random().toString(36).substring(9);
-
-app.get('/pay', (req, res) => {
-  const create_payout_json = {
-    "sender_batch_header": {
-        "sender_batch_id": client_id,
-        "email_subject": "You have a payment"
+router.post('/pay', (req, res) => {
+  const create_payment_json = {
+    "intent": "sale",
+    "payer": {
+        "payment_method": "paypal"
     },
-    "items": [
-        {
-            "recipient_type": "EMAIL",
-            "amount": {
-                "value": 0.90,
-                "currency": "GBP"
-            },
-            "receiver": receiver,
-            "note": "Thank you.",
-            "sender_item_id": "item_3"
-        }
-    ]
+    "redirect_urls": {
+        "return_url": "http://localhost:5000/api/paypal/success",
+        "cancel_url": "http://localhost:5000/api/paypal/cancel"
+    },
+    "transactions": [{
+        "item_list": {
+            "items": [{
+                "name": "The Event Name",
+                "sku": "unique code",
+                "price": "3.00",
+                "currency": "GBP",
+                "quantity": 1
+            }]
+        },
+        "amount": {
+            "currency": "GBP",
+            "total": "3.00"
+        },
+        "description": "The message that the Manager wants to have"
+    }]
 };
 
-var sync_mode = 'true';
-
-paypal.payout.create(create_payout_json, sync_mode, function (error, payout) {
+paypal.payment.create(create_payment_json, function (error, payment) {
   if (error) {
       throw error;
   } else {
-    console.log("Create Single Payout Response");
-      console.log(payout);
+      for(let i = 0; i < payment.links.length; i++){
+        if(payment.links[i].rel === 'approval_url'){
+          res.redirect(payment.links[i].href);
+        }
+      }
   }
-
 });
 
 });
 
-var payoutId = "R3LFR867ESVQY";
+router.get('/success', (req, res) => {
+  const payerID = req.query.PayerID;
+  const paymentID = req.query.paymentId
 
-paypal.payout.get(payoutId, function (error, payout) {
+  const execute_payment_json = {
+    "payer_id": payerID,
+    "transactions": [{
+      "amount": {
+        "currency": "GBP",
+        "total": "3.00"
+      }
+    }]
+  };
+
+  paypal.payment.execute(paymentID, execute_payment_json, function (error, payment) {
     if (error) {
-        console.log(error);
-        throw error;
+      console.log(error, response);
+      throw error;
     } else {
-        console.log("Get Payout Response");
-        console.log(JSON.stringify(payout));
+      console.log(JSON.stringify(payment));
+      res.send(JSON.stringify(payment["transactions"][0]))
     }
+  });
 });
 
-app.get('/cancel', (req, res) => res.send('Cancelled'));
+router.get('/cancel', (req, res) => res.send('Cancelled'));
 
-app.listen(3000, () => console.log('Server Started'));
+module.exports = router;
