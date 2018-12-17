@@ -33,6 +33,14 @@ const EventSchema = new Schema({
   message: {
     type: String,
     required: true
+  },
+  eventPricePP: {
+    type: String,
+    required: true
+  },
+  payByDate: {
+    type: String,
+    required: true
   }
 });
 

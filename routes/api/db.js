@@ -14,9 +14,11 @@ function addAllInvitees () {
   arr = []
   for (var i = 0; i<req.body.invitees.length; i++){
     // console.log(req.body.invitees[i])
+    var vodaphoneNum = '+44' + req.body.invitees[i].part_number.replace(/^0/,'');
     const newInvitee = new Invitees({
      part_name: req.body.invitees[i].part_name,
-     part_number: req.body.invitees[i].part_number,
+     part_number: vodaphoneNum,
+     eventPricePP: req.body.invitees[i].eventPricePP,
      response: 'NONE',
      unique_code: '1234',
      event_ID: '1'
@@ -66,7 +68,7 @@ var promise1 = new Promise(
   function promiseB(data) {
     return new Promise((resolve, reject) => {
       // console.log("DATA:",data)
-        var event_add = addEvent(req.body.invitees,data,req.body.teamName,req.body.eventTime,req.body.eventPlace,req.body.eventDate,req.body.message)
+        var event_add = addEvent(req.body.invitees,data,req.body.teamName,req.body.eventTime,req.body.eventPlace,req.body.eventDate,req.body.payByDate, req.body.eventPricePP,req.body.message)
         resolve(event_add);
     });
   }
@@ -111,7 +113,7 @@ var promise1 = new Promise(
 // });
 // })
 
-function addEvent(invitees,invitees_new,teamName,eventTime,eventPlace,eventDate,message) {
+function addEvent(invitees,invitees_new,teamName,eventTime,eventPlace,eventDate,payByDate, eventPricePP,message) {
   console.log('and now adding the main event')
   const newEvents = new Events({
     invitees: invitees,
@@ -119,7 +121,9 @@ function addEvent(invitees,invitees_new,teamName,eventTime,eventPlace,eventDate,
     teamName: teamName,
     eventTime: eventTime,
     eventPlace: eventPlace,
+    eventPricePP: eventPricePP,
     eventDate: eventDate,
+    payByDate: payByDate,
     message: message
   });
   newEvents.save(function(err){
@@ -238,8 +242,10 @@ router.patch('/:id', (req, res) => {
    if (err) return handleError(err);
     event.invitees = req.body.invitees;
     event.eventDate = req.body.eventDate;
+    event.payByDate = req.body.payByDate;
     event.eventTime = req.body.eventTime;
     event.eventPlace = req.body.eventPlace;
+    event.eventPricePP = req.body.eventPricePP;
     event.teamName = req.body.teamName;
     event.message = req.body.message;
     event.save(function (err, updatedEvent) {

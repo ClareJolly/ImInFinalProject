@@ -17,7 +17,9 @@ class Newevent extends Component {
       teamName : '',
       eventPlace : '',
       eventDate : '',
+      payByDate : '',
       eventTime : '',
+      eventPricePP : '',
       message : '',
       invitees : [],
       invitees_new : [],
@@ -69,16 +71,18 @@ class Newevent extends Component {
     // console.log(this.state.stage)
   }
 
-  Stage3Submit = (eventTime, eventDate, message, eventPlace) => {
+  Stage3Submit = (eventTime, eventDate, payByDate, eventPricePP, message, eventPlace) => {
     // this.incrementStage()
     console.log("stage 3")
     this.setState({
       eventTime: eventTime,
       eventDate: eventDate,
+      eventPricePP: eventPricePP,
+      payByDate: payByDate,
       message: message,
       eventPlace: eventPlace,
       invitees_new: this.state.invitees
-    },this.updateFinal(eventTime, eventDate, message, eventPlace))
+    },this.updateFinal(eventTime, eventDate, payByDate, eventPricePP, message, eventPlace, ))
 
     // this.updateFinal(eventTime, eventDate, message, eventPlace)
     // this.incrementStage()
@@ -98,7 +102,7 @@ class Newevent extends Component {
 
   // }
 
-  updateFinal = (eventTime, eventDate, message, eventPlace) => {
+  updateFinal = (eventTime, eventDate, payByDate, eventPricePP, message, eventPlace) => {
     console.log("DO UPDATE")
     ;
     // var name = this.state.name
@@ -113,7 +117,7 @@ class Newevent extends Component {
   // do a thing, possibly async, then…
   console.log("aaa")
   var url = 'http://localhost:5000/api/db'
-  var event = {teamName: that.state.teamName, eventTime: eventTime, eventDate: eventDate, eventPlace: eventPlace, message: message, invitees: that.state.invitees}
+  var event = {teamName: that.state.teamName, eventTime: eventTime, eventDate: eventDate, payByDate: payByDate, eventPricePP: eventPricePP, eventPlace: eventPlace, message: message, invitees: that.state.invitees}
   console.log(event)
   var checking = axios.post(url,event)
     .then(res => {
@@ -150,7 +154,7 @@ class Newevent extends Component {
 
   updateDbx = () => {
     var url = 'http://localhost:5000/api/db'
-    var event = {teamName: this.state.teamName, eventTime: this.state.eventTime, eventDate: this.state.eventDate, eventPlace: this.state.eventPlace, message: this.state.message, invitees: this.state.invitees}
+    var event = {teamName: this.state.teamName, eventTime: this.state.eventTime, eventDate: this.state.eventDate, payByDate: this.state.payByDate, eventPricePP: this.state.eventPricePP, eventPlace: this.state.eventPlace, message: this.state.message, invitees: this.state.invitees}
     console.log(event)
     axios.post(url,event)
       .then(res => {
