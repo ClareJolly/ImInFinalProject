@@ -190,7 +190,7 @@ class Newevent extends Component {
       <div className="Newevent">
 
         {this.state.stage === 0 && <TeamForm Stage1Submit={this.Stage1Submit} defaultVal={this.state.teamName}/>}
-        {this.state.stage > 0 && this.state.stage < 3  && <p>Team Name: {this.state.teamName}</p>}
+        {this.state.stage > 0 && this.state.stage < 3  && <p>Event Name: {this.state.teamName}</p>}
         {this.state.stage === 1 && <Invitees Stage2Submit={this.Stage2Submit} goBack={this.goBack} defaultVal={this.state.invitees}/>}
         {this.state.stage > 1 && this.state.stage < 3&& <p>Invitees:</p>}
         {this.state.stage > 1 && this.state.stage < 3&& <div>
