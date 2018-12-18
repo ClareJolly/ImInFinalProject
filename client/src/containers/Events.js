@@ -90,7 +90,7 @@ class Events extends Component {
 
     return (
       <div className="Events">
-        <h2 onClick={this.openModal}>Select a team </h2>
+        <h2 onClick={this.openModal}>Select an Event </h2>
         {/*<div >
 
         {this.state.events}

@@ -51,7 +51,7 @@ return ( <p key={index}>
       </div>
 
       <div className="event-feilds">
-      Team Name: {this.props.event.teamName}
+      Event Name: {this.props.event.teamName}
       </div>
 <div className="event-feilds">Location: {this.props.event.eventPlace}</div>
 <div className="event-feilds">Date: {this.props.event.eventDate}</div>
