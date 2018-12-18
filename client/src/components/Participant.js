@@ -68,7 +68,7 @@ class Participant extends Component {
   render() {
 
     const isEnabled = this.canBeSubmitted();
-    console.log("Is Enabled:", isEnabled)
+    // console.log("Is Enabled:", isEnabled)
     // const errors = this.validatePhoneNumbers(this.state.part_number);
     // console.log(this.validatePhoneNumbers(this.state.part_number))
     return (

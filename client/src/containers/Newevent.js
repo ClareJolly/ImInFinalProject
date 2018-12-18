@@ -28,7 +28,7 @@ class Newevent extends Component {
       event:''
 
     }
-    console.log(this.state)
+    // console.log(this.state)
   }
 
   handleChange = (event) => {
@@ -73,7 +73,7 @@ class Newevent extends Component {
 
   Stage3Submit = (eventTime, eventDate, payByDate, eventPricePP, message, eventPlace) => {
     // this.incrementStage()
-    console.log("stage 3")
+
     this.setState({
       eventTime: eventTime,
       eventDate: eventDate,
@@ -103,7 +103,7 @@ class Newevent extends Component {
   // }
 
   updateFinal = (eventTime, eventDate, payByDate, eventPricePP, message, eventPlace) => {
-    console.log("DO UPDATE")
+
     ;
     // var name = this.state.name
     // var username = this.state.username
@@ -115,13 +115,13 @@ class Newevent extends Component {
 
   var updateDb2 = new Promise(function(resolve, reject) {
   // do a thing, possibly async, then…
-  console.log(sessionStorage.getItem('userID'))
+
   var url = '/api/db'
   var event = {user_id:sessionStorage.getItem('userID'),teamName: that.state.teamName, eventTime: eventTime, eventDate: eventDate, payByDate: payByDate, eventPricePP: eventPricePP, eventPlace: eventPlace, message: message, invitees: that.state.invitees}
-  console.log(event)
+
   var checking = axios.post(url,event)
     .then(res => {
-      console.log("NEW:",res.data)
+
       // this.props.setEventID(res.data)
       // this.setState({savedEvent:res.data,event:res.data})
       return res.data
@@ -132,7 +132,7 @@ class Newevent extends Component {
   });
 
   updateDb2.then(function(result) {
-  console.log("Promise worked");
+  // console.log("Promise worked");
   that.props.setEventID(result)
 
 
@@ -144,9 +144,9 @@ class Newevent extends Component {
   }
 
 
-  checkState = () => {
-    console.log(this.state)
-  }
+  // checkState = () => {
+  //   console.log(this.state)
+  // }
 
   goBack = () => {
     this.decrementStage()
@@ -155,36 +155,36 @@ class Newevent extends Component {
 
   }
 
-  updateDbx = () => {
-    var url = '/api/db'
-    var event = {teamName: this.state.teamName, eventTime: this.state.eventTime, eventDate: this.state.eventDate, payByDate: this.state.payByDate, eventPricePP: this.state.eventPricePP, eventPlace: this.state.eventPlace, message: this.state.message, invitees: this.state.invitees}
-    console.log(event)
-    axios.post(url,event)
-      .then(res => {
-        // console.log(res.data)
-        this.props.setEventID(res.data)
-        this.setState({savedEvent:res.data,event:res.data})
-
-      })
-      // .then(this.incrementStage())
-      // .then(this.props.setEventID)
-      .then(console.log("STATE:",this.state))
-    // fetch(url, {
-    //   method: 'POST',
-    //   body: JSON.stringify( event ),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
-    // // .then(aaa => console.log(aaa))
-    // .then(res => res.json())
-    // // .then(res =>     this.setState({savedEvent:JSON.stringify(res),event:JSON.stringify(res)}))
-    // .then(this.incrementStage())
-    // // .then(window.location.reload())
-    // // .then(this.props.showSection('events'))
-    // .catch(error => console.error("Error:", error));
-
-  }
+  // updateDbx = () => {
+  //   var url = '/api/db'
+  //   var event = {teamName: this.state.teamName, eventTime: this.state.eventTime, eventDate: this.state.eventDate, payByDate: this.state.payByDate, eventPricePP: this.state.eventPricePP, eventPlace: this.state.eventPlace, message: this.state.message, invitees: this.state.invitees}
+  //   console.log(event)
+  //   axios.post(url,event)
+  //     .then(res => {
+  //       // console.log(res.data)
+  //       this.props.setEventID(res.data)
+  //       this.setState({savedEvent:res.data,event:res.data})
+  //
+  //     })
+  //     // .then(this.incrementStage())
+  //     // .then(this.props.setEventID)
+  //     .then(console.log("STATE:",this.state))
+  //   // fetch(url, {
+  //   //   method: 'POST',
+  //   //   body: JSON.stringify( event ),
+  //   //   headers: {
+  //   //     'Content-Type': 'application/json'
+  //   //   }
+  //   // })
+  //   // // .then(aaa => console.log(aaa))
+  //   // .then(res => res.json())
+  //   // // .then(res =>     this.setState({savedEvent:JSON.stringify(res),event:JSON.stringify(res)}))
+  //   // .then(this.incrementStage())
+  //   // // .then(window.location.reload())
+  //   // // .then(this.props.showSection('events'))
+  //   // .catch(error => console.error("Error:", error));
+  //
+  // }
   render() {
     return (
       <div className="Newevent">
