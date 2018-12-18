@@ -9,17 +9,17 @@ class ViewEvent extends Component {
       event:this.props.event
     }
 
-    console.log(this.props.event)
+    // console.log(this.props.event)
     // console.log(this.props)
     // console.log(sessionStorage.getItem('viewingEvent'))
 
   }
 
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name] : event.target.value
-    })
-  }
+  // handleChange = (event) => {
+  //   this.setState({
+  //     [event.target.name] : event.target.value
+  //   })
+  // }
 
 
   render() {

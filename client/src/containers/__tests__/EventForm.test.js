@@ -18,15 +18,15 @@ mountedEventForm = shallow(<EventForm/>)
 
   it('contains form input fields', () => {
     const textfield = mountedEventForm.find('input');
-    expect(textfield.length).toBe(3)
+    expect(textfield.length).toBe(5)
 
   })
 
-  it('contains form textarea fields', () => {
-    const textarea = mountedEventForm.find('textarea');
-    expect(textarea.length).toBe(1)
-
-  })
+  // it('contains form textarea fields', () => {
+  //   const textarea = mountedEventForm.find('textarea');
+  //   expect(textarea.length).toBe(1)
+  //
+  // })
 
   it('contains form button fields', () => {
     const button = mountedEventForm.find('button');

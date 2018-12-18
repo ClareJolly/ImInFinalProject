@@ -37,4 +37,46 @@ mountedRegisterLogin = shallow(<RegisterLogin/>)
 
   })
 
+  it('contains the register button', () => {
+    // console.log(mountedInvitees.state())
+    mountedRegisterLogin.setState({ showSection: '' })
+    const reg_button = mountedRegisterLogin.find('#register');
+    expect(reg_button.text()).toEqual('Register')
+
+  })
+  it('contains the login button', () => {
+    // console.log(mountedInvitees.state())
+    mountedRegisterLogin.setState({ showSection: '' })
+    const log_button = mountedRegisterLogin.find('#login');
+    expect(log_button.text()).toEqual('Login')
+
+  })
+
+  // show(section)
+  it('Checks section setting', () => {
+    const instance = mountedRegisterLogin.instance();
+    // instance.setState({ name: 'bar' })
+    instance.show('section')
+    expect(mountedRegisterLogin.state('showSection')).toBe('section');
+  })
+
+  // UserLogin = (username, password) => {
+  //   this.CheckLogin(username,password)
+  // }
+
+  // it('Checks User reg set state', () => {
+  //   const instance = mountedRegisterLogin.instance();
+  //   // instance.setState({ name: 'bar' })
+  //   instance.UserLogin('username', 'password')
+  //   console.log(mountedRegisterLogin.state('loginStatus'))
+  //   expect(mountedRegisterLogin.state('loginStatus')).toBe(true);
+  // })
+
+  it('Checks User reg set state', () => {
+    const instance = mountedRegisterLogin.instance();
+    // instance.setState({ name: 'bar' })
+    instance.UserRegister('name', 'username', 'phoneNumber', 'password')
+    expect(mountedRegisterLogin.state('username')).toBe('username');
+  })
+
 })

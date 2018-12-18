@@ -31,3 +31,9 @@ mountedViewEvent = shallow(<ViewEvent event={mocked_props} response={'this is a 
     expect(event_text.text()).toEqual('this is a test message')
 
   })
+
+  it('contains buttons', () => {
+    const event_buttons = mountedViewEvent.find('button');
+    expect(event_buttons.length).toBe(3)
+
+  })

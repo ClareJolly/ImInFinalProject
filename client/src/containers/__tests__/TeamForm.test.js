@@ -45,5 +45,18 @@ wrapper = shallow(<TeamForm defaultVal={'abc'}/>)
 
   })
 
+  it('saves data', () => {
+    // const wrapper = shallow(<Home />);
+    wrapper.find('input').simulate('change', {
+        target: { value: 'abc' }
+        })
+    expect(wrapper.state('teamName')).toBe('abc');
+    // wrapper.find('button').simulate('click');
+    // expect(wrapper.state('counter')).toBe(1);
+    // const button = wrapper.find('button');
+    // expect(button.length).toBe(1)
+
+  })
+
 
 })

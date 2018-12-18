@@ -77,7 +77,7 @@ show(section) {
   RegisterUserDb = () => {
     var url = '/api/db/user'
     var event = {name: this.state.name, username: this.state.username, phoneNumber: this.state.phoneNumber, password: this.state.password}
-    console.log(event)
+    // console.log(event)
     fetch(url, {
       method: 'POST',
       body: JSON.stringify( event ),
@@ -85,10 +85,7 @@ show(section) {
         'Content-Type': 'application/json'
       }
     }).then(res => res.json())
-    // .then(resp => this.setState({userID:resp._id}))
-    // .then(response => console.log('Success:', JSON.stringify(response)))
     .then(resp => this.props.setUser(resp.username,resp._id))
-    // .then(this.props.showSection('home'))
     .catch(error => console.error("Error:", error));
   }
 
@@ -97,9 +94,9 @@ show(section) {
       <div className="RegisterLogin">
       {this.state.showSection === "" && <div>Register or login to create events and view any that you have already saved.</div>}
       {this.state.showSection === "" && <div>
-      Already registered? <button onClick={() => this.show("login")}>Login</button>
+      Already registered? <button id="login" onClick={() => this.show("login")}>Login</button>
       </div>}
-      {this.state.showSection === "" && <div>Are you new? <button onClick={() => this.show("register")}>Register</button>
+      {this.state.showSection === "" && <div>Are you new? <button id="register" onClick={() => this.show("register")}>Register</button>
       </div>}
       {this.state.showSection ==="register" && <RegisterUser UserRegister={this.UserRegister}/>}
       {this.state.loginMessage !== '' && <div>{this.state.loginMessage}</div>}

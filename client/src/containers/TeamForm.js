@@ -10,26 +10,19 @@ class TeamForm extends Component {
     }
   }
 
-
-
   handleChange = (event) => {
     this.setState({
       [event.target.name] : event.target.value
     })
   }
 
-  saveTeam = () => {
-    // console.log(this.state.teamName)
-    if (!this.canBeSubmitted()) {
-    // evt.preventDefault();
-    return;
-  }
+  saveTeam() {
+    if (this.canBeSubmitted()) {
     this.props.Stage1Submit(this.state.teamName)
+    }
   }
 
   canBeSubmitted() {
-  // const { teamName } = this.state;
-  // console.log(this.state.teamName)
   return (
     this.state.teamName.length > 0
   );
