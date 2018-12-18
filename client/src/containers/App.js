@@ -115,7 +115,7 @@ setEventID(event) {
   deleteEvent = () => {
     var eventID = this.state.event._id
     console.log(eventID)
-    var url = 'http://localhost:5000/api/db/' + eventID
+    var url = '/api/db/' + eventID
     fetch(url, {
       method: 'DELETE',
       headers: {
@@ -135,7 +135,7 @@ setEventID(event) {
 
   sendInvite = () => {
     console.log('sms test')
-    var url = 'http://localhost:5000/api/send/'
+    var url = '/api/send/'
     var event = this.state.event
     console.log(event)
     fetch(url, {
