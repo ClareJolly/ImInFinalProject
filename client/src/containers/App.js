@@ -137,7 +137,7 @@ setEventID(event) {
     console.log('sms test')
     var url = '/api/send/'
     var event = this.state.event
-    console.log(event)
+    console.log(event) 
     fetch(url, {
       method: 'POST',
       body: JSON.stringify( event ),

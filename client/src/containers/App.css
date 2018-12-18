@@ -124,6 +124,15 @@ input[type="password"]
   border-radius: 4px;
 }
 
+input[type="number"]
+{
+    font-family: 'montserrat', sans-serif;
+    font-size:12px;
+    margin:10px;
+    border: 2px solid rgb(112, 112, 112);
+  border-radius: 4px;
+}
+
 textarea
 {
     font-family: 'montserrat', sans-serif;
