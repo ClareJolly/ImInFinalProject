@@ -35,10 +35,15 @@ class ViewEvent extends Component {
 
 
 {this.props.event.invitees_new.map((invitelist, index) => {
+  // var paid_image = ''
+  // if (invitelist.payment_confirmed === 'Y') {
+  //   return (<img src='/paid.png' alt='paid'>)
+  // }
 return ( <p key={index}>
         {invitelist.part_name} |
         {invitelist.part_number} |
-      {invitelist.response}
+      {invitelist.response} {invitelist.payment_confirmed === 'Y' && <img src='/images/paid.png' alt='paid' width='40px'/>}
+
          </p> )
     })
   }
