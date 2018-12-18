@@ -22,6 +22,7 @@ router.post('/', (req, res) => {
   function promiseB(data) {
     return new Promise((resolve, reject) => {
         var event_add = addEvent(
+          req.body.user_id,
           req.body.invitees,
           data,
           req.body.teamName,
@@ -66,9 +67,10 @@ router.post('/', (req, res) => {
   }
 
   //function to add event details
-  function addEvent(invitees,invitees_new,teamName,eventTime,eventPlace,eventDate,payByDate, eventPricePP,message) {
+  function addEvent(user_id,invitees,invitees_new,teamName,eventTime,eventPlace,eventDate,payByDate, eventPricePP,message) {
     console.log('and now adding the main event')
     const newEvents = new Events({
+      user_id: user_id,
       invitees: invitees,
       invitees_new: invitees_new,
       teamName: teamName,
@@ -163,8 +165,17 @@ router.get('/', (req, res) => {
   })
 });
 
+router.get('/event/user/:user_id', (req, res) => {
+
+  Events.find({ user_id: req.params.user_id })
+  .sort({ date: -1})
+  .populate('invitees_new').exec((err, invitees_new) => {
+    return res.json(invitees_new);
+  })
+});
+
 // get individual event by ID
-router.get('/:id', (req, res) => {
+router.get('/event/:id', (req, res) => {
   return Events.findOne({ _id: req.params.id })
   .sort({ date: -1})
   .populate('invitees_new').exec((err, invitees_new) => {

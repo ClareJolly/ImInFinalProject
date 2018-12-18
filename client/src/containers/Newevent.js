@@ -115,9 +115,9 @@ class Newevent extends Component {
 
   var updateDb2 = new Promise(function(resolve, reject) {
   // do a thing, possibly async, then…
-  console.log("aaa")
+  console.log(sessionStorage.getItem('userID'))
   var url = 'http://localhost:5000/api/db'
-  var event = {teamName: that.state.teamName, eventTime: eventTime, eventDate: eventDate, payByDate: payByDate, eventPricePP: eventPricePP, eventPlace: eventPlace, message: message, invitees: that.state.invitees}
+  var event = {user_id:sessionStorage.getItem('userID'),teamName: that.state.teamName, eventTime: eventTime, eventDate: eventDate, payByDate: payByDate, eventPricePP: eventPricePP, eventPlace: eventPlace, message: message, invitees: that.state.invitees}
   console.log(event)
   var checking = axios.post(url,event)
     .then(res => {
@@ -134,6 +134,9 @@ class Newevent extends Component {
   updateDb2.then(function(result) {
   console.log("Promise worked");
   that.props.setEventID(result)
+
+
+
   // that.setState({savedEvent:JSON.stringify(result),event:JSON.stringify(result)},that.props.showSection('events'))
 }, function(err) {
   console.log("Something broke");
