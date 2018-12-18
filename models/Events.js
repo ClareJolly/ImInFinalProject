@@ -41,6 +41,10 @@ const EventSchema = new Schema({
   payByDate: {
     type: String,
     required: true
+  },
+  user_id:{
+    type: String,
+    required: true
   }
 });
 

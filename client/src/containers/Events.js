@@ -58,7 +58,7 @@ class Events extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:5000/api/db')
+    fetch('http://localhost:5000/api/db/event/user/'+sessionStorage.getItem('userID'))
     .then(results => {
       return results.json();
 
