@@ -1,33 +1,30 @@
 # I'm IN
 
-As a participant I want to reply No to the invitation so that I can attend the event
-
-As a participant I want to receive an invitation so that I can attend the event
-
-As a manager I want to see all participants that are able and not able to attend the event
-
 ## Project Description
 
 #### Objective 1:
-Our primary objective of this project is to become comfortable with the MERN stack and push ourselves to learn more (Mongo DB, Express, React, Node JS.
+Become comfortable with the stack we will use at work and push ourselves to learn more.
 
-#### Objective 2:  
-We aimed to build an event management application that allows an Event organiser to Manage events.
+#### Objective 2:
+Build an Application that solves a problem and guide the development of the app with feedback of end users.
 
 #### MVP - Minimum Viable Product
+We decided to build an event management application that allows an Event organiser to Manage events.
 This application allows organisers to create events, add participants and send invitations to those participants. On receiving the invitation the participants can respond if they want to attend or not and this is logged for the organiser to see.
 
 #### Additional
-Organisers can set add their payment information via pay pal to take payment from the participants. Once the payment has been processed by us, we then update the status of the participants attendance to 'IN'.
+Organisers can set add their payment information via pay pal to take payment from the participants. Once the payment has been processed by us, we then update the status of the participants attendance to 'IN'. If they do not set a payment the invitee just needs to respond IN to attend.
 
 ## Set up/ How to install
-1. ```cd client```
+1. ```npm install ```
 
-2. ```npm install ```
+2. ```cd client```
 
-3. ``` cd .. ```
+3. ```npm install ```
 
-4. ```npm run dev ```
+4. ``` cd .. ```
+
+5. ```npm run dev ```
 
 
 ## How to run tests
@@ -74,20 +71,20 @@ Sprint 2 - 23 Committed | 29 Delivered
 
 ## Tools used
 #### Dependencies
-Mongo DB
-Express
-React -
-NodeJS -  
-HTML -
-CSS -
+Mongo DB - MongoDB is a database management system. Instead of using tables and rows as in relational databases, the MongoDB architecture is made up of collections and documents.
+Express - is a web application framework for Node.js,
+React - JavaScript library for building user interfaces.
+NodeJS - Server side Java script
+HTML - Hypertext Markup Language
+CSS - Cascading Style Sheets
 Twilio - User to send SMS's
-Paypal API -
-Axios -
-bcrypt -
-Nodemon
-shortid
-concurrently
-body-parser
+Paypal API - We used this API to take payments through Pay pal.
+Axios - We used this to make HTTP requests from Node.js
+bcrypt - a password hashing function
+Nodemon - This monitors any changes to code and automatically restarts the server.
+shortid - We used this to generate short ID's
+concurrently - We used this to run both the front end and back end servers concurrently.
+body-parser - We used this to parse JSON.
 
 #### Testing
 Enzime
