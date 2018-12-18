@@ -28,7 +28,7 @@ class RegisterUser extends Component {
 
   var usernameAvailable = new Promise(function(resolve, reject) {
   // do a thing, possibly async, then…
-  var checkURL = 'http://localhost:5000/api/db/user/check-username'
+  var checkURL = '/api/db/user/check-username'
   var userCredentials = {username:that.state.username}
   var checking = axios.post(checkURL,userCredentials)
     .then(res => {
