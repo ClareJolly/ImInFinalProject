@@ -122,30 +122,37 @@ router.get('/confirm/:id', (req, res) => {
 
 // pay page to call PayPal AIP
 router.post('/pay', (req, res) => {
+  console.log(req.body.price.toString())
+  var price = req.body.price.toString()
+    console.log(typeof price)
   const create_payment_json = {
     "intent": "sale",
     "payer": {
         "payment_method": "paypal"
     },
     "redirect_urls": {
-        "return_url": "http://localhost:5000/api/paypal/success",
+        "return_url": "http://localhost:5000/api/paypal/success?p=" + price ,
         "cancel_url": "http://localhost:5000/api/paypal/cancel"
     },
     "transactions": [{
         "item_list": {
             "items": [{
-                "name": "The Event Name",
-                "sku": "unique code",
-                "price": "0.10",
+                "name": req.body.event_ID,
+                "sku": req.body.short_id,
+                "price": price,
+                // price2,
                 "currency": "GBP",
                 "quantity": 1
             }]
         },
         "amount": {
             "currency": "GBP",
-            "total": "0.10"
+            "total": price
+            // req.body.price
         },
-        "description": "The message that the Manager wants to have"
+        "description": "req.body.manager_ID"
+
+        // "Please pay £" + req.body.price + " for " + req.body.eventName + " on " + req.body.eventDate + " @ " + req.body.eventPlace + " to confirm you are IN"
     }]
 };
 
@@ -173,18 +180,19 @@ router.get('/success', (req, res) => {
     "transactions": [{
       "amount": {
         "currency": "GBP",
-        "total": "0.10"
+        "total": req.query.p
       }
     }]
   };
 
   paypal.payment.execute(paymentID, execute_payment_json, function (error, payment) {
     if (error) {
-      console.log(error, response);
+      console.log(error, payment);
       throw error;
     } else {
       console.log(JSON.stringify(payment));
-      // res.send(JSON.stringify(payment["transactions"][0]))
+      var sku = JSON.stringify(payment["transactions"][0]["item_list"]["items"][0]["sku"])
+      console.log(sku)
     }
   });
 

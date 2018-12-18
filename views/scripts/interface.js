@@ -38,20 +38,28 @@ function getEvents (short_id){}
     console.log(price)
     document.title = "Pay for "+r.all.teamName
     createHTMLObject("img", [{attr: "src", val: "/logo.png"},{attr: "class", val: "logo-img"},{attr: "width", val: "100px"}],"App")
-    createHTMLObject("h1", [{attr: "id", val: "TeamName"}],"App")
-    document.getElementById("TeamName").innerHTML = r.all.teamName
+    createHTMLObject("h1", [{attr: "id", val: "EventName"}],"App")
+    document.getElementById("EventName").innerHTML = r.all.teamName
     createHTMLObject("h2", [{attr: "id", val: "event_date"}],"App")
     document.getElementById("event_date").innerHTML = "Date: "+ r.all.eventDate
     createHTMLObject("h2", [{attr: "id", val: "event_time"}],"App")
     document.getElementById("event_time").innerHTML = "@ "+ r.all.eventTime
+    createHTMLObject("h2", [{attr: "id", val: "event_place"}],"App")
+    document.getElementById("event_place").innerHTML = "Location: "+ r.all.eventPlace
     createHTMLObject("h2", [{attr: "id", val: "price"}],"App")
     document.getElementById("price").innerHTML = "Deposit: £"+ price
     createHTMLObject("form", [{attr: "action", val: "/api/paypal/pay"},{attr: "method", val: "post"},{attr: "id", val: "pay-form"}],"App")
     createHTMLObject("input", [{attr: "type", val: "hidden"},{attr: "name", val: "short_id"},{attr: "id", val: "short_id"},{attr: "value", val: short_id}],"pay-form")
     createHTMLObject("input", [{attr: "type", val: "hidden"},{attr: "name", val: "price"},{attr: "id", val: "price"},{attr: "value", val: price}],"pay-form")
     createHTMLObject("input", [{attr: "type", val: "hidden"},{attr: "name", val: "event_ID"},{attr: "id", val: "event_ID"},{attr: "value", val: r.all._id}],"pay-form")
+    createHTMLObject("input", [{attr: "type", val: "hidden"},{attr: "name", val: "eventName"},{attr: "id", val: "eventName"},{attr: "value", val: r.all.teamName}],"pay-form")
+
+    createHTMLObject("input", [{attr: "type", val: "hidden"},{attr: "name", val: "eventDate"},{attr: "id", val: "eventDate"},{attr: "value", val: r.all.eventDate}],"pay-form")
+
+    createHTMLObject("input", [{attr: "type", val: "hidden"},{attr: "name", val: "eventPlace"},{attr: "id", val: "eventPlace"},{attr: "value", val: r.all.eventPlace}],"pay-form")
+
     createHTMLObject("button", [{attr: "type", val: "submit"},{attr: "value", val: "Confirm"},{attr: "id", val: "pay-btn"}],"pay-form")
-    document.getElementById("pay-btn").innerHTML = "Confirm"
+    document.getElementById("pay-btn").innerHTML = "I'M IN"
     return r
     })
   .catch(function() {
