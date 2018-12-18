@@ -30,8 +30,7 @@ router.post('/', (req, res) => {
           req.body.eventPlace,
           req.body.eventDate,
           req.body.payByDate,
-          req.body.eventPricePP,
-          req.body.message)
+          req.body.eventPricePP)
         resolve(event_add);
     });
   }

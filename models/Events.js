@@ -32,7 +32,7 @@ const EventSchema = new Schema({
   },
   message: {
     type: String,
-    required: true
+    required: false
   },
   eventPricePP: {
     type: String,
