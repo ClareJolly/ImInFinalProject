@@ -24,6 +24,7 @@ router.post('/', (req, res) => {
         var event_add = addEvent(
           req.body.user_id,
           req.body.invitees,
+          req.body.minInvitees,
           data,
           req.body.teamName,
           req.body.eventTime,
@@ -67,12 +68,13 @@ router.post('/', (req, res) => {
   }
 
   //function to add event details
-  function addEvent(user_id,invitees,invitees_new,teamName,eventTime,eventPlace,eventDate,payByDate, eventPricePP,message) {
+  function addEvent(user_id,invitees,invitees_new,teamName,eventTime,eventPlace,eventDate,payByDate, eventPricePP,message, minInvitees) {
     console.log('and now adding the main event')
     const newEvents = new Events({
       user_id: user_id,
       invitees: invitees,
       invitees_new: invitees_new,
+      minInvitees: minInvitees,
       teamName: teamName,
       eventTime: eventTime,
       eventPlace: eventPlace,
@@ -197,6 +199,7 @@ router.patch('/:id', (req, res) => {
  Events.findById(req.params.id, function (err, event) {
    if (err) return handleError(err);
     event.invitees = req.body.invitees;
+    event.minInvitees = req.body.minInvitees;
     event.eventDate = req.body.eventDate;
     event.payByDate = req.body.payByDate;
     event.eventTime = req.body.eventTime;

@@ -32,6 +32,10 @@ const EventSchema = new Schema({
   },
   message: {
     type: String,
+    required: false
+  },
+  minInvitees: {
+    type: String,
     required: true
   },
   eventPricePP: {
