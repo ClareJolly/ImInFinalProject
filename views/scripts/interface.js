@@ -9,7 +9,7 @@ getEvents(short_id)
 function getEvents (short_id){}
 // s_ID = short_id
 // s_ID = pathArray.slice(-1)[0]
-  fetch('http://localhost:5000/api/db') // Call the fetch function passing the url of the API as a parameter
+  fetch('/api/db') // Call the fetch function passing the url of the API as a parameter
   .then((resp) => resp.json()) // Transform the data into json
   .then(function(data) {
     // Create and append the li's to the ul
