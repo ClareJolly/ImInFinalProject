@@ -191,8 +191,16 @@ router.get('/success', (req, res) => {
       throw error;
     } else {
       console.log(JSON.stringify(payment));
-      var sku = JSON.stringify(payment["transactions"][0]["item_list"]["items"][0]["sku"])
+      var sku = payment["transactions"][0]["item_list"]["items"][0]["sku"]
       console.log(sku)
+      var payamentupdate = {
+  	"payment_confirmed": "Y",
+     "payment_details": payment["transactions"][0]
+  }
+      axios.patch("http://localhost:5000/api/db/inv/payment/"+sku, payamentupdate)
+      .then(function (response) {
+        console.log(response);
+      })
     }
   });
 

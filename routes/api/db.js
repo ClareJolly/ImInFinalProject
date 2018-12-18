@@ -53,9 +53,11 @@ router.post('/', (req, res) => {
       part_name: req.body.invitees[i].part_name,
       part_number: vodaphoneNum,
       eventPricePP: req.body.invitees[i].eventPricePP,
-      response: 'NONE',
+      response: 'No reply',
       unique_code: 'NONE',
-      event_ID: 'NONE'
+      event_ID: 'NONE',
+      payment_confirmed: "N",
+      payment_details: '{}'
      });
      newInvitee.save()
      .then(arr.push(newInvitee._id))
@@ -119,6 +121,26 @@ router.patch('/inv/:short_id', (req, res) => {
     });
   });
 });
+
+//update payments by short ID
+router.patch('/inv/payment/:short_id', (req, res) => {
+  var query = {short_id: req.params.short_id}
+  console.log(query)
+  // Invitees.findOne(query, function (err, invitee){
+  //   console.log("test: ",invitee)
+
+  Invitees.findOneAndUpdate(query, {response: "IN", "payment_confirmed": req.body.payment_confirmed, "payment_details": req.body.payment_details}, function (err, invitee) {
+    console.log("test: ",invitee)
+    if (err) return handleError(err);
+    invitee.save(function (err, updatedInvitee) {
+      if (err) return handleError(err);
+      res.send(updatedInvitee);
+    });
+  });
+});
+// { "payment_confirmed": "Y",
+// "payment_details": "test" }
+
 
 //get invitee by short ID
 router.get('/inv/:short_id', (req, res) => {

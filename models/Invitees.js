@@ -29,7 +29,16 @@ const InviteesSchema = new Schema({
   short_id: {
   'type': String,
   'default': shortid.generate
+},
+payment_confirmed: {
+  type: String,
+  required: false
+},
+payment_details: {
+  type: Object,
+  required: false
 }
+
 });
 
 // const Invitees = mongoose.model('Invitees', InviteesSchema, 'Invitees')
