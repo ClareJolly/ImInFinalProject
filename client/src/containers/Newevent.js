@@ -116,7 +116,7 @@ class Newevent extends Component {
   var updateDb2 = new Promise(function(resolve, reject) {
   // do a thing, possibly async, then…
   console.log(sessionStorage.getItem('userID'))
-  var url = 'http://localhost:5000/api/db'
+  var url = '/api/db'
   var event = {user_id:sessionStorage.getItem('userID'),teamName: that.state.teamName, eventTime: eventTime, eventDate: eventDate, payByDate: payByDate, eventPricePP: eventPricePP, eventPlace: eventPlace, message: message, invitees: that.state.invitees}
   console.log(event)
   var checking = axios.post(url,event)
@@ -156,7 +156,7 @@ class Newevent extends Component {
   }
 
   updateDbx = () => {
-    var url = 'http://localhost:5000/api/db'
+    var url = '/api/db'
     var event = {teamName: this.state.teamName, eventTime: this.state.eventTime, eventDate: this.state.eventDate, payByDate: this.state.payByDate, eventPricePP: this.state.eventPricePP, eventPlace: this.state.eventPlace, message: this.state.message, invitees: this.state.invitees}
     console.log(event)
     axios.post(url,event)

@@ -41,7 +41,7 @@ show(section) {
 
   CheckLogin = (username, password) => {
     var userCredentials = {username:username,password:password}
-    var loginurl = 'http://localhost:5000/api/db/user/login'
+    var loginurl = '/api/db/user/login'
 
     axios.post(loginurl,userCredentials)
       .then(res => {
@@ -75,7 +75,7 @@ show(section) {
   }
 
   RegisterUserDb = () => {
-    var url = 'http://localhost:5000/api/db/user'
+    var url = '/api/db/user'
     var event = {name: this.state.name, username: this.state.username, phoneNumber: this.state.phoneNumber, password: this.state.password}
     console.log(event)
     fetch(url, {
