@@ -121,6 +121,7 @@ return ( <p key={index}>
 
 <div><button  name="sendEmail" className="" disabled={!isEnabled} onClick={() => this.sendEmail()}>Send me my balance</button></div>
   </div>}
+  {this.props.event.balance_request_sent && <div>Request for balance already sent</div>}
 </div>
 
 
