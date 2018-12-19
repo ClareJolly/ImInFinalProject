@@ -42,7 +42,11 @@ class Events extends Component {
     let events = data.map((event, index) => {
         return (
 
-          <p></p>
+          <button key={index} className="event-buttons"  >
+
+
+
+          </button>
 
         )
       })
@@ -61,13 +65,15 @@ class Events extends Component {
 
     return (
       <div className="Events">
-        <h2 onClick={this.openModal}>Select an Event </h2>
+        {this.state.event_list.length > 0 && <h2 >Select an Event </h2>}
         {/*<div >
 
         {this.state.events}
         // {console.log(this.state.event_list)}
 
         </div>*/}
+{this.state.event_list.length === 0 && <div>No events yet, why not add one</div>}
+
         {this.state.event_list.map ((event, index) => {
           var inviteesArray = event.invitees_new
           var inResponses = inviteesArray.filter(word => word.response === "IN").length
@@ -76,19 +82,21 @@ class Events extends Component {
 
           return <div key={index}>
 
-            <button name="delete" className="deleteButtons" id="delete" onClick={() => this.setAndDeleteEvent(event._id)}></button>
 
+<button name="delete" className="deleteButtons" id="delete" onClick={() => this.setAndDeleteEvent(event._id)}></button>
 
             <div onClick={() => this.props.setEventID(event)} key={index} className="event-buttons">
 
             {event.teamName}<br/>
           <span className="inOrOut">{inResponses}/{inviteesArray.length} are</span> <strong>IN</strong>
           </div>
-          <button  name="edit" className="editButtons" ></button>
+
+          {/*<button  name="edit" className="editButtons" ></button>*/}
 
           </div>
 
         })}
+
 
       </div>
     );
