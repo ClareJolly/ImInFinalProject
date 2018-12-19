@@ -37,17 +37,39 @@ function getEvents (short_id){}
   }
     console.log(price)
     document.title = "Pay for "+r.all.teamName
+
     createHTMLObject("img", [{attr: "src", val: "/logo.png"},{attr: "class", val: "logo-img"},{attr: "width", val: "100px"}],"App")
-    createHTMLObject("h1", [{attr: "id", val: "EventName"}],"App")
+
+    createHTMLObject("div", [{attr: "class", val: "grid-container"},{attr: "id", val: "grid-container"}],"App")
+    createHTMLObject("div", [{attr: "class", val: "eventname"},{attr: "id", val: "header"}],"grid-container")
+    createHTMLObject("div", [{attr: "class", val: "left1"},{attr: "id", val: "left1"}],"grid-container")
+    createHTMLObject("div", [{attr: "class", val: "right1"},{attr: "id", val: "right1"}],"grid-container")
+    createHTMLObject("div", [{attr: "class", val: "left2"},{attr: "id", val: "left2"}],"grid-container")
+    createHTMLObject("div", [{attr: "class", val: "right2"},{attr: "id", val: "right2"}],"grid-container")
+    createHTMLObject("div", [{attr: "class", val: "left3"},{attr: "id", val: "left3"}],"grid-container")
+    createHTMLObject("div", [{attr: "class", val: "right3"},{attr: "id", val: "right3"}],"grid-container")
+    createHTMLObject("div", [{attr: "class", val: "left4"},{attr: "id", val: "left4"}],"grid-container")
+    createHTMLObject("div", [{attr: "class", val: "right4"},{attr: "id", val: "right4"}],"grid-container")
+
+
+    createHTMLObject("h1", [{attr: "id", val: "EventName"}],"header")
     document.getElementById("EventName").innerHTML = r.all.teamName
-    createHTMLObject("h2", [{attr: "id", val: "event_date"}],"App")
-    document.getElementById("event_date").innerHTML = "Date: "+ r.all.eventDate
-    createHTMLObject("h2", [{attr: "id", val: "event_time"}],"App")
-    document.getElementById("event_time").innerHTML = "@ "+ r.all.eventTime
-    createHTMLObject("h2", [{attr: "id", val: "event_place"}],"App")
-    document.getElementById("event_place").innerHTML = "Location: "+ r.all.eventPlace
-    createHTMLObject("h2", [{attr: "id", val: "price"}],"App")
-    document.getElementById("price").innerHTML = "Deposit: £"+ price
+    createHTMLObject("h2", [{attr: "id", val: "event_date_title"}],"left1")
+    document.getElementById("event_date_title").innerHTML = "Date: "
+    createHTMLObject("h2", [{attr: "id", val: "event_date"}],"right1")
+    document.getElementById("event_date").innerHTML = r.all.eventDate
+    createHTMLObject("h2", [{attr: "id", val: "event_time_title"}],"left2")
+    document.getElementById("event_time_title").innerHTML = "@"
+    createHTMLObject("h2", [{attr: "id", val: "event_time"}],"right2")
+    document.getElementById("event_time").innerHTML = r.all.eventTime
+    createHTMLObject("h2", [{attr: "id", val: "event_place_title"}],"left3")
+    document.getElementById("event_place_title").innerHTML = "Location: "
+    createHTMLObject("h2", [{attr: "id", val: "event_place"}],"right3")
+    document.getElementById("event_place").innerHTML = r.all.eventPlace
+    createHTMLObject("h2", [{attr: "id", val: "price_title"}],"left4")
+    document.getElementById("price_title").innerHTML = "Deposit: "
+    createHTMLObject("h2", [{attr: "id", val: "price"}],"right4")
+    document.getElementById("price").innerHTML = "£"+ price
     createHTMLObject("form", [{attr: "action", val: "/api/paypal/pay"},{attr: "method", val: "post"},{attr: "id", val: "pay-form"}],"App")
     createHTMLObject("input", [{attr: "type", val: "hidden"},{attr: "name", val: "short_id"},{attr: "id", val: "short_id"},{attr: "value", val: short_id}],"pay-form")
     createHTMLObject("input", [{attr: "type", val: "hidden"},{attr: "name", val: "price"},{attr: "id", val: "price"},{attr: "value", val: price}],"pay-form")
