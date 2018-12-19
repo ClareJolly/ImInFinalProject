@@ -45,6 +45,10 @@ const EventSchema = new Schema({
   user_id:{
     type: String,
     required: true
+  },
+  balance_request_sent:{
+    type: String,
+    required: false
   }
 });
 

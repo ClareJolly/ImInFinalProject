@@ -210,6 +210,19 @@ router.patch('/:id', (req, res) => {
  });
 });
 
+//patch balance request
+router.patch('/event/balance', (req, res) => {
+  var query = {_id: req.body.eventID}
+  // console.log(req.params.short_id)
+  Events.findOneAndUpdate(query, {balance_request_sent:true}, function (err, balanceset) {
+    if (err) return handleError(err);
+    balanceset.save(function (err, updatedBalanceStatus) {
+      if (err) return handleError(err);
+      res.send("updated Balance status");
+    });
+  });
+});
+
 // User Database
 router.post('/user', (req, res) => {
   let hash = bcrypt.hashSync(req.body.password, 10);
