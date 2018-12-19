@@ -16,17 +16,22 @@ class TeamForm extends Component {
     })
   }
 
-  saveTeam() {
-    if (this.canBeSubmitted()) {
-    this.props.Stage1Submit(this.state.teamName)
-    }
-  }
+  saveTeam = () => {
+     // console.log(this.state.teamName)
+     if (!this.canBeSubmitted()) {
+     // evt.preventDefault();
+     return;
+   }
+     this.props.Stage1Submit(this.state.teamName)
+   }
 
-  canBeSubmitted() {
-  return (
-    this.state.teamName.length > 0
-  );
-}
+   canBeSubmitted() {
+   // const { teamName } = this.state;
+   // console.log(this.state.teamName)
+   return (
+     this.state.teamName.length > 0
+   );
+ }
 
   render() {
 

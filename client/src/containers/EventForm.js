@@ -50,7 +50,7 @@ finalSave = () => {
       <div className="EventForm">
 
       <div><label htmlFor="eventPlace">Place</label><input type='text' autoFocus name='eventPlace' id='eventPlace' required onChange={this.handleChange}/></div>
-      <div><label htmlFor="eventPricePP">Price Per Person £</label><input type="number" name='eventPricePP' id='eventPricePP' required onChange={this.handleChange}/></div>
+      <div><label htmlFor="eventPricePP">Price Per Person £</label><input type="number" name='eventPricePP' id='eventPricePP' min="0" required onChange={this.handleChange}/></div>
       <div><label htmlFor="eventDate">Date</label><input type="date" name='eventDate' id='eventDate' required onChange={this.handleChange}/></div>
       <div><label htmlFor="payByDate">Pay By Date</label><input type="date" name='payByDate' id='payByDate' required onChange={this.handleChange}/></div>
       <div><label htmlFor="eventTime">Time</label><input type="time" name='eventTime' id='eventTime' required onChange={this.handleChange}/></div>
