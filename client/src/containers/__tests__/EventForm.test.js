@@ -22,6 +22,9 @@ mountedEventForm = shallow(<EventForm/>)
 
   })
 
+
+
+
   // it('contains form textarea fields', () => {
   //   const textarea = mountedEventForm.find('textarea');
   //   expect(textarea.length).toBe(1)

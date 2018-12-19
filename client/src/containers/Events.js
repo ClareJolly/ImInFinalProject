@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import './Events.css';
 // import Modal from 'react-modal';
-import EventModal from './EventModal'
+// import EventModal from './EventModal'
 // import ViewEvent from '../components/ViewEvent'
 
 // const customStyles = {
@@ -20,42 +20,16 @@ import EventModal from './EventModal'
 class Events extends Component {
   constructor(props) {
     super();
-    this.state = {modalIsOpen: false,
+    this.state = {
       events: [],
       event_list:[]
     }
 
-    this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
 
 
   }
 
-  openModal() {
-    this.setState({modalIsOpen: true});
-  }
 
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // this.subtitle.style.color = '#f00';
-  }
-
-  closeModal() {
-    this.setState({modalIsOpen: false});
-  }
-
-
-
-  componentWillReceiveProps(props) {
-    console.log(props)
-    const { refresh } = this.props;
-    // console.log(props.refresh)
-    if (props.refresh !== refresh) {
-        this.setState({ state: this.state })
-        .then(this.refreshEventList)
-    }
-  }
 
   componentDidMount() {
     fetch('/api/db/event/user/'+sessionStorage.getItem('userID'))
@@ -63,14 +37,14 @@ class Events extends Component {
       return results.json();
 
     }).then(data => {
-      // console.log(data)
+      
       this.setState({event_list: data})
     let events = data.map((event, index) => {
         return (
 
           <button key={index} className="event-buttons"  >
 
-            <EventModal index={index} event={event.teamName} invitees={event.invitees} />
+
 
           </button>
 
