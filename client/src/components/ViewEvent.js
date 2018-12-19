@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ViewEvents.css';
 import axios from 'axios'
-
+import Grid from 'react-css-grid'
 class ViewEvent extends Component {
 
   constructor(props){
@@ -66,6 +66,7 @@ var check = this.checkEmailRegex(email)
 return check
 }
 
+
   render() {
 
     const isEnabled = this.canBeSubmitted();
@@ -74,6 +75,86 @@ return check
     return (
 
       <div className="ViewEvent">
+        <h1>{this.props.event.teamName}</h1>
+          <Grid width={32} gap={24}>
+            <div className="centerStyle">Invitees:</div>
+          </Grid>
+
+          {this.props.event.invitees_new.map((invitelist, index) => {
+          return (
+                  <Grid key={index} width={32} gap={24}>
+                  <div className="leftStyle inviteeLeftStyle">{invitelist.part_name}</div>
+                  <div className="centerStyle">{invitelist.part_number}</div>
+                  <div className="rightStyle inviteeRightStyle">{invitelist.response} </div>
+                </Grid>
+                    )
+              })
+            }
+
+
+      <Grid width={32} gap={24}>
+       <div className="leftStyle">Location:</div>
+       <div className="rightStyle">{this.props.event.eventPlace}</div>
+      </Grid>
+
+     <Grid width={32} gap={24}>
+       <div className="leftStyle">Date:</div>
+       <div className="rightStyle">{this.props.event.eventDate}</div>
+      </Grid>
+
+      <Grid width={32} gap={24}>
+       <div className="leftStyle">Time:</div>
+       <div className="rightStyle">{this.props.event.eventTime}</div>
+      </Grid>
+
+
+
+      <Grid width={32} gap={24}>
+        <div className="leftStyle">Deposit per person:</div>
+        <div className="rightStyle">£{this.props.event.eventPricePP}</div>
+      </Grid>
+
+
+
+      <Grid width={32} gap={24}>
+        <div className="leftStyle">Pay By Date:</div>
+        <div className="rightStyle">{this.props.event.payByDate}</div>
+      </Grid>
+
+
+
+      <Grid width={32} gap={24}>
+        <div className="leftStyle"><button name="delete" className="deleteButtons" id="delete" onClick={() => this.props.deleteEvent(this.props.event._id)}></button></div>
+        <div className="rightStyle"><button name="sent_invite" className="sendInvite" id="sent_invite" onClick={() => this.props.sendInvite()}></button></div>
+      </Grid>
+      {!this.state.requestSent && !this.props.event.balance_request_sent &&
+
+
+      <Grid width={32} gap={24}>
+        <div className="centerStyle">
+          <button  name="sendBalance" className="" onClick={() => this.requestBalance()}>Request balance</button>
+        </div>
+      </Grid>}
+
+
+
+      <Grid width={32} gap={24}>
+        <div className="leftStyle">Paypal email</div>
+        <div className="rightStyle">Message</div>
+      </Grid>
+
+      <Grid width={32} gap={24}>
+        <div className="leftStyle">Column</div>
+        <div className="rightStyle">Column</div>
+      </Grid>
+
+
+
+      <Grid width={32} gap={24}>
+        <div className="centerStyle">Send Balance</div>
+      </Grid>
+
+{/* 
 
 <h3>{this.props.response}</h3>
 
@@ -83,10 +164,7 @@ return check
 
 
 {this.props.event.invitees_new.map((invitelist, index) => {
-  // var paid_image = ''
-  // if (invitelist.payment_confirmed === 'Y') {
-  //   return (<img src='/paid.png' alt='paid'>)
-  // }
+
 return ( <p key={index}>
         {invitelist.part_name} |
         {invitelist.part_number} |
@@ -121,7 +199,7 @@ return ( <p key={index}>
 
 <div><button  name="sendEmail" className="" disabled={!isEnabled} onClick={() => this.sendEmail()}>Send me my balance</button></div>
   </div>}
-  {this.props.event.balance_request_sent && <div>Request for balance already sent</div>}
+  {this.props.event.balance_request_sent && <div>Request for balance already sent</div>} */}
 </div>
 
 

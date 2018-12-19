@@ -8,6 +8,7 @@
     "enzyme-adapter-react-15": "^1.2.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "react": "^16.6.3",
+    "react-css-grid": "^2.0.0-0",
     "react-dom": "^16.6.3",
     "react-modal": "^3.7.1",
     "react-router-dom": "^4.3.1",
@@ -22,7 +23,6 @@
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:5000",
-
   "eslintConfig": {
     "extends": "react-app"
   },

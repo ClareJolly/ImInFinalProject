@@ -16,6 +16,33 @@
 
 }
 
+.leftStyle {
+    text-align:right;
+    padding: 10px 2px 10px 2px;
+    /* font-weight: bold; */
+    text-transform: uppercase;
+  }
+
+.rightStyle {
+  text-align:left;
+  padding: 10px 2px 10px 2px;
+}
+
+.centerStyle{
+  text-align:center;
+  padding: 10px 2px 10px 2px;
+  text-transform: uppercase;
+}
+
+.inviteeLeftStyle {
+
+}
+
+.inviteeRightStyle {
+
+}
+
+
 .editButtons:hover {
 width: 30px;
 height: 30px;
