@@ -101,7 +101,11 @@ show(section) {
       {this.state.showSection ==="register" && <RegisterUser UserRegister={this.UserRegister}/>}
       {this.state.loginMessage !== '' && <div>{this.state.loginMessage}</div>}
       {this.state.showSection === "login" && <LoginUser CheckLogin={this.CheckLogin}/>}
-        </div>
+
+
+      {this.state.showSection ==="register" &&   <div><button id="login" onClick={() => this.show("login")}>Want to login instead?</button></div>}
+      {this.state.showSection ==="login" &&   <div><button id="register" onClick={() => this.show("register")}>Want to register instead?</button></div>}
+      </div>
     )
   }
   }
