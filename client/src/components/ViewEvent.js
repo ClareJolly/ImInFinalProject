@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './ViewEvents.css';
 import axios from 'axios'
 import Grid from 'react-css-grid'
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+
 class ViewEvent extends Component {
 
   constructor(props){
@@ -25,6 +28,8 @@ class ViewEvent extends Component {
       [event.target.name] : event.target.value
     })
   }
+
+  
 
   requestBalance() {
     this.setState({requestShow:true})

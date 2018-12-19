@@ -50,6 +50,8 @@ class App extends Component {
     this.sendInvite = this.sendInvite.bind(this);
     this.setUser = this.setUser.bind(this);
     this.setLogout = this.setLogout.bind(this);
+    this.invites = this.invites.bind(this);
+    this.deleted = this.deleted.bind(this);
   }
 
   // TOASTERS
@@ -83,6 +85,28 @@ class App extends Component {
         progressClassName: 'fancy-progress-bar'
       });
     }
+
+    invites = () => {
+      toast("Invites sent", {
+        // onClose: () => this.cookieSet(),
+        autoClose: true,
+        position: toast.POSITION.TOP_RIGHT,
+        className: 'black-background',
+        bodyClassName: "grow-font-size",
+        progressClassName: 'fancy-progress-bar'
+        });
+      }
+
+      deleted = () => {
+        toast("event deleted", {
+          // onClose: () => this.cookieSet(),
+          autoClose: true,
+          position: toast.POSITION.TOP_RIGHT,
+          className: 'black-background',
+          bodyClassName: "grow-font-size",
+          progressClassName: 'fancy-progress-bar'
+          });
+        }
 
   componentDidMount() {
     if (this.state.toasterShow && !this.state.cookieaccept){
@@ -123,6 +147,7 @@ setEventID(event) {
       }
     }).then(res => res.json())
     .then(response => console.log('Success:', JSON.stringify(response)))
+    .then(this.deleted())
     .then(this.setState({
       currentView : 'home',
       pageTitle : this.pages['home']
@@ -137,7 +162,7 @@ setEventID(event) {
     console.log('sms test')
     var url = '/api/send/'
     var event = this.state.event
-    console.log(event) 
+    // console.log(event)
     fetch(url, {
       method: 'POST',
       body: JSON.stringify( event ),
@@ -147,12 +172,19 @@ setEventID(event) {
     }).then(res => res.json())
     .then(response => console.log('Success:', JSON.stringify(response)))
     // .then(window.location.reload())
-    .then(this.setState({
-      currentView : 'home',
-      pageTitle : this.pages['home']
-    }))
-    // .then(console.log("refreshing"))
-    // .then(this.refreshEventList())
+    .then(
+      this.invites()
+
+    // })
+  )
+    // .then(
+    //   // this.invites()
+    //   this.setState({
+    //   currentView : 'events',
+    //   pageTitle : this.pages['events']
+    // })
+  // )
+
     .catch(error => console.error("Error:", error));
 
   }
@@ -191,7 +223,7 @@ setEventID(event) {
       {this.state.currentView === "home" && <WelcomeText user={this.state.user} loggedIn={this.state.loggedIn}/>}
       {this.state.currentView === "new" && <Newevent showSection={this.showSection} setEventID={this.setEventID}/>}
       {this.state.currentView === "login" && <RegisterLogin showSection={this.showSection} setUser={this.setUser}/>}
-      {this.state.currentView === "events" && <Events deleteEvent={this.deleteEvent}  setEventID={this.setEventID} refresh={this.refreshEventList}/>}
+      {this.state.currentView === "events" && <Events  deleteEvent={this.deleteEvent}  setEventID={this.setEventID} refresh={this.refreshEventList}/>}
       {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.event} deleteEvent={this.deleteEvent} sendInvite={this.sendInvite}/>}
       </div>
     );
