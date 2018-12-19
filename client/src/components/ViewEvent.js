@@ -29,7 +29,7 @@ class ViewEvent extends Component {
     })
   }
 
-  
+
 
   requestBalance() {
     this.setState({requestShow:true})
@@ -41,7 +41,7 @@ class ViewEvent extends Component {
     axios.post('/api/send/email',requestDetails)
       .then(res => {
         console.log(res.data)
-
+          this.props.balanceReqSent()
           this.setState({
             requestShow: false,
             requestSent: true

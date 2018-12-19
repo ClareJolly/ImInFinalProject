@@ -52,6 +52,7 @@ class App extends Component {
     this.setLogout = this.setLogout.bind(this);
     this.invites = this.invites.bind(this);
     this.deleted = this.deleted.bind(this);
+    this.balanceReqSent = this.balanceReqSent.bind(this);
   }
 
   // TOASTERS
@@ -98,7 +99,7 @@ class App extends Component {
       }
 
       deleted = () => {
-        toast("event deleted", {
+        toast("Event deleted", {
           // onClose: () => this.cookieSet(),
           autoClose: true,
           position: toast.POSITION.TOP_RIGHT,
@@ -107,6 +108,17 @@ class App extends Component {
           progressClassName: 'fancy-progress-bar'
           });
         }
+
+        balanceReqSent = () => {
+          toast("Balance request sent", {
+            // onClose: () => this.cookieSet(),
+            autoClose: true,
+            position: toast.POSITION.TOP_RIGHT,
+            className: 'black-background',
+            bodyClassName: "grow-font-size",
+            progressClassName: 'fancy-progress-bar'
+            });
+          }
 
   componentDidMount() {
     if (this.state.toasterShow && !this.state.cookieaccept){
@@ -224,7 +236,7 @@ setEventID(event) {
       {this.state.currentView === "new" && <Newevent showSection={this.showSection} setEventID={this.setEventID}/>}
       {this.state.currentView === "login" && <RegisterLogin showSection={this.showSection} setUser={this.setUser}/>}
       {this.state.currentView === "events" && <Events  deleteEvent={this.deleteEvent}  setEventID={this.setEventID} refresh={this.refreshEventList}/>}
-      {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.event} deleteEvent={this.deleteEvent} sendInvite={this.sendInvite}/>}
+      {this.state.currentView === "viewEvent" && <ViewEvent balanceReqSent={this.balanceReqSent} response={'Your Event'} event={this.state.event} deleteEvent={this.deleteEvent} sendInvite={this.sendInvite}/>}
       </div>
     );
   }
