@@ -3,7 +3,7 @@ import RegisterUser from './RegisterUser'
 import LoginUser from '../components/LoginUser'
 import Grid from 'react-css-grid'
 import axios from 'axios'
-// import './RegisterUser.css';
+
 
 import './App.css';
 
@@ -107,11 +107,7 @@ show(section) {
        <div className="leftStyle">Are you new? </div>
        <div className="rightStyle"><button id="register" onClick={() => this.show("register")}>Register</button></div>
       </Grid>}
-      {/*{this.state.showSection === "" && <div>
-      Already registered? <button id="login" onClick={() => this.show("login")}>Login</button>
-      </div>}
-      {this.state.showSection === "" && <div>Are you new? <button id="register" onClick={() => this.show("register")}>Register</button>
-      </div>}*/}
+
       {this.state.showSection ==="register" && <RegisterUser UserRegister={this.UserRegister}/>}
       {this.state.loginMessage !== '' && <div>{this.state.loginMessage}</div>}
       {this.state.showSection === "login" && <LoginUser CheckLogin={this.CheckLogin}/>}

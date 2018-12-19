@@ -89,7 +89,6 @@ class App extends Component {
 
     invites = () => {
       toast("Invites sent", {
-        // onClose: () => this.cookieSet(),
         autoClose: true,
         position: toast.POSITION.TOP_RIGHT,
         className: 'black-background',
@@ -164,8 +163,7 @@ setEventID(event) {
       currentView : 'home',
       pageTitle : this.pages['home']
     }))
-    // .then(console.log("refreshing"))
-    // .then(this.refreshEventList())
+
     .catch(error => console.error("Error:", error));
 
   }
@@ -183,7 +181,7 @@ setEventID(event) {
       }
     }).then(res => res.json())
     .then(response => console.log('Success:', JSON.stringify(response)))
-    // .then(window.location.reload())
+
     .then(
       this.invites()
 
@@ -201,23 +199,19 @@ setEventID(event) {
 
   }
 
-  // refreshEventList () {
-  //   console.log(this.state)
-  //   this.setState({refreshEventList: !this.state.refreshEventList})
-  // }
 
   setUser(user,userID) {
-    // console.log(user)
+
     sessionStorage.setItem('username', user);
     sessionStorage.setItem('userID', userID)
     this.setState({user: user, userID:userID, loggedIn:true})
     this.showSection('home')
     this.toast_login()
-    // console.log(userID)
+
   }
 
   setLogout() {
-    // console.log("toggle?")
+
     sessionStorage.clear()
     this.setState({user: '',userID:'', loggedIn:false})
     this.showSection('home')

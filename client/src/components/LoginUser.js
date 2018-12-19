@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import './RegisterUser.css';
-// import axios from 'axios'
+
 
 import '../containers/App.css';
 
@@ -17,7 +16,7 @@ class LoginUser extends Component {
   Login = () => {
     var log_username = this.state.log_username
     var log_password = this.state.log_password
-    // this.usernameAvailable()
+
     this.props.CheckLogin(log_username,log_password)
   }
 
@@ -30,8 +29,7 @@ class LoginUser extends Component {
   }
 
   canBeSubmitted() {
-  // const { teamName } = this.state;
-  // console.log(this.state.teamName)
+
   return (
     this.state.log_username.length > 0 &&
     this.state.log_password.length > 0
