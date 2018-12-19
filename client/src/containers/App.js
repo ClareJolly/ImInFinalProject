@@ -46,7 +46,7 @@ class App extends Component {
     this.showSection = this.showSection.bind(this);
     this.setEventID = this.setEventID.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
-    this.refreshEventList = this.refreshEventList.bind(this);
+    // this.refreshEventList = this.refreshEventList.bind(this);
     this.sendInvite = this.sendInvite.bind(this);
     this.setUser = this.setUser.bind(this);
     this.setLogout = this.setLogout.bind(this);
@@ -157,19 +157,19 @@ setEventID(event) {
 
   }
 
-  refreshEventList () {
-    console.log(this.state)
-    this.setState({refreshEventList: !this.state.refreshEventList})
-  }
+  // refreshEventList () {
+  //   console.log(this.state)
+  //   this.setState({refreshEventList: !this.state.refreshEventList})
+  // }
 
   setUser(user,userID) {
-    console.log(user)
+    // console.log(user)
     sessionStorage.setItem('username', user);
     sessionStorage.setItem('userID', userID)
     this.setState({user: user, userID:userID, loggedIn:true})
     this.showSection('home')
     this.toast_login()
-    console.log(userID)
+    // console.log(userID)
   }
 
   setLogout() {
