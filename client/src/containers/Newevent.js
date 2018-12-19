@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Grid from 'react-css-grid'
 import './Newevent.css';
 
 import axios from 'axios'
@@ -190,15 +190,16 @@ class Newevent extends Component {
       <div className="Newevent">
 
         {this.state.stage === 0 && <TeamForm Stage1Submit={this.Stage1Submit} defaultVal={this.state.teamName}/>}
-        {this.state.stage > 0 && this.state.stage < 3  && <p>Event Name: {this.state.teamName}</p>}
+        {this.state.stage > 0 && this.state.stage < 3  && <h1>{this.state.teamName}</h1>}
         {this.state.stage === 1 && <Invitees Stage2Submit={this.Stage2Submit} goBack={this.goBack} defaultVal={this.state.invitees}/>}
         {this.state.stage > 1 && this.state.stage < 3&& <p>Invitees:</p>}
         {this.state.stage > 1 && this.state.stage < 3&& <div>
-          {this.state.invitees.map(invitelist => {
-          return ( <p key={invitelist.part_name}>
-                  {invitelist.part_name} |
-                  {invitelist.part_number}
-                   </p> )
+          {this.state.invitees.map((invitelist, index) => {
+          return ( <Grid key={index} width={32} gap={24}>
+            <div className="leftStyle ">{invitelist.part_name}</div>
+            <div className="rightStyle">{invitelist.part_number}</div>
+
+          </Grid> )
               })
             }
         </div>}
