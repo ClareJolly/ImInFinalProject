@@ -21,13 +21,25 @@ class EventForm extends Component {
     // console.log(this.state)
   }
 
+  convertDate(date){
+    function pad(s) { return (s < 10) ? '0' + s : s; }
+
+    var d = new Date(date);
+    d= [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
+    // var d = new Date(date);
+    console.log(d)
+    return d;
+  }
+
 finalSave = () => {
   if (!this.canBeSubmitted()) {
   // evt.preventDefault();
   return;
 }
     // console.log(this.state.team_name)
-    this.props.Stage3Submit(this.state.eventTime, this.state.eventDate, this.state.payByDate, this.state.eventPricePP, this.state.message, this.state.eventPlace)
+    var eventDate = this.convertDate(this.state.eventDate)
+    var payByDate = this.convertDate(this.state.payByDate)
+    this.props.Stage3Submit(this.state.eventTime, eventDate, payByDate, this.state.eventPricePP, this.state.message, this.state.eventPlace)
   }
 
   canBeSubmitted() {

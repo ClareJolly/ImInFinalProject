@@ -30,6 +30,7 @@ class ViewEvent extends Component {
     this.setState({requestShow:true})
   }
 
+
   sendEmail() {
     var requestDetails = {"eventID":this.props.event._id,"manager_id":sessionStorage.getItem('userID'),"paypal_email":this.state.paypal_email,"request_message":this.state.request_message}
     axios.post('/api/send/email',requestDetails)
@@ -75,6 +76,7 @@ return check
     return (
 
       <div className="ViewEvent">
+
         <h1>{this.props.event.teamName}</h1>
           <Grid width={32} gap={24}>
             <div className="centerStyle">Invitees:</div>
@@ -127,34 +129,46 @@ return check
         <div className="leftStyle"><button name="delete" className="deleteButtons" id="delete" onClick={() => this.props.deleteEvent(this.props.event._id)}></button></div>
         <div className="rightStyle"><button name="sent_invite" className="sendInvite" id="sent_invite" onClick={() => this.props.sendInvite()}></button></div>
       </Grid>
+
       {!this.state.requestSent && !this.props.event.balance_request_sent &&
-
-
       <Grid width={32} gap={24}>
         <div className="centerStyle">
           <button  name="sendBalance" className="" onClick={() => this.requestBalance()}>Request balance</button>
         </div>
-      </Grid>}
-
-
-
-      <Grid width={32} gap={24}>
-        <div className="leftStyle">Paypal email</div>
-        <div className="rightStyle">Message</div>
       </Grid>
 
+    }
+
+
+{this.state.requestShow &&
       <Grid width={32} gap={24}>
-        <div className="leftStyle">Column</div>
-        <div className="rightStyle">Column</div>
+        <div className="leftStyle"><label htmlFor="paypal_email">PayPal email address: </label></div>
+        <div className="rightStyle"><input type="text" name="paypal_email" id="paypal_email" onChange={this.handleChange}/>
+        { this.state.paypal_email.length > 0 && !this.validateEmail(this.state.paypal_email) && <div className="error">Not a valid email address</div>}</div>
       </Grid>
-
-
-
+    }
+{this.state.requestShow &&
       <Grid width={32} gap={24}>
-        <div className="centerStyle">Send Balance</div>
+        <div className="leftStyle"><label htmlFor="request_message">Optional message: </label></div>
+        <div className="rightStyle"><textarea name="request_message" id="request_message" onChange={this.handleChange}></textarea></div>
       </Grid>
+}
 
-{/* 
+{this.state.requestShow &&
+      <Grid width={32} gap={24}>
+        <div className="centerStyle"><button  name="sendEmail" className="" disabled={!isEnabled} onClick={() => this.sendEmail()}>Send me my balance</button></div>
+
+      </Grid>
+}
+
+
+{this.props.event.balance_request_sent &&
+      <Grid width={32} gap={24}>
+        <div className="centerStyle">Request for balance already sent</div>
+      </Grid>
+    }
+
+{/*
 
 <h3>{this.props.response}</h3>
 
@@ -192,6 +206,8 @@ return ( <p key={index}>
 <button name="sent_invite" className="sendInvite" id="sent_invite" onClick={() => this.props.sendInvite()}></button>
 {!this.state.requestSent && !this.props.event.balance_request_sent && <div><button  name="sendBalance" className="" onClick={() => this.requestBalance()}>Request balance</button></div>}
 {this.state.requestSent && <div>Request sent</div>}
+
+
 {this.state.requestShow && <div>
 <div><label htmlFor="paypal_email">PayPal email address: </label><input type="text" name="paypal_email" id="paypal_email" onChange={this.handleChange}/></div>
 { this.state.paypal_email.length > 0 && !this.validateEmail(this.state.paypal_email) && <span className="error">Not a valid email address</span>}

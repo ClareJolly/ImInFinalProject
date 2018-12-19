@@ -37,21 +37,18 @@ class Events extends Component {
       return results.json();
 
     }).then(data => {
-      
+
       this.setState({event_list: data})
     let events = data.map((event, index) => {
         return (
 
-          <button key={index} className="event-buttons"  >
-
-
-
-          </button>
+          <p></p>
 
         )
       })
       this.setState({events})
     })
+
   }
 
   setAndDeleteEvent(id){
