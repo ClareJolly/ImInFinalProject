@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Grid from 'react-css-grid'
 class EventForm extends Component {
 
   constructor(props){
@@ -60,12 +60,31 @@ finalSave = () => {
 
     return (
       <div className="EventForm">
-
-      <div><label htmlFor="eventPlace">Place</label><input type='text' autoFocus name='eventPlace' id='eventPlace' required onChange={this.handleChange}/></div>
+        <Grid width={32} gap={24}>
+         <div className="leftStyle"><label htmlFor="eventPlace">Location</label>:</div>
+         <div className="rightStyle"><input type='text' autoFocus name='eventPlace' id='eventPlace' required onChange={this.handleChange}/></div>
+        </Grid>
+        <Grid width={32} gap={24}>
+         <div className="leftStyle"><label htmlFor="eventDate">Date</label>:</div>
+         <div className="rightStyle"><input type="date" name='eventDate' id='eventDate' required onChange={this.handleChange}/></div>
+        </Grid>
+        <Grid width={32} gap={24}>
+         <div className="leftStyle"><label htmlFor="eventTime">Time</label>:</div>
+         <div className="rightStyle"><input type="time" name='eventTime' id='eventTime' required onChange={this.handleChange}/></div>
+        </Grid>
+        <Grid width={32} gap={24}>
+         <div className="leftStyle"><label htmlFor="eventPricePP">Deposit per person</label>:</div>
+         <div className="rightStyle"><input type="number" name='eventPricePP' id='eventPricePP' min="0" required onChange={this.handleChange}/></div>
+        </Grid>
+        <Grid width={32} gap={24}>
+         <div className="leftStyle"><label htmlFor="payByDate">Pay by date</label>:</div>
+         <div className="rightStyle"><input type="date" name='payByDate' id='payByDate' required onChange={this.handleChange}/></div>
+        </Grid>
+      {/*<div><label htmlFor="eventPlace">Place</label><input type='text' autoFocus name='eventPlace' id='eventPlace' required onChange={this.handleChange}/></div>
       <div><label htmlFor="eventPricePP">Price Per Person £</label><input type="number" name='eventPricePP' id='eventPricePP' min="0" required onChange={this.handleChange}/></div>
       <div><label htmlFor="eventDate">Date</label><input type="date" name='eventDate' id='eventDate' required onChange={this.handleChange}/></div>
       <div><label htmlFor="payByDate">Pay By Date</label><input type="date" name='payByDate' id='payByDate' required onChange={this.handleChange}/></div>
-      <div><label htmlFor="eventTime">Time</label><input type="time" name='eventTime' id='eventTime' required onChange={this.handleChange}/></div>
+      <div><label htmlFor="eventTime">Time</label><input type="time" name='eventTime' id='eventTime' required onChange={this.handleChange}/></div>*/}
       <div><button name="back" id="back" onClick={this.props.goBack}>Back</button><button type="button" disabled={!isEnabled} onClick={this.finalSave}>Save event</button></div>
 
       </div>

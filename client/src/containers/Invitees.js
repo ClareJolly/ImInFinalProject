@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Grid from 'react-css-grid'
 import './App.css';
 import Participant from '../components/Participant'
 
@@ -36,11 +36,14 @@ class Invitees extends Component {
   render() {
     return (
       <div className="Participants">
-      <h4>Who do you want to invite?</h4>
+      <h3>Who do you want to invite?</h3>
       {this.state.invitees.length > 0 && <div>{this.state.invitees.map((invitelist, index) => {
         return ( <div key={index}>
-            {invitelist.part_name} |
-            {invitelist.part_number}
+          <Grid key={index} width={32} gap={24}>
+            <div className="leftStyle ">{invitelist.part_name}</div>
+            <div className="rightStyle">{invitelist.part_number}</div>
+
+          </Grid> 
              </div>
              )
         })

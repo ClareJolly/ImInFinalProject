@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Grid from 'react-css-grid'
 
 class TeamForm extends Component {
 
@@ -41,9 +42,18 @@ class TeamForm extends Component {
 // console.log(isEnabled)
     return (
       <div className="TeamForm">
-        <div><label htmlFor="teamName">Event name</label></div>
+      <Grid width={32} gap={24}>
+       <div className="leftStyle"><label htmlFor="teamName">Event name</label>:</div>
+       <div className="rightStyle"><input type='text' autoFocus name='teamName' id='teamName' value={this.state.teamName} required onChange={this.handleChange}/></div>
+      </Grid>
+
+      <Grid width={32} gap={24}>
+       <div className="centeredStyle"><button type="button" disabled={!isEnabled} onClick={this.saveTeam}>Next</button></div>
+
+      </Grid>
+        {/*<div><label htmlFor="teamName">Event name</label></div>
         <div><input type='text' autoFocus name='teamName' id='teamName' value={this.state.teamName} required onChange={this.handleChange}/></div>
-        <div><button type="button" disabled={!isEnabled} onClick={this.saveTeam}>Next</button></div>
+        <div><button type="button" disabled={!isEnabled} onClick={this.saveTeam}>Next</button></div>*/}
       </div>
     );
   }
