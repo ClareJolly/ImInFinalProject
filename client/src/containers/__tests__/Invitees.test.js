@@ -27,4 +27,22 @@ mountedInvitees = shallow(<Invitees defaultVal={[]}/>)
     expect(participant.length).toBe(1)
 
   })
+
+  // updateParticipants = (participant) => {
+  //   let invitees = [...this.state.invitees]
+  //   invitees.push(participant)
+  //   this.setState({
+  //     invitees
+  //   })
+  //
+  // }
+
+  it('update participants ', () => {
+    const instance = mountedInvitees.instance();
+
+    // instance.setState({ stage: 0 })
+    instance.updateParticipants({part_name:'part_name',part_number:'part_number'})
+    expect(mountedInvitees.state('invitees')).toEqual([{"part_name": "part_name", "part_number": "part_number"}]);
+    // expect(mountedNewevent.state('teamName')).toBe('t-name');
+  })
 })
