@@ -82,7 +82,9 @@ div {
 
 label {
   font-size:12px;
-  vertical-align: top;
+  /* display: inline-block; */
+  /* height: 200px; */
+   /* line-height: 18px */
 }
 
 h4 {
@@ -94,7 +96,7 @@ input[type="text"]
 {
     font-family: 'montserrat', sans-serif;
     font-size:12px;
-    margin:10px;
+    /* margin:10px; */
     border: 2px solid rgb(112, 112, 112);
   border-radius: 4px;
 }
@@ -102,7 +104,7 @@ input[type="time"]
 {
     font-family: 'montserrat', sans-serif;
     font-size:12px;
-    margin:10px;
+    /* margin:10px; */
     border: 2px solid rgb(112, 112, 112);
   border-radius: 4px;
 }
@@ -110,7 +112,7 @@ input[type="date"]
 {
     font-family: 'montserrat', sans-serif;
     font-size:12px;
-    margin:10px;
+    /* margin:10px; */
     border: 2px solid rgb(112, 112, 112);
   border-radius: 4px;
 }
@@ -119,7 +121,7 @@ input[type="password"]
 {
     font-family: 'montserrat', sans-serif;
     font-size:12px;
-    margin:10px;
+    /* margin:10px; */
     border: 2px solid rgb(112, 112, 112);
   border-radius: 4px;
 }
@@ -128,7 +130,7 @@ input[type="number"]
 {
     font-family: 'montserrat', sans-serif;
     font-size:12px;
-    margin:10px;
+    /* margin:10px; */
     border: 2px solid rgb(112, 112, 112);
   border-radius: 4px;
 }
@@ -137,9 +139,28 @@ textarea
 {
     font-family: 'montserrat', sans-serif;
     font-size:12px;
-    margin:10px;
+    /* margin:10px; */
     border: 2px solid rgb(112, 112, 112);
   border-radius: 4px;
+}
+
+
+.leftStyle {
+    text-align:right;
+    padding: 10px 2px 10px 2px;
+    /* font-weight: bold; */
+    text-transform: uppercase;
+  }
+
+.rightStyle {
+  text-align:left;
+  padding: 10px 2px 10px 2px;
+}
+
+.centerStyle{
+  text-align:center;
+  padding: 10px 2px 10px 2px;
+  text-transform: uppercase;
 }
 
 .App {
