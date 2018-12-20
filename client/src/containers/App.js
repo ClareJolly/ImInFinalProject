@@ -159,6 +159,7 @@ setEventID(event) {
     }).then(res => res.json())
     .then(response => console.log('Success:', JSON.stringify(response)))
     .then(this.deleted())
+    .then(window.location.reload())
     .then(this.setState({
       currentView : 'home',
       pageTitle : this.pages['home']
