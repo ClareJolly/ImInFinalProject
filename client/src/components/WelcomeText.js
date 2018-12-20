@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Grid from 'react-css-grid';
 
 class WelcomeText extends Component {
-
+ 
   render() {
     return (
       <div className="WelcomeText">{this.props.loggedIn && <div>Hi, {this.props.user}</div>}
