@@ -9,7 +9,6 @@ class Invitees extends Component {
     super(props);
     this.state = {
       invitees : this.props.defaultVal
-      // invitees : []
     }
     this.updateParticipants = this.updateParticipants.bind(this);
   }
@@ -43,7 +42,7 @@ class Invitees extends Component {
             <div className="leftStyle ">{invitelist.part_name}</div>
             <div className="rightStyle">{invitelist.part_number}</div>
 
-          </Grid> 
+          </Grid>
              </div>
              )
         })

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './RegisterUser.css';
+
 import axios from 'axios'
 import './App.css';
 
@@ -14,7 +14,7 @@ class RegisterUser extends Component {
       password : '',
       isUsernameAvailable:''
     }
-    // this.usernameAvailable = this.usernameAvailable.bind(this);
+
   }
 
   Register = () => {
@@ -30,8 +30,7 @@ class RegisterUser extends Component {
     var userCredentials = {username:that.state.username}
     var checking = axios.post(checkURL,userCredentials)
       .then(res => {
-        // console.log(res.data)
-        // this.setState({isUsernameAvailable:res.data},)
+
         return res.data
       })
       resolve(checking);
@@ -43,7 +42,7 @@ class RegisterUser extends Component {
       if(result==="Y"){
         that.props.UserRegister(name, username, phoneNumber, password);
       } else {
-        
+
         that.setState({isUsernameAvailable:"N"})
       }
 

@@ -1,20 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import './Events.css';
-// import Modal from 'react-modal';
-// import EventModal from './EventModal'
-// import ViewEvent from '../components/ViewEvent'
 
-// const customStyles = {
-//   content : {
-//     top                   : '50%',
-//     left                  : '50%',
-//     right                 : 'auto',
-//     bottom                : 'auto',
-//     marginRight           : '-50%',
-//     transform             : 'translate(-50%, -50%)'
-//   }
-// };
 
 
 class Events extends Component {
@@ -56,7 +43,7 @@ class Events extends Component {
   }
 
   setAndDeleteEvent(id){
-    // this.props.setEventID(event)
+
     this.props.deleteEvent(id)
   }
   render() {
@@ -66,19 +53,12 @@ class Events extends Component {
     return (
       <div className="Events">
         {this.state.event_list.length > 0 && <h2 >Select an Event </h2>}
-        {/*<div >
 
-        {this.state.events}
-        // {console.log(this.state.event_list)}
-
-        </div>*/}
 {this.state.event_list.length === 0 && <div>No events yet, why not add one</div>}
 
         {this.state.event_list.map ((event, index) => {
           var inviteesArray = event.invitees_new
           var inResponses = inviteesArray.filter(word => word.response === "IN").length
-          // var outResponses = inviteesArray.filter(word => word.response === "OUT").length
-          // var noneResponses = inviteesArray.filter(word => word.response === "NONE").length
 
           return <div key={index}>
 
@@ -91,7 +71,7 @@ class Events extends Component {
           <span className="inOrOut">{inResponses}/{inviteesArray.length} are</span> <strong>IN</strong>
           </div>
 
-          {/*<button  name="edit" className="editButtons" ></button>*/}
+
 
           </div>
 

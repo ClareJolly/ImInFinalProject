@@ -28,7 +28,7 @@ class Newevent extends Component {
       event:''
 
     }
-    // console.log(this.state)
+
   }
 
   handleChange = (event) => {
@@ -62,17 +62,17 @@ class Newevent extends Component {
   Stage1Submit = (teamName) => {
     this.incrementStage()
     this.setTeamName(teamName)
-    // console.log(this.state.stage)
+
   }
 
   Stage2Submit = (invitees) => {
     this.incrementStage()
     this.updateInvitees(invitees)
-    // console.log(this.state.stage)
+
   }
 
   Stage3Submit = (eventTime, eventDate, payByDate, eventPricePP, message, eventPlace) => {
-    // this.incrementStage()
+
 
     this.setState({
       eventTime: eventTime,
@@ -84,11 +84,6 @@ class Newevent extends Component {
       invitees_new: this.state.invitees
     },this.updateFinal(eventTime, eventDate, payByDate, eventPricePP, message, eventPlace, ))
 
-    // this.updateFinal(eventTime, eventDate, message, eventPlace)
-    // this.incrementStage()
-    // console.log(this.state.stage)
-    // this.updateDb()
-    console.log("db")
   }
 
   updateInvitees = (invitees) => {
@@ -97,21 +92,14 @@ class Newevent extends Component {
     })
   }
 
-  // updateFinal = (eventTime, eventDate, message, eventPlace) => {
-  //   console.log("updateFINAL")
 
-  // }
 
   updateFinal = (eventTime, eventDate, payByDate, eventPricePP, message, eventPlace) => {
 
     ;
-    // var name = this.state.name
-    // var username = this.state.username
-    // var phoneNumber = this.state.phoneNumber
-    // var password = this.state.password
+
     var that=this
-    // this.usernameAvailable()
-    // var p = this.usernameAvailable()
+
 
   var updateDb2 = new Promise(function(resolve, reject) {
   // do a thing, possibly async, then…
@@ -122,69 +110,36 @@ class Newevent extends Component {
   var checking = axios.post(url,event)
     .then(res => {
 
-      // this.props.setEventID(res.data)
-      // this.setState({savedEvent:res.data,event:res.data})
+
       return res.data
     })
-    // .then(resp => {console.log(resp.data)})
+
     resolve(checking);
 
   });
 
   updateDb2.then(function(result) {
-  // console.log("Promise worked");
+
   that.props.setEventID(result)
 
 
 
-  // that.setState({savedEvent:JSON.stringify(result),event:JSON.stringify(result)},that.props.showSection('events'))
+
 }, function(err) {
   console.log("Something broke");
 });
   }
 
 
-  // checkState = () => {
-  //   console.log(this.state)
-  // }
+
 
   goBack = () => {
     this.decrementStage()
-    // console.log("back")
-    // console.log(this.state)
+
 
   }
 
-  // updateDbx = () => {
-  //   var url = '/api/db'
-  //   var event = {teamName: this.state.teamName, eventTime: this.state.eventTime, eventDate: this.state.eventDate, payByDate: this.state.payByDate, eventPricePP: this.state.eventPricePP, eventPlace: this.state.eventPlace, message: this.state.message, invitees: this.state.invitees}
-  //   console.log(event)
-  //   axios.post(url,event)
-  //     .then(res => {
-  //       // console.log(res.data)
-  //       this.props.setEventID(res.data)
-  //       this.setState({savedEvent:res.data,event:res.data})
-  //
-  //     })
-  //     // .then(this.incrementStage())
-  //     // .then(this.props.setEventID)
-  //     .then(console.log("STATE:",this.state))
-  //   // fetch(url, {
-  //   //   method: 'POST',
-  //   //   body: JSON.stringify( event ),
-  //   //   headers: {
-  //   //     'Content-Type': 'application/json'
-  //   //   }
-  //   // })
-  //   // // .then(aaa => console.log(aaa))
-  //   // .then(res => res.json())
-  //   // // .then(res =>     this.setState({savedEvent:JSON.stringify(res),event:JSON.stringify(res)}))
-  //   // .then(this.incrementStage())
-  //   // // .then(window.location.reload())
-  //   // // .then(this.props.showSection('events'))
-  //   // .catch(error => console.error("Error:", error));
-  //
-  // }
+
   render() {
     return (
       <div className="Newevent">
