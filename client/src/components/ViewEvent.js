@@ -84,7 +84,7 @@ return check
                   <Grid key={index} width={32} gap={24}>
                   <div className="leftStyle inviteeLeftStyle">{invitelist.part_name}</div>
                   <div className="centerStyle">{invitelist.part_number}</div>
-                  <div className="rightStyle inviteeRightStyle">{invitelist.response} </div>
+                  <div className="rightStyle inviteeRightStyle"><b>{invitelist.response}</b> </div>
                 </Grid>
                     )
               })
