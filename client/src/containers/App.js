@@ -121,7 +121,8 @@ class App extends Component {
 
   componentDidMount() {
     if (this.state.toasterShow && !this.state.cookieaccept){
-      this.cookie()}
+      // this.cookie()
+    }
   }
 
 setEventID(event) {
