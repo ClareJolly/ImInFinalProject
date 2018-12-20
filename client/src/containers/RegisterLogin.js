@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RegisterUser from './RegisterUser'
 import LoginUser from '../components/LoginUser'
 import axios from 'axios'
+import Grid from 'react-css-grid'
 // import './RegisterUser.css';
 
 import './App.css';
@@ -92,15 +93,22 @@ show(section) {
   render() {
     return (
       <div className="RegisterLogin">
-      {this.state.showSection === "" && <div>Register or login to create events and view any that you have already saved.</div>}
-      {this.state.showSection === "" && <div>
-      Already registered? <button id="login" onClick={() => this.show("login")}>Login</button>
-      </div>}
-      {this.state.showSection === "" && <div>Are you new? <button id="register" onClick={() => this.show("register")}>Register</button>
-      </div>}
-      {this.state.showSection ==="register" && <RegisterUser UserRegister={this.UserRegister}/>}
-      {this.state.loginMessage !== '' && <div>{this.state.loginMessage}</div>}
-      {this.state.showSection === "login" && <LoginUser CheckLogin={this.CheckLogin}/>}
+
+      <Grid width={32} gap={24}>
+      <div className="centerStyle">Register or login to create events and view any that you have already saved.</div>
+      </Grid>
+
+      <Grid width={32} gap={24}>
+       <div className="leftStyle">Already registered?</div>
+       <div className="rightStyle"><button id="login" onClick={() => this.props.showSection("login")}>Login</button></div>
+      </Grid>
+
+
+      <Grid width={32} gap={24}>
+       <div className="leftStyle">Are you new?</div>
+       <div className="rightStyle"><button id="register" onClick={() => this.show("register")}>Register</button></div>
+      </Grid>
+
         </div>
     )
   }
