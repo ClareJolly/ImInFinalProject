@@ -112,7 +112,7 @@ show(section) {
       </Grid>}
 
       {this.state.showSection ==="register" && <RegisterUser UserRegister={this.UserRegister}/>}
-      {this.state.loginMessage !== '' && <div>{this.state.loginMessage}</div>}
+      {this.state.loginMessage !== '' && <div className="error">{this.state.loginMessage}</div>}
       {this.state.showSection === "login" && <LoginUser CheckLogin={this.CheckLogin}/>}
 
 
