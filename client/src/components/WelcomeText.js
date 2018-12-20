@@ -1,16 +1,41 @@
 import React, { Component } from 'react';
-
+import Grid from 'react-css-grid';
 
 class WelcomeText extends Component {
 
   render() {
     return (
       <div className="WelcomeText">{this.props.loggedIn && <div>Hi, {this.props.user}</div>}
-      <div><p>Welcome to our super cool event arranging tool</p>
-      <p>From here you can arrange an event and set up a regular team and send out notifications to the people you want to invite</p></div>
+
+      <Grid width={32} gap={24}>
+      <div className="centerStyle">Welcome to our Event Manager app</div>
+      </Grid>
+
+      <Grid width={32} gap={24}>
+      <div className="centerStyle">Arrange</div>
+      </Grid>
+
+      <Grid width={32} gap={24}>
+      <div className="centerStyle">Invite</div>
+      </Grid>
+
+      <Grid width={32} gap={24}>
+      <div className="centerStyle">Notifications</div>
+      </Grid>
+
+      <Grid width={32} gap={24}>
+      <div className="centerStyle">Payment</div>
+      </Grid>
+
+      <Grid width={32} gap={24}>
+      <div className="centerStyle">All in one place</div>
+      </Grid>
+
       </div>
     );
   }
 }
+
+
 
 export default WelcomeText;

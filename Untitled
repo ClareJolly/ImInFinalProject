@@ -1,0 +1,35 @@
+
+            // <Grid width={32} gap={24}>
+            //   <div className="leftStyle">Already registered?</div>
+            //   <div className="rightStyle"><button id="login" onClick={() => this.show("login")}>Login</button></div>
+            // </Grid>
+            //
+            //
+            //
+            // {this.state.showSection === "" && <div>
+            //  <button id="login" onClick={() => this.show("login")}>Login</button>
+            // </div>}
+            //
+            //
+            // <Grid width={32} gap={24}>
+            //   <div className="leftStyle"><button name="delete" className="deleteButtons" id="delete" onClick={() => this.props.deleteEvent(this.props.event._id)}></button></div>
+            //   <div className="rightStyle"><button name="sent_invite" className="sendInvite" id="sent_invite" onClick={() => this.props.sendInvite()}></button></div>
+            // </Grid>
+
+            {this.state.showSection === "" && <div>Register or login to create events and view any that you have already saved.</div>}
+            {this.state.showSection === "" && <div>
+            Already registered? <button id="login" onClick={() => this.show("login")}>Login</button>
+            </div>}
+            {this.state.showSection === "" && <div>Are you new? <button id="register" onClick={() => this.show("register")}>Register</button>
+            </div>}
+            {this.state.showSection ==="register" && <RegisterUser UserRegister={this.UserRegister}/>}
+            {this.state.loginMessage !== '' && <div>{this.state.loginMessage}</div>}
+            {this.state.showSection === "login" && <LoginUser CheckLogin={this.CheckLogin}/>}
+              </div>
+
+              // <div className="LoginUser">
+              //   <div>Login</div>
+              //   <div>Username<input type="text" name='log_username' id='log_username' value={this.state.username} required onChange={this.handleChange}/></div>
+              //   <div>Password<input type="password" name='log_password' id='log_password' value={this.state.password} required onChange={this.handleChange}/></div>
+              //   <div><button disabled={!isEnabled} onClick={this.Login} >Submit</button></div>
+              //   </div>
