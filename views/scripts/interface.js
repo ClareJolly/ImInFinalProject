@@ -54,21 +54,21 @@ function getEvents (short_id){}
 
     createHTMLObject("h1", [{attr: "id", val: "EventName"}],"header")
     document.getElementById("EventName").innerHTML = r.all.teamName
-    createHTMLObject("h2", [{attr: "id", val: "event_date_title"}],"left1")
+    createHTMLObject("h3", [{attr: "id", val: "event_date_title"}],"left1")
     document.getElementById("event_date_title").innerHTML = "Date: "
-    createHTMLObject("h2", [{attr: "id", val: "event_date"}],"right1")
+    createHTMLObject("h3", [{attr: "id", val: "event_date"}],"right1")
     document.getElementById("event_date").innerHTML = r.all.eventDate
-    createHTMLObject("h2", [{attr: "id", val: "event_time_title"}],"left2")
+    createHTMLObject("h3", [{attr: "id", val: "event_time_title"}],"left2")
     document.getElementById("event_time_title").innerHTML = "@"
-    createHTMLObject("h2", [{attr: "id", val: "event_time"}],"right2")
+    createHTMLObject("h3", [{attr: "id", val: "event_time"}],"right2")
     document.getElementById("event_time").innerHTML = r.all.eventTime
-    createHTMLObject("h2", [{attr: "id", val: "event_place_title"}],"left3")
+    createHTMLObject("h3", [{attr: "id", val: "event_place_title"}],"left3")
     document.getElementById("event_place_title").innerHTML = "Location: "
-    createHTMLObject("h2", [{attr: "id", val: "event_place"}],"right3")
+    createHTMLObject("h3", [{attr: "id", val: "event_place"}],"right3")
     document.getElementById("event_place").innerHTML = r.all.eventPlace
-    createHTMLObject("h2", [{attr: "id", val: "price_title"}],"left4")
+    createHTMLObject("h3", [{attr: "id", val: "price_title"}],"left4")
     document.getElementById("price_title").innerHTML = "Deposit: "
-    createHTMLObject("h2", [{attr: "id", val: "price"}],"right4")
+    createHTMLObject("h3", [{attr: "id", val: "price"}],"right4")
     document.getElementById("price").innerHTML = "£"+ price
     createHTMLObject("form", [{attr: "action", val: "/api/paypal/pay"},{attr: "method", val: "post"},{attr: "id", val: "pay-form"}],"App")
     createHTMLObject("input", [{attr: "type", val: "hidden"},{attr: "name", val: "short_id"},{attr: "id", val: "short_id"},{attr: "value", val: short_id}],"pay-form")
