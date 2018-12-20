@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
+import Grid from 'react-css-grid';
 
 import '../containers/App.css';
+ 
 
 class LoginUser extends Component {
 
@@ -39,12 +41,30 @@ class LoginUser extends Component {
   render() {
     const isEnabled = this.canBeSubmitted();
     return (
+
       <div className="LoginUser">
-        <div>Login</div>
-        <div>Username<input type="text" name='log_username' id='log_username' value={this.state.username} required onChange={this.handleChange}/></div>
-        <div>Password<input type="password" name='log_password' id='log_password' value={this.state.password} required onChange={this.handleChange}/></div>
-        <div><button disabled={!isEnabled} onClick={this.Login} >Submit</button></div>
-        </div>
+
+      <Grid width={32} gap={24}>
+      <div className="centerStyle">Login</div>
+      </Grid>
+
+      <Grid width={32} gap={24}>
+       <div className="leftStyle">Username</div>
+       <div className="rightStyle"><input type="text" name='log_username' id='log_username' value={this.state.username} required onChange={this.handleChange}/></div>
+      </Grid>
+
+
+      <Grid width={32} gap={24}>
+       <div className="leftStyle">Password</div>
+       <div className="rightStyle"><input type="password" name='log_password' id='log_password' value={this.state.password} required onChange={this.handleChange}/></div>
+      </Grid>
+
+      <Grid width={32} gap={24}>
+      <div className="centerStyle"><button disabled={!isEnabled} onClick={this.Login} >Submit</button></div>
+      </Grid>
+
+      </div>
+
     )
   }
   }
