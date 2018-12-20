@@ -21,103 +21,6 @@ router.get('/confirm/:id', (req, res) => {
   id = req.params.id
 
   res.render('index')
-  // var allData = ''
-  // var test = 'test A'
-  //
-  // // function getData(id) {
-  //   getResults = axios.get('http://localhost:5000/api/db/')
-  //        .then(function (response) {
-  //        codeArr = []
-  //        for (var i = 0 ; i < response.data.length; i++){
-  //
-  //            for (var x = 0 ; x< response.data[i].invitees_new.length; x++){
-  //              // console.log(response.data[i].invitees_new[x].short_id)
-  //              shortID = response.data[i].invitees_new[x].short_id.toString()
-  //              // console.log(shortID)
-  //              codeArr.push({'shortID':shortID,'eventID': response.data[i]._id,'all': response.data[i]})
-  //            }
-  //        };
-  //
-  //        // console.log(codeArr)
-  //        r = codeArr.find(obj => obj.shortID === id)
-  //        allData = r
-  //        console.log(test)
-  //        helloworld(allData,test)
-  //        .then(console.log("testb?",test))
-  //
-  //        // console.log("ALL:",allData)
-  //          return allData
-  //        })
-  //        .catch(function (error) {
-  //          return error
-  //        });
-  //
-  //
-  // // }
-  //
-  // function helloworld(arr,test) {
-  //   test = 'testB'
-  //   return test
-  //   // console.log(arr)
-  // }
-
-
-//   promiseA(id,'b')
-//     .then(promiseB)
-//     // .then(promiseC)
-//   //   .catch(function(error) {
-//   //   console.log('Unexepected error has occured');
-//   // }
-// .then(console.log(promiseB._id));
-//
-//   function promiseA(id) {
-//     // console.log("ID",id)
-//      return new Promise((resolve, reject) => {
-//        getResults = axios.get('http://localhost:5000/api/db/inv/'+id)
-//             .then(function (response) {
-//               // console.log(response.data)
-//               return response.data
-//             })
-//             .catch(function (error) {
-//               return error
-//             });
-//
-//            return resolve(getResults);
-//      });
-//  }
-//
-//  function promiseB(result) {
-//    return new Promise((resolve, reject) => {
-//      getResults = axios.get('http://localhost:5000/api/db/')
-//           .then(function (response) {
-//           codeArr = []
-//           for (var i = 0 ; i < response.data.length; i++){
-//
-//               for (var x = 0 ; x< response.data[i].invitees_new.length; x++){
-//                 // console.log(response.data[i].invitees_new[x].short_id)
-//                 shortID = response.data[i].invitees_new[x].short_id.toString()
-//                 // console.log(shortID)
-//                 codeArr.push({'shortID':shortID,'eventID': response.data[i]._id,'all': response.data[i]})
-//               }
-//           }
-//
-//           // console.log(codeArr)
-//           r = codeArr.find(obj => obj.shortID === id)
-//           allData = r
-//           // console.log("ALL:",allData)
-//             return allData
-//           })
-//           .catch(function (error) {
-//             return error
-//           });
-//
-//        return resolve(allData);
-//    });
-//  }
-//
-// console.log("ALL:",allData)
-
-
 });
 
 // pay page to call PayPal AIP
@@ -131,8 +34,8 @@ router.post('/pay', (req, res) => {
         "payment_method": "paypal"
     },
     "redirect_urls": {
-        "return_url": "http://localhost:5000/api/paypal/success?p=" + price ,
-        "cancel_url": "http://localhost:5000/api/paypal/cancel"
+        "return_url": "http://5e4fec46.ngrok.io/api/paypal/success?p=" + price ,
+        "cancel_url": "http://5e4fec46.ngrok.io/api/paypal/cancel"
     },
     "transactions": [{
         "item_list": {
@@ -148,11 +51,8 @@ router.post('/pay', (req, res) => {
         "amount": {
             "currency": "GBP",
             "total": price
-            // req.body.price
         },
         "description": "req.body.manager_ID"
-
-        // "Please pay £" + req.body.price + " for " + req.body.eventName + " on " + req.body.eventDate + " @ " + req.body.eventPlace + " to confirm you are IN"
     }]
 };
 
@@ -197,7 +97,7 @@ router.get('/success', (req, res) => {
   	"payment_confirmed": "Y",
      "payment_details": payment["transactions"][0]
   }
-      axios.patch("http://localhost:5000/api/db/inv/payment/"+sku, payamentupdate)
+      axios.patch("http://5e4fec46.ngrok.io/api/db/inv/payment/"+sku, payamentupdate)
       .then(function (response) {
         console.log(response);
       })

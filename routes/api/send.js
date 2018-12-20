@@ -29,13 +29,14 @@ router.post('/', (req, res) => {
       body: "Hi "+ req.body.invitees_new[i].part_name+", your invited to "+req.body.teamName+" on "+req.body.eventDate+" at "+req.body.eventTime+". To attend reply " +req.body.invitees_new[i].short_id + " IN or reply "+req.body.invitees_new[i].short_id +" OUT if not.",}, function(err,message) {
       });
     }
+  
     }
     else{
       for (var i = 0; i<req.body.invitees_new.length; i++){
         client.messages.create({
           to: req.body.invitees_new[i].part_number,
           from: sendfrom,
-          body: "Hi "+ req.body.invitees_new[i].part_name+", your invited to "+req.body.teamName+" on " + req.body.eventDate+ " at "+req.body.eventTime+ ". To attend pay £" +req.body.eventPricePP+ " at http://aa2b4d83.ngrok.io/paypal/confirm/"+req.body.invitees_new[i].short_id + " or reply "+req.body.invitees_new[i].short_id+ " OUT if not.",}, function(err,message) {
+          body: "Hi "+ req.body.invitees_new[i].part_name+", your invited to "+req.body.teamName+" on " + req.body.eventDate+ " at "+req.body.eventTime+ ". To attend pay £" +req.body.eventPricePP+ " at http://5e4fec46.ngrok.io/api/paypal/confirm/"+req.body.invitees_new[i].short_id + " or reply "+req.body.invitees_new[i].short_id+ " OUT if not.",}, function(err,message) {
           });
     }
   }
