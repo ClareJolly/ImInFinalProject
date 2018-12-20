@@ -52,6 +52,7 @@ class App extends Component {
     this.setLogout = this.setLogout.bind(this);
     this.invites = this.invites.bind(this);
     this.deleted = this.deleted.bind(this);
+    this.balanceReqSent = this.balanceReqSent.bind(this);
   }
 
   // TOASTERS
@@ -88,7 +89,6 @@ class App extends Component {
 
     invites = () => {
       toast("Invites sent", {
-        // onClose: () => this.cookieSet(),
         autoClose: true,
         position: toast.POSITION.TOP_RIGHT,
         className: 'black-background',
@@ -98,7 +98,7 @@ class App extends Component {
       }
 
       deleted = () => {
-        toast("event deleted", {
+        toast("Event deleted", {
           // onClose: () => this.cookieSet(),
           autoClose: true,
           position: toast.POSITION.TOP_RIGHT,
@@ -107,6 +107,17 @@ class App extends Component {
           progressClassName: 'fancy-progress-bar'
           });
         }
+
+        balanceReqSent = () => {
+          toast("Balance request sent", {
+            // onClose: () => this.cookieSet(),
+            autoClose: true,
+            position: toast.POSITION.TOP_RIGHT,
+            className: 'black-background',
+            bodyClassName: "grow-font-size",
+            progressClassName: 'fancy-progress-bar'
+            });
+          }
 
   componentDidMount() {
     if (this.state.toasterShow && !this.state.cookieaccept){
@@ -152,8 +163,7 @@ setEventID(event) {
       currentView : 'home',
       pageTitle : this.pages['home']
     }))
-    // .then(console.log("refreshing"))
-    // .then(this.refreshEventList())
+
     .catch(error => console.error("Error:", error));
 
   }
@@ -171,7 +181,7 @@ setEventID(event) {
       }
     }).then(res => res.json())
     .then(response => console.log('Success:', JSON.stringify(response)))
-    // .then(window.location.reload())
+
     .then(
       this.invites()
 
@@ -189,23 +199,19 @@ setEventID(event) {
 
   }
 
-  // refreshEventList () {
-  //   console.log(this.state)
-  //   this.setState({refreshEventList: !this.state.refreshEventList})
-  // }
 
   setUser(user,userID) {
-    // console.log(user)
+
     sessionStorage.setItem('username', user);
     sessionStorage.setItem('userID', userID)
     this.setState({user: user, userID:userID, loggedIn:true})
     this.showSection('home')
     this.toast_login()
-    // console.log(userID)
+
   }
 
   setLogout() {
-    // console.log("toggle?")
+
     sessionStorage.clear()
     this.setState({user: '',userID:'', loggedIn:false})
     this.showSection('home')
@@ -224,7 +230,7 @@ setEventID(event) {
       {this.state.currentView === "new" && <Newevent showSection={this.showSection} setEventID={this.setEventID}/>}
       {this.state.currentView === "login" && <RegisterLogin showSection={this.showSection} setUser={this.setUser}/>}
       {this.state.currentView === "events" && <Events  deleteEvent={this.deleteEvent}  setEventID={this.setEventID} refresh={this.refreshEventList}/>}
-      {this.state.currentView === "viewEvent" && <ViewEvent response={'Your Event'} event={this.state.event} deleteEvent={this.deleteEvent} sendInvite={this.sendInvite}/>}
+      {this.state.currentView === "viewEvent" && <ViewEvent balanceReqSent={this.balanceReqSent} response={'Your Event'} event={this.state.event} deleteEvent={this.deleteEvent} sendInvite={this.sendInvite}/>}
       </div>
     );
   }

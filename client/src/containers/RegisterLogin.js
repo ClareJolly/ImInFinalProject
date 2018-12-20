@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import RegisterUser from './RegisterUser'
 import LoginUser from '../components/LoginUser'
-import axios from 'axios'
 import Grid from 'react-css-grid'
-// import './RegisterUser.css';
+import axios from 'axios'
 
 import './App.css';
 
@@ -96,7 +95,7 @@ show(section) {
 
       {this.state.showSection === "" &&
       <Grid width={32} gap={24}>
-      <div className="centerStyle">Register or login to create events and view any that you have already saved.</div>
+       <div className="centerStyle">Register or login to create events and view any that you have already saved.</div>
       </Grid>}
 
       {this.state.showSection === "" &&
@@ -107,7 +106,8 @@ show(section) {
 
       {this.state.showSection === "" &&
       <Grid width={32} gap={24}>
-       <div className="leftStyle">Are you new?</div>
+       <div className="leftStyle">Are you new? </div>
+
        <div className="rightStyle"><button id="register" onClick={() => this.show("register")}>Register</button></div>
       </Grid>}
 
@@ -115,10 +115,12 @@ show(section) {
       {this.state.loginMessage !== '' && <div>{this.state.loginMessage}</div>}
       {this.state.showSection === "login" && <LoginUser CheckLogin={this.CheckLogin}/>}
 
+
+
       {this.state.showSection ==="register" &&   <div><br/><button id="login" onClick={() => this.show("login")}>Want to login instead?</button></div>}
       {this.state.showSection ==="login" &&   <div><br/><button id="register" onClick={() => this.show("register")}>Want to register instead?</button></div>}
+      </div>
 
-        </div>
     )
   }
   }

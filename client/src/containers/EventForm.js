@@ -18,7 +18,7 @@ class EventForm extends Component {
     this.setState({
       [event.target.name] : event.target.value
     })
-    // console.log(this.state)
+    
   }
 
   convertDate(date){
@@ -26,17 +26,17 @@ class EventForm extends Component {
 
     var d = new Date(date);
     d= [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
-    // var d = new Date(date);
+
     console.log(d)
     return d;
   }
 
 finalSave = () => {
   if (!this.canBeSubmitted()) {
-  // evt.preventDefault();
+
   return;
 }
-    // console.log(this.state.team_name)
+
     var eventDate = this.convertDate(this.state.eventDate)
     var payByDate = this.convertDate(this.state.payByDate)
     this.props.Stage3Submit(this.state.eventTime, eventDate, payByDate, this.state.eventPricePP, this.state.message, this.state.eventPlace)
@@ -80,11 +80,7 @@ finalSave = () => {
          <div className="leftStyle"><label htmlFor="payByDate">Pay by date</label>:</div>
          <div className="rightStyle"><input type="date" name='payByDate' id='payByDate' required onChange={this.handleChange}/></div>
         </Grid>
-      {/*<div><label htmlFor="eventPlace">Place</label><input type='text' autoFocus name='eventPlace' id='eventPlace' required onChange={this.handleChange}/></div>
-      <div><label htmlFor="eventPricePP">Price Per Person £</label><input type="number" name='eventPricePP' id='eventPricePP' min="0" required onChange={this.handleChange}/></div>
-      <div><label htmlFor="eventDate">Date</label><input type="date" name='eventDate' id='eventDate' required onChange={this.handleChange}/></div>
-      <div><label htmlFor="payByDate">Pay By Date</label><input type="date" name='payByDate' id='payByDate' required onChange={this.handleChange}/></div>
-      <div><label htmlFor="eventTime">Time</label><input type="time" name='eventTime' id='eventTime' required onChange={this.handleChange}/></div>*/}
+
       <div><button name="back" id="back" onClick={this.props.goBack}>Back</button><button type="button" disabled={!isEnabled} onClick={this.finalSave}>Save event</button></div>
 
       </div>
