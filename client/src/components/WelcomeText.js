@@ -8,7 +8,7 @@ class WelcomeText extends Component {
       <div className="WelcomeText">{this.props.loggedIn && <div>Hi, {this.props.user}</div>}
 
       <Grid width={32} gap={24}>
-      <div className="centerStyle"><h1>Welcome to I'm IN - the all-in-one event tool.</h1></div>
+      <div className="centerStyle"><h2>Welcome to I'm IN - the all-in-one event tool.</h2></div>
       </Grid>
 
       <Grid width={32} gap={24}>
