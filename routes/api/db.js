@@ -53,7 +53,7 @@ router.post('/', (req, res) => {
       part_name: req.body.invitees[i].part_name,
       part_number: vodaphoneNum,
       eventPricePP: req.body.invitees[i].eventPricePP,
-      response: 'No reply',
+      response: 'NO REPLY',
       unique_code: 'NONE',
       event_ID: 'NONE',
       payment_confirmed: "N",

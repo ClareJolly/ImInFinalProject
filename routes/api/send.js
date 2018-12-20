@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
         client.messages.create({
           to: req.body.invitees_new[i].part_number,
           from: sendfrom,
-          body: "Hi "+ req.body.invitees_new[i].part_name+", your invited to "+req.body.teamName+" on " + req.body.eventDate+ " at "+req.body.eventTime+ ". To attend pay £" +req.body.eventPricePP+ " on http:// or reply "+req.body.invitees_new[i].short_id + " OUT if not."}, function(err,message) {
+          body: "Hi "+ req.body.invitees_new[i].part_name+", your invited to "+req.body.teamName+" on " + req.body.eventDate+ " at "+req.body.eventTime+ ". To attend pay £" +req.body.eventPricePP+ " at http://aa2b4d83.ngrok.io/paypal/confirm/"+req.body.invitees_new[i].short_id + " or reply "+req.body.invitees_new[i].short_id+ " OUT if not.",}, function(err,message) {
           });
     }
   }
@@ -69,7 +69,7 @@ router.post('/sms', (req, res) => {
     .catch(function (error) {
       console.log(error);
     });
-    twiml.message('Great see you there!');
+    twiml.message('Great, see you there!');
   }
   else if (body.includes(" OUT")) {
     var message_short_OUT = body.replace(" OUT","")
@@ -83,10 +83,10 @@ router.post('/sms', (req, res) => {
     .catch(function (error) {
       console.log(error);
     });
-    twiml.message('Sorry to hear you can not make it!');
+    twiml.message("Sorry to hear you can't make it!");
   }
   else {
-    twiml.message('Please Reply IN or OUT!');
+    twiml.message('We did not recognise you response please try again!');
   }
  // console.log(res.Parameters.From)
   res.writeHead(200, {'Content-Type': 'text/xml'});
