@@ -20,18 +20,13 @@ var client = new twilio(accountSid, authToken);
 
 
 router.post('/', (req, res) => {
-  var eventDetails = " you have been invited from "+req.body.teamName+" to an event at "+req.body.eventPlace+" on "+req.body.eventDate+" at "+req.body.eventTime
-
-  var messageBody =  eventDetails + ". If you would like to attend, please reply with your shortcode followed by IN or OUT. Your shortcode is "
-
-  var messageBodyPaid = eventDetails + ". Please pay £"+req.body.eventPricePP+" by "+req.body.payByDate+". If you would like to attend, please pay on url/"
 
   if (req.body.eventPricePP === "0"){
   for (var i = 0; i<req.body.invitees_new.length; i++){
     client.messages.create({
       to: req.body.invitees_new[i].part_number,
       from: sendfrom,
-      body: "Hi "+ req.body.invitees_new[i].part_nam+messageBody+req.body.invitees_new[i].short_id,}, function(err,message) {
+      body: "Hi "+ req.body.invitees_new[i].part_name+", your invited to "+req.body.teamName+" on "+req.body.eventDate+" at "+req.body.eventTime+". To attend reply " +req.body.invitees_new[i].short_id + " IN or reply "+req.body.invitees_new[i].short_id +" OUT if not.",}, function(err,message) {
       });
     }
     }
@@ -40,11 +35,17 @@ router.post('/', (req, res) => {
         client.messages.create({
           to: req.body.invitees_new[i].part_number,
           from: sendfrom,
-          body: "Hi "+ req.body.invitees_new[i].part_name+messageBodyPaid+req.body.invitees_new[i].short_id + "or reply with your shortcode followed by OUT. Your shortcode is "+ req.body.invitees_new[i].short_id,}, function(err,message) {
+          body: "Hi "+ req.body.invitees_new[i].part_name+", your invited to "+req.body.teamName+" on " + req.body.eventDate+ " at "+req.body.eventTime+ ". To attend pay £" +req.body.eventPricePP+ " on http:// or reply "+req.body.invitees_new[i].short_id + " OUT if not."}, function(err,message) {
           });
     }
   }
 })
+
+
+
+
+
+
 
 router.use(bodyParser.urlencoded({ extended: false }))
 
